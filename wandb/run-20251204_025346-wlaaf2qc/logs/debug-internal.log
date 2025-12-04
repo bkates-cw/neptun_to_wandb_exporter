@@ -1,0 +1,14 @@
+{"time":"2025-12-04T02:53:46.845168-06:00","level":"INFO","msg":"stream: starting","core version":"0.22.3"}
+{"time":"2025-12-04T02:53:48.090263-06:00","level":"INFO","msg":"stream: created new stream","id":"wlaaf2qc"}
+{"time":"2025-12-04T02:53:48.090372-06:00","level":"INFO","msg":"handler: started","stream_id":"wlaaf2qc"}
+{"time":"2025-12-04T02:53:48.090578-06:00","level":"INFO","msg":"stream: started","id":"wlaaf2qc"}
+{"time":"2025-12-04T02:53:48.090626-06:00","level":"INFO","msg":"writer: started","stream_id":"wlaaf2qc"}
+{"time":"2025-12-04T02:53:48.090888-06:00","level":"INFO","msg":"sender: started","stream_id":"wlaaf2qc"}
+{"time":"2025-12-04T02:53:48.782891-06:00","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":37}
+{"time":"2025-12-04T02:53:49.14498-06:00","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":309}
+{"time":"2025-12-04T02:54:48.095011-06:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-12-04T02:54:49.205035-06:00","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2025-12-04T02:54:49.213661-06:00","level":"INFO","msg":"stream: closing","id":"wlaaf2qc"}
+{"time":"2025-12-04T02:54:49.214037-06:00","level":"INFO","msg":"handler: closed","stream_id":"wlaaf2qc"}
+{"time":"2025-12-04T02:54:49.214297-06:00","level":"INFO","msg":"sender: closed","stream_id":"wlaaf2qc"}
+{"time":"2025-12-04T02:54:49.214314-06:00","level":"INFO","msg":"stream: closed","id":"wlaaf2qc"}

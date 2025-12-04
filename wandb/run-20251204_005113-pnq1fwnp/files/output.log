@@ -1,0 +1,828 @@
+
+[DEBUG upload_artifacts] Processing 28 regular files
+[DEBUG upload_artifacts] self.rich = True
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/artifacts/config
+[DEBUG upload_artifacts] attribute_path: artifacts/config
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Attempting rich upload...
+
+[DEBUG _upload_rich_file] Called with:
+  - file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/artifacts/config
+  - attr_name: artifacts_config
+  - step: None
+  - file exists: True
+  - is file: True
+[DEBUG _get_file_type] file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/artifacts/config, ext: ''
+[DEBUG _get_file_type] IMAGE_EXTENSIONS: {'.tiff', '.webp', '.gif', '.png', '.jpg', '.jpeg', '.bmp', '.svg', '.tif'}
+[DEBUG _get_file_type] AUDIO_EXTENSIONS: {'.aac', '.ogg', '.flac', '.m4a', '.mp3', '.wav'}
+[DEBUG _get_file_type] VIDEO_EXTENSIONS: {'.mov', '.webm', '.mp4', '.avi', '.mkv'}
+[DEBUG _get_file_type] TABLE_EXTENSIONS: {'.tsv', '.csv'}
+[DEBUG _get_file_type] HTML_EXTENSIONS: {'.htm', '.html'}
+[DEBUG _get_file_type] No match - returning 'file'
+[DEBUG _upload_rich_file] Detected file_type: file
+[DEBUG _upload_rich_file] Unknown file_type 'file' - returning False
+[DEBUG upload_artifacts] Rich upload failed, falling back to artifact
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/artifacts/model_binary
+[DEBUG upload_artifacts] attribute_path: artifacts/model_binary
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Attempting rich upload...
+
+[DEBUG _upload_rich_file] Called with:
+  - file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/artifacts/model_binary
+  - attr_name: artifacts_model_binary
+  - step: None
+  - file exists: True
+  - is file: True
+[DEBUG _get_file_type] file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/artifacts/model_binary, ext: ''
+[DEBUG _get_file_type] IMAGE_EXTENSIONS: {'.tiff', '.webp', '.gif', '.png', '.jpg', '.jpeg', '.bmp', '.svg', '.tif'}
+[DEBUG _get_file_type] AUDIO_EXTENSIONS: {'.aac', '.ogg', '.flac', '.m4a', '.mp3', '.wav'}
+[DEBUG _get_file_type] VIDEO_EXTENSIONS: {'.mov', '.webm', '.mp4', '.avi', '.mkv'}
+[DEBUG _get_file_type] TABLE_EXTENSIONS: {'.tsv', '.csv'}
+[DEBUG _get_file_type] HTML_EXTENSIONS: {'.htm', '.html'}
+[DEBUG _get_file_type] No match - returning 'file'
+[DEBUG _upload_rich_file] Detected file_type: file
+[DEBUG _upload_rich_file] Unknown file_type 'file' - returning False
+[DEBUG upload_artifacts] Rich upload failed, falling back to artifact
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/artifacts/requirements
+[DEBUG upload_artifacts] attribute_path: artifacts/requirements
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Attempting rich upload...
+
+[DEBUG _upload_rich_file] Called with:
+  - file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/artifacts/requirements
+  - attr_name: artifacts_requirements
+  - step: None
+  - file exists: True
+  - is file: True
+[DEBUG _get_file_type] file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/artifacts/requirements, ext: ''
+[DEBUG _get_file_type] IMAGE_EXTENSIONS: {'.tiff', '.webp', '.gif', '.png', '.jpg', '.jpeg', '.bmp', '.svg', '.tif'}
+[DEBUG _get_file_type] AUDIO_EXTENSIONS: {'.aac', '.ogg', '.flac', '.m4a', '.mp3', '.wav'}
+[DEBUG _get_file_type] VIDEO_EXTENSIONS: {'.mov', '.webm', '.mp4', '.avi', '.mkv'}
+[DEBUG _get_file_type] TABLE_EXTENSIONS: {'.tsv', '.csv'}
+[DEBUG _get_file_type] HTML_EXTENSIONS: {'.htm', '.html'}
+[DEBUG _get_file_type] No match - returning 'file'
+[DEBUG _upload_rich_file] Detected file_type: file
+[DEBUG _upload_rich_file] Unknown file_type 'file' - returning False
+[DEBUG upload_artifacts] Rich upload failed, falling back to artifact
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/audio/chord_sample
+[DEBUG upload_artifacts] attribute_path: audio/chord_sample
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Attempting rich upload...
+
+[DEBUG _upload_rich_file] Called with:
+  - file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/audio/chord_sample
+  - attr_name: audio_chord_sample
+  - step: None
+  - file exists: True
+  - is file: True
+[DEBUG _get_file_type] file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/audio/chord_sample, ext: ''
+[DEBUG _get_file_type] IMAGE_EXTENSIONS: {'.tiff', '.webp', '.gif', '.png', '.jpg', '.jpeg', '.bmp', '.svg', '.tif'}
+[DEBUG _get_file_type] AUDIO_EXTENSIONS: {'.aac', '.ogg', '.flac', '.m4a', '.mp3', '.wav'}
+[DEBUG _get_file_type] VIDEO_EXTENSIONS: {'.mov', '.webm', '.mp4', '.avi', '.mkv'}
+[DEBUG _get_file_type] TABLE_EXTENSIONS: {'.tsv', '.csv'}
+[DEBUG _get_file_type] HTML_EXTENSIONS: {'.htm', '.html'}
+[DEBUG _get_file_type] No match - returning 'file'
+[DEBUG _upload_rich_file] Detected file_type: file
+[DEBUG _upload_rich_file] Unknown file_type 'file' - returning False
+[DEBUG upload_artifacts] Rich upload failed, falling back to artifact
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/audio/short_tone
+[DEBUG upload_artifacts] attribute_path: audio/short_tone
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Attempting rich upload...
+
+[DEBUG _upload_rich_file] Called with:
+  - file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/audio/short_tone
+  - attr_name: audio_short_tone
+  - step: None
+  - file exists: True
+  - is file: True
+[DEBUG _get_file_type] file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/audio/short_tone, ext: ''
+[DEBUG _get_file_type] IMAGE_EXTENSIONS: {'.tiff', '.webp', '.gif', '.png', '.jpg', '.jpeg', '.bmp', '.svg', '.tif'}
+[DEBUG _get_file_type] AUDIO_EXTENSIONS: {'.aac', '.ogg', '.flac', '.m4a', '.mp3', '.wav'}
+[DEBUG _get_file_type] VIDEO_EXTENSIONS: {'.mov', '.webm', '.mp4', '.avi', '.mkv'}
+[DEBUG _get_file_type] TABLE_EXTENSIONS: {'.tsv', '.csv'}
+[DEBUG _get_file_type] HTML_EXTENSIONS: {'.htm', '.html'}
+[DEBUG _get_file_type] No match - returning 'file'
+[DEBUG _upload_rich_file] Detected file_type: file
+[DEBUG _upload_rich_file] Unknown file_type 'file' - returning False
+[DEBUG upload_artifacts] Rich upload failed, falling back to artifact
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/config/config_file
+[DEBUG upload_artifacts] attribute_path: config/config_file
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Attempting rich upload...
+
+[DEBUG _upload_rich_file] Called with:
+  - file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/config/config_file
+  - attr_name: config_config_file
+  - step: None
+  - file exists: True
+  - is file: True
+[DEBUG _get_file_type] file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/config/config_file, ext: ''
+[DEBUG _get_file_type] IMAGE_EXTENSIONS: {'.tiff', '.webp', '.gif', '.png', '.jpg', '.jpeg', '.bmp', '.svg', '.tif'}
+[DEBUG _get_file_type] AUDIO_EXTENSIONS: {'.aac', '.ogg', '.flac', '.m4a', '.mp3', '.wav'}
+[DEBUG _get_file_type] VIDEO_EXTENSIONS: {'.mov', '.webm', '.mp4', '.avi', '.mkv'}
+[DEBUG _get_file_type] TABLE_EXTENSIONS: {'.tsv', '.csv'}
+[DEBUG _get_file_type] HTML_EXTENSIONS: {'.htm', '.html'}
+[DEBUG _get_file_type] No match - returning 'file'
+[DEBUG _upload_rich_file] Detected file_type: file
+[DEBUG _upload_rich_file] Unknown file_type 'file' - returning False
+[DEBUG upload_artifacts] Rich upload failed, falling back to artifact
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/files/summary
+[DEBUG upload_artifacts] attribute_path: files/summary
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Attempting rich upload...
+
+[DEBUG _upload_rich_file] Called with:
+  - file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/files/summary
+  - attr_name: files_summary
+  - step: None
+  - file exists: True
+  - is file: True
+[DEBUG _get_file_type] file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/files/summary, ext: ''
+[DEBUG _get_file_type] IMAGE_EXTENSIONS: {'.tiff', '.webp', '.gif', '.png', '.jpg', '.jpeg', '.bmp', '.svg', '.tif'}
+[DEBUG _get_file_type] AUDIO_EXTENSIONS: {'.aac', '.ogg', '.flac', '.m4a', '.mp3', '.wav'}
+[DEBUG _get_file_type] VIDEO_EXTENSIONS: {'.mov', '.webm', '.mp4', '.avi', '.mkv'}
+[DEBUG _get_file_type] TABLE_EXTENSIONS: {'.tsv', '.csv'}
+[DEBUG _get_file_type] HTML_EXTENSIONS: {'.htm', '.html'}
+[DEBUG _get_file_type] No match - returning 'file'
+[DEBUG _upload_rich_file] Detected file_type: file
+[DEBUG _upload_rich_file] Unknown file_type 'file' - returning False
+[DEBUG upload_artifacts] Rich upload failed, falling back to artifact
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/files/training_log
+[DEBUG upload_artifacts] attribute_path: files/training_log
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Attempting rich upload...
+
+[DEBUG _upload_rich_file] Called with:
+  - file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/files/training_log
+  - attr_name: files_training_log
+  - step: None
+  - file exists: True
+  - is file: True
+[DEBUG _get_file_type] file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/files/training_log, ext: ''
+[DEBUG _get_file_type] IMAGE_EXTENSIONS: {'.tiff', '.webp', '.gif', '.png', '.jpg', '.jpeg', '.bmp', '.svg', '.tif'}
+[DEBUG _get_file_type] AUDIO_EXTENSIONS: {'.aac', '.ogg', '.flac', '.m4a', '.mp3', '.wav'}
+[DEBUG _get_file_type] VIDEO_EXTENSIONS: {'.mov', '.webm', '.mp4', '.avi', '.mkv'}
+[DEBUG _get_file_type] TABLE_EXTENSIONS: {'.tsv', '.csv'}
+[DEBUG _get_file_type] HTML_EXTENSIONS: {'.htm', '.html'}
+[DEBUG _get_file_type] No match - returning 'file'
+[DEBUG _upload_rich_file] Detected file_type: file
+[DEBUG _upload_rich_file] Unknown file_type 'file' - returning False
+[DEBUG upload_artifacts] Rich upload failed, falling back to artifact
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/grayscale_sample
+[DEBUG upload_artifacts] attribute_path: images/grayscale_sample
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Attempting rich upload...
+
+[DEBUG _upload_rich_file] Called with:
+  - file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/grayscale_sample
+  - attr_name: images_grayscale_sample
+  - step: None
+  - file exists: True
+  - is file: True
+[DEBUG _get_file_type] file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/grayscale_sample, ext: ''
+[DEBUG _get_file_type] IMAGE_EXTENSIONS: {'.tiff', '.webp', '.gif', '.png', '.jpg', '.jpeg', '.bmp', '.svg', '.tif'}
+[DEBUG _get_file_type] AUDIO_EXTENSIONS: {'.aac', '.ogg', '.flac', '.m4a', '.mp3', '.wav'}
+[DEBUG _get_file_type] VIDEO_EXTENSIONS: {'.mov', '.webm', '.mp4', '.avi', '.mkv'}
+[DEBUG _get_file_type] TABLE_EXTENSIONS: {'.tsv', '.csv'}
+[DEBUG _get_file_type] HTML_EXTENSIONS: {'.htm', '.html'}
+[DEBUG _get_file_type] No match - returning 'file'
+[DEBUG _upload_rich_file] Detected file_type: file
+[DEBUG _upload_rich_file] Unknown file_type 'file' - returning False
+[DEBUG upload_artifacts] Rich upload failed, falling back to artifact
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/pil_example
+[DEBUG upload_artifacts] attribute_path: images/pil_example
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Attempting rich upload...
+
+[DEBUG _upload_rich_file] Called with:
+  - file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/pil_example
+  - attr_name: images_pil_example
+  - step: None
+  - file exists: True
+  - is file: True
+[DEBUG _get_file_type] file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/pil_example, ext: ''
+[DEBUG _get_file_type] IMAGE_EXTENSIONS: {'.tiff', '.webp', '.gif', '.png', '.jpg', '.jpeg', '.bmp', '.svg', '.tif'}
+[DEBUG _get_file_type] AUDIO_EXTENSIONS: {'.aac', '.ogg', '.flac', '.m4a', '.mp3', '.wav'}
+[DEBUG _get_file_type] VIDEO_EXTENSIONS: {'.mov', '.webm', '.mp4', '.avi', '.mkv'}
+[DEBUG _get_file_type] TABLE_EXTENSIONS: {'.tsv', '.csv'}
+[DEBUG _get_file_type] HTML_EXTENSIONS: {'.htm', '.html'}
+[DEBUG _get_file_type] No match - returning 'file'
+[DEBUG _upload_rich_file] Detected file_type: file
+[DEBUG _upload_rich_file] Unknown file_type 'file' - returning False
+[DEBUG upload_artifacts] Rich upload failed, falling back to artifact
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/train_sample
+[DEBUG upload_artifacts] attribute_path: images/train_sample
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Attempting rich upload...
+
+[DEBUG _upload_rich_file] Called with:
+  - file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/train_sample
+  - attr_name: images_train_sample
+  - step: None
+  - file exists: True
+  - is file: True
+[DEBUG _get_file_type] file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/train_sample, ext: ''
+[DEBUG _get_file_type] IMAGE_EXTENSIONS: {'.tiff', '.webp', '.gif', '.png', '.jpg', '.jpeg', '.bmp', '.svg', '.tif'}
+[DEBUG _get_file_type] AUDIO_EXTENSIONS: {'.aac', '.ogg', '.flac', '.m4a', '.mp3', '.wav'}
+[DEBUG _get_file_type] VIDEO_EXTENSIONS: {'.mov', '.webm', '.mp4', '.avi', '.mkv'}
+[DEBUG _get_file_type] TABLE_EXTENSIONS: {'.tsv', '.csv'}
+[DEBUG _get_file_type] HTML_EXTENSIONS: {'.htm', '.html'}
+[DEBUG _get_file_type] No match - returning 'file'
+[DEBUG _upload_rich_file] Detected file_type: file
+[DEBUG _upload_rich_file] Unknown file_type 'file' - returning False
+[DEBUG upload_artifacts] Rich upload failed, falling back to artifact
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/val_sample
+[DEBUG upload_artifacts] attribute_path: images/val_sample
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Attempting rich upload...
+
+[DEBUG _upload_rich_file] Called with:
+  - file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/val_sample
+  - attr_name: images_val_sample
+  - step: None
+  - file exists: True
+  - is file: True
+[DEBUG _get_file_type] file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/val_sample, ext: ''
+[DEBUG _get_file_type] IMAGE_EXTENSIONS: {'.tiff', '.webp', '.gif', '.png', '.jpg', '.jpeg', '.bmp', '.svg', '.tif'}
+[DEBUG _get_file_type] AUDIO_EXTENSIONS: {'.aac', '.ogg', '.flac', '.m4a', '.mp3', '.wav'}
+[DEBUG _get_file_type] VIDEO_EXTENSIONS: {'.mov', '.webm', '.mp4', '.avi', '.mkv'}
+[DEBUG _get_file_type] TABLE_EXTENSIONS: {'.tsv', '.csv'}
+[DEBUG _get_file_type] HTML_EXTENSIONS: {'.htm', '.html'}
+[DEBUG _get_file_type] No match - returning 'file'
+[DEBUG _upload_rich_file] Detected file_type: file
+[DEBUG _upload_rich_file] Unknown file_type 'file' - returning False
+[DEBUG upload_artifacts] Rich upload failed, falling back to artifact
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/model/checkpoint
+[DEBUG upload_artifacts] attribute_path: model/checkpoint
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Attempting rich upload...
+
+[DEBUG _upload_rich_file] Called with:
+  - file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/model/checkpoint
+  - attr_name: model_checkpoint
+  - step: None
+  - file exists: True
+  - is file: True
+[DEBUG _get_file_type] file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/model/checkpoint, ext: ''
+[DEBUG _get_file_type] IMAGE_EXTENSIONS: {'.tiff', '.webp', '.gif', '.png', '.jpg', '.jpeg', '.bmp', '.svg', '.tif'}
+[DEBUG _get_file_type] AUDIO_EXTENSIONS: {'.aac', '.ogg', '.flac', '.m4a', '.mp3', '.wav'}
+[DEBUG _get_file_type] VIDEO_EXTENSIONS: {'.mov', '.webm', '.mp4', '.avi', '.mkv'}
+[DEBUG _get_file_type] TABLE_EXTENSIONS: {'.tsv', '.csv'}
+[DEBUG _get_file_type] HTML_EXTENSIONS: {'.htm', '.html'}
+[DEBUG _get_file_type] No match - returning 'file'
+[DEBUG _upload_rich_file] Detected file_type: file
+[DEBUG _upload_rich_file] Unknown file_type 'file' - returning False
+[DEBUG upload_artifacts] Rich upload failed, falling back to artifact
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/reports/experiment_report
+[DEBUG upload_artifacts] attribute_path: reports/experiment_report
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Attempting rich upload...
+
+[DEBUG _upload_rich_file] Called with:
+  - file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/reports/experiment_report
+  - attr_name: reports_experiment_report
+  - step: None
+  - file exists: True
+  - is file: True
+[DEBUG _get_file_type] file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/reports/experiment_report, ext: ''
+[DEBUG _get_file_type] IMAGE_EXTENSIONS: {'.tiff', '.webp', '.gif', '.png', '.jpg', '.jpeg', '.bmp', '.svg', '.tif'}
+[DEBUG _get_file_type] AUDIO_EXTENSIONS: {'.aac', '.ogg', '.flac', '.m4a', '.mp3', '.wav'}
+[DEBUG _get_file_type] VIDEO_EXTENSIONS: {'.mov', '.webm', '.mp4', '.avi', '.mkv'}
+[DEBUG _get_file_type] TABLE_EXTENSIONS: {'.tsv', '.csv'}
+[DEBUG _get_file_type] HTML_EXTENSIONS: {'.htm', '.html'}
+[DEBUG _get_file_type] No match - returning 'file'
+[DEBUG _upload_rich_file] Detected file_type: file
+[DEBUG _upload_rich_file] Unknown file_type 'file' - returning False
+[DEBUG upload_artifacts] Rich upload failed, falling back to artifact
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/reports/status_badge
+[DEBUG upload_artifacts] attribute_path: reports/status_badge
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Attempting rich upload...
+
+[DEBUG _upload_rich_file] Called with:
+  - file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/reports/status_badge
+  - attr_name: reports_status_badge
+  - step: None
+  - file exists: True
+  - is file: True
+[DEBUG _get_file_type] file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/reports/status_badge, ext: ''
+[DEBUG _get_file_type] IMAGE_EXTENSIONS: {'.tiff', '.webp', '.gif', '.png', '.jpg', '.jpeg', '.bmp', '.svg', '.tif'}
+[DEBUG _get_file_type] AUDIO_EXTENSIONS: {'.aac', '.ogg', '.flac', '.m4a', '.mp3', '.wav'}
+[DEBUG _get_file_type] VIDEO_EXTENSIONS: {'.mov', '.webm', '.mp4', '.avi', '.mkv'}
+[DEBUG _get_file_type] TABLE_EXTENSIONS: {'.tsv', '.csv'}
+[DEBUG _get_file_type] HTML_EXTENSIONS: {'.htm', '.html'}
+[DEBUG _get_file_type] No match - returning 'file'
+[DEBUG _upload_rich_file] Detected file_type: file
+[DEBUG _upload_rich_file] Unknown file_type 'file' - returning False
+[DEBUG upload_artifacts] Rich upload failed, falling back to artifact
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/source/main_script
+[DEBUG upload_artifacts] attribute_path: source/main_script
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Attempting rich upload...
+
+[DEBUG _upload_rich_file] Called with:
+  - file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/source/main_script
+  - attr_name: source_main_script
+  - step: None
+  - file exists: True
+  - is file: True
+[DEBUG _get_file_type] file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/source/main_script, ext: ''
+[DEBUG _get_file_type] IMAGE_EXTENSIONS: {'.tiff', '.webp', '.gif', '.png', '.jpg', '.jpeg', '.bmp', '.svg', '.tif'}
+[DEBUG _get_file_type] AUDIO_EXTENSIONS: {'.aac', '.ogg', '.flac', '.m4a', '.mp3', '.wav'}
+[DEBUG _get_file_type] VIDEO_EXTENSIONS: {'.mov', '.webm', '.mp4', '.avi', '.mkv'}
+[DEBUG _get_file_type] TABLE_EXTENSIONS: {'.tsv', '.csv'}
+[DEBUG _get_file_type] HTML_EXTENSIONS: {'.htm', '.html'}
+[DEBUG _get_file_type] No match - returning 'file'
+[DEBUG _upload_rich_file] Detected file_type: file
+[DEBUG _upload_rich_file] Unknown file_type 'file' - returning False
+[DEBUG upload_artifacts] Rich upload failed, falling back to artifact
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/source_code/files
+[DEBUG upload_artifacts] attribute_path: source_code/files
+[DEBUG upload_artifacts] attribute_type: file_set
+[DEBUG upload_artifacts] Skipping rich upload (rich=True, is_file=False)
+wandb: Adding directory to artifact (exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/source_code/files)... Done. 0.0s
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/tables/confusion_matrix
+[DEBUG upload_artifacts] attribute_path: tables/confusion_matrix
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Attempting rich upload...
+
+[DEBUG _upload_rich_file] Called with:
+  - file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/tables/confusion_matrix
+  - attr_name: tables_confusion_matrix
+  - step: None
+  - file exists: True
+  - is file: True
+[DEBUG _get_file_type] file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/tables/confusion_matrix, ext: ''
+[DEBUG _get_file_type] IMAGE_EXTENSIONS: {'.tiff', '.webp', '.gif', '.png', '.jpg', '.jpeg', '.bmp', '.svg', '.tif'}
+[DEBUG _get_file_type] AUDIO_EXTENSIONS: {'.aac', '.ogg', '.flac', '.m4a', '.mp3', '.wav'}
+[DEBUG _get_file_type] VIDEO_EXTENSIONS: {'.mov', '.webm', '.mp4', '.avi', '.mkv'}
+[DEBUG _get_file_type] TABLE_EXTENSIONS: {'.tsv', '.csv'}
+[DEBUG _get_file_type] HTML_EXTENSIONS: {'.htm', '.html'}
+[DEBUG _get_file_type] No match - returning 'file'
+[DEBUG _upload_rich_file] Detected file_type: file
+[DEBUG _upload_rich_file] Unknown file_type 'file' - returning False
+[DEBUG upload_artifacts] Rich upload failed, falling back to artifact
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/tables/experiment_results
+[DEBUG upload_artifacts] attribute_path: tables/experiment_results
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Attempting rich upload...
+
+[DEBUG _upload_rich_file] Called with:
+  - file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/tables/experiment_results
+  - attr_name: tables_experiment_results
+  - step: None
+  - file exists: True
+  - is file: True
+[DEBUG _get_file_type] file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/tables/experiment_results, ext: ''
+[DEBUG _get_file_type] IMAGE_EXTENSIONS: {'.tiff', '.webp', '.gif', '.png', '.jpg', '.jpeg', '.bmp', '.svg', '.tif'}
+[DEBUG _get_file_type] AUDIO_EXTENSIONS: {'.aac', '.ogg', '.flac', '.m4a', '.mp3', '.wav'}
+[DEBUG _get_file_type] VIDEO_EXTENSIONS: {'.mov', '.webm', '.mp4', '.avi', '.mkv'}
+[DEBUG _get_file_type] TABLE_EXTENSIONS: {'.tsv', '.csv'}
+[DEBUG _get_file_type] HTML_EXTENSIONS: {'.htm', '.html'}
+[DEBUG _get_file_type] No match - returning 'file'
+[DEBUG _upload_rich_file] Detected file_type: file
+[DEBUG _upload_rich_file] Unknown file_type 'file' - returning False
+[DEBUG upload_artifacts] Rich upload failed, falling back to artifact
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/tables/experiment_results_csv
+[DEBUG upload_artifacts] attribute_path: tables/experiment_results_csv
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Attempting rich upload...
+
+[DEBUG _upload_rich_file] Called with:
+  - file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/tables/experiment_results_csv
+  - attr_name: tables_experiment_results_csv
+  - step: None
+  - file exists: True
+  - is file: True
+[DEBUG _get_file_type] file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/tables/experiment_results_csv, ext: ''
+[DEBUG _get_file_type] IMAGE_EXTENSIONS: {'.tiff', '.webp', '.gif', '.png', '.jpg', '.jpeg', '.bmp', '.svg', '.tif'}
+[DEBUG _get_file_type] AUDIO_EXTENSIONS: {'.aac', '.ogg', '.flac', '.m4a', '.mp3', '.wav'}
+[DEBUG _get_file_type] VIDEO_EXTENSIONS: {'.mov', '.webm', '.mp4', '.avi', '.mkv'}
+[DEBUG _get_file_type] TABLE_EXTENSIONS: {'.tsv', '.csv'}
+[DEBUG _get_file_type] HTML_EXTENSIONS: {'.htm', '.html'}
+[DEBUG _get_file_type] No match - returning 'file'
+[DEBUG _upload_rich_file] Detected file_type: file
+[DEBUG _upload_rich_file] Unknown file_type 'file' - returning False
+[DEBUG upload_artifacts] Rich upload failed, falling back to artifact
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/tables/per_class_metrics
+[DEBUG upload_artifacts] attribute_path: tables/per_class_metrics
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Attempting rich upload...
+
+[DEBUG _upload_rich_file] Called with:
+  - file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/tables/per_class_metrics
+  - attr_name: tables_per_class_metrics
+  - step: None
+  - file exists: True
+  - is file: True
+[DEBUG _get_file_type] file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/tables/per_class_metrics, ext: ''
+[DEBUG _get_file_type] IMAGE_EXTENSIONS: {'.tiff', '.webp', '.gif', '.png', '.jpg', '.jpeg', '.bmp', '.svg', '.tif'}
+[DEBUG _get_file_type] AUDIO_EXTENSIONS: {'.aac', '.ogg', '.flac', '.m4a', '.mp3', '.wav'}
+[DEBUG _get_file_type] VIDEO_EXTENSIONS: {'.mov', '.webm', '.mp4', '.avi', '.mkv'}
+[DEBUG _get_file_type] TABLE_EXTENSIONS: {'.tsv', '.csv'}
+[DEBUG _get_file_type] HTML_EXTENSIONS: {'.htm', '.html'}
+[DEBUG _get_file_type] No match - returning 'file'
+[DEBUG _upload_rich_file] Detected file_type: file
+[DEBUG _upload_rich_file] Unknown file_type 'file' - returning False
+[DEBUG upload_artifacts] Rich upload failed, falling back to artifact
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/tables/predictions
+[DEBUG upload_artifacts] attribute_path: tables/predictions
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Attempting rich upload...
+
+[DEBUG _upload_rich_file] Called with:
+  - file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/tables/predictions
+  - attr_name: tables_predictions
+  - step: None
+  - file exists: True
+  - is file: True
+[DEBUG _get_file_type] file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/tables/predictions, ext: ''
+[DEBUG _get_file_type] IMAGE_EXTENSIONS: {'.tiff', '.webp', '.gif', '.png', '.jpg', '.jpeg', '.bmp', '.svg', '.tif'}
+[DEBUG _get_file_type] AUDIO_EXTENSIONS: {'.aac', '.ogg', '.flac', '.m4a', '.mp3', '.wav'}
+[DEBUG _get_file_type] VIDEO_EXTENSIONS: {'.mov', '.webm', '.mp4', '.avi', '.mkv'}
+[DEBUG _get_file_type] TABLE_EXTENSIONS: {'.tsv', '.csv'}
+[DEBUG _get_file_type] HTML_EXTENSIONS: {'.htm', '.html'}
+[DEBUG _get_file_type] No match - returning 'file'
+[DEBUG _upload_rich_file] Detected file_type: file
+[DEBUG _upload_rich_file] Unknown file_type 'file' - returning False
+[DEBUG upload_artifacts] Rich upload failed, falling back to artifact
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/video/training_progress_gif
+[DEBUG upload_artifacts] attribute_path: video/training_progress_gif
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Attempting rich upload...
+
+[DEBUG _upload_rich_file] Called with:
+  - file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/video/training_progress_gif
+  - attr_name: video_training_progress_gif
+  - step: None
+  - file exists: True
+  - is file: True
+[DEBUG _get_file_type] file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/video/training_progress_gif, ext: ''
+[DEBUG _get_file_type] IMAGE_EXTENSIONS: {'.tiff', '.webp', '.gif', '.png', '.jpg', '.jpeg', '.bmp', '.svg', '.tif'}
+[DEBUG _get_file_type] AUDIO_EXTENSIONS: {'.aac', '.ogg', '.flac', '.m4a', '.mp3', '.wav'}
+[DEBUG _get_file_type] VIDEO_EXTENSIONS: {'.mov', '.webm', '.mp4', '.avi', '.mkv'}
+[DEBUG _get_file_type] TABLE_EXTENSIONS: {'.tsv', '.csv'}
+[DEBUG _get_file_type] HTML_EXTENSIONS: {'.htm', '.html'}
+[DEBUG _get_file_type] No match - returning 'file'
+[DEBUG _upload_rich_file] Detected file_type: file
+[DEBUG _upload_rich_file] Unknown file_type 'file' - returning False
+[DEBUG upload_artifacts] Rich upload failed, falling back to artifact
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/video/training_progress_mp4
+[DEBUG upload_artifacts] attribute_path: video/training_progress_mp4
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Attempting rich upload...
+
+[DEBUG _upload_rich_file] Called with:
+  - file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/video/training_progress_mp4
+  - attr_name: video_training_progress_mp4
+  - step: None
+  - file exists: True
+  - is file: True
+[DEBUG _get_file_type] file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/video/training_progress_mp4, ext: ''
+[DEBUG _get_file_type] IMAGE_EXTENSIONS: {'.tiff', '.webp', '.gif', '.png', '.jpg', '.jpeg', '.bmp', '.svg', '.tif'}
+[DEBUG _get_file_type] AUDIO_EXTENSIONS: {'.aac', '.ogg', '.flac', '.m4a', '.mp3', '.wav'}
+[DEBUG _get_file_type] VIDEO_EXTENSIONS: {'.mov', '.webm', '.mp4', '.avi', '.mkv'}
+[DEBUG _get_file_type] TABLE_EXTENSIONS: {'.tsv', '.csv'}
+[DEBUG _get_file_type] HTML_EXTENSIONS: {'.htm', '.html'}
+[DEBUG _get_file_type] No match - returning 'file'
+[DEBUG _upload_rich_file] Detected file_type: file
+[DEBUG _upload_rich_file] Unknown file_type 'file' - returning False
+[DEBUG upload_artifacts] Rich upload failed, falling back to artifact
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/visualizations/confusion_matrix
+[DEBUG upload_artifacts] attribute_path: visualizations/confusion_matrix
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Attempting rich upload...
+
+[DEBUG _upload_rich_file] Called with:
+  - file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/visualizations/confusion_matrix
+  - attr_name: visualizations_confusion_matrix
+  - step: None
+  - file exists: True
+  - is file: True
+[DEBUG _get_file_type] file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/visualizations/confusion_matrix, ext: ''
+[DEBUG _get_file_type] IMAGE_EXTENSIONS: {'.tiff', '.webp', '.gif', '.png', '.jpg', '.jpeg', '.bmp', '.svg', '.tif'}
+[DEBUG _get_file_type] AUDIO_EXTENSIONS: {'.aac', '.ogg', '.flac', '.m4a', '.mp3', '.wav'}
+[DEBUG _get_file_type] VIDEO_EXTENSIONS: {'.mov', '.webm', '.mp4', '.avi', '.mkv'}
+[DEBUG _get_file_type] TABLE_EXTENSIONS: {'.tsv', '.csv'}
+[DEBUG _get_file_type] HTML_EXTENSIONS: {'.htm', '.html'}
+[DEBUG _get_file_type] No match - returning 'file'
+[DEBUG _upload_rich_file] Detected file_type: file
+[DEBUG _upload_rich_file] Unknown file_type 'file' - returning False
+[DEBUG upload_artifacts] Rich upload failed, falling back to artifact
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/visualizations/feature_maps
+[DEBUG upload_artifacts] attribute_path: visualizations/feature_maps
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Attempting rich upload...
+
+[DEBUG _upload_rich_file] Called with:
+  - file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/visualizations/feature_maps
+  - attr_name: visualizations_feature_maps
+  - step: None
+  - file exists: True
+  - is file: True
+[DEBUG _get_file_type] file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/visualizations/feature_maps, ext: ''
+[DEBUG _get_file_type] IMAGE_EXTENSIONS: {'.tiff', '.webp', '.gif', '.png', '.jpg', '.jpeg', '.bmp', '.svg', '.tif'}
+[DEBUG _get_file_type] AUDIO_EXTENSIONS: {'.aac', '.ogg', '.flac', '.m4a', '.mp3', '.wav'}
+[DEBUG _get_file_type] VIDEO_EXTENSIONS: {'.mov', '.webm', '.mp4', '.avi', '.mkv'}
+[DEBUG _get_file_type] TABLE_EXTENSIONS: {'.tsv', '.csv'}
+[DEBUG _get_file_type] HTML_EXTENSIONS: {'.htm', '.html'}
+[DEBUG _get_file_type] No match - returning 'file'
+[DEBUG _upload_rich_file] Detected file_type: file
+[DEBUG _upload_rich_file] Unknown file_type 'file' - returning False
+[DEBUG upload_artifacts] Rich upload failed, falling back to artifact
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/visualizations/training_curves
+[DEBUG upload_artifacts] attribute_path: visualizations/training_curves
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Attempting rich upload...
+
+[DEBUG _upload_rich_file] Called with:
+  - file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/visualizations/training_curves
+  - attr_name: visualizations_training_curves
+  - step: None
+  - file exists: True
+  - is file: True
+[DEBUG _get_file_type] file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/visualizations/training_curves, ext: ''
+[DEBUG _get_file_type] IMAGE_EXTENSIONS: {'.tiff', '.webp', '.gif', '.png', '.jpg', '.jpeg', '.bmp', '.svg', '.tif'}
+[DEBUG _get_file_type] AUDIO_EXTENSIONS: {'.aac', '.ogg', '.flac', '.m4a', '.mp3', '.wav'}
+[DEBUG _get_file_type] VIDEO_EXTENSIONS: {'.mov', '.webm', '.mp4', '.avi', '.mkv'}
+[DEBUG _get_file_type] TABLE_EXTENSIONS: {'.tsv', '.csv'}
+[DEBUG _get_file_type] HTML_EXTENSIONS: {'.htm', '.html'}
+[DEBUG _get_file_type] No match - returning 'file'
+[DEBUG _upload_rich_file] Detected file_type: file
+[DEBUG _upload_rich_file] Unknown file_type 'file' - returning False
+[DEBUG upload_artifacts] Rich upload failed, falling back to artifact
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/visualizations/training_curves_interactive
+[DEBUG upload_artifacts] attribute_path: visualizations/training_curves_interactive
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Attempting rich upload...
+
+[DEBUG _upload_rich_file] Called with:
+  - file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/visualizations/training_curves_interactive
+  - attr_name: visualizations_training_curves_interactive
+  - step: None
+  - file exists: True
+  - is file: True
+[DEBUG _get_file_type] file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/visualizations/training_curves_interactive, ext: ''
+[DEBUG _get_file_type] IMAGE_EXTENSIONS: {'.tiff', '.webp', '.gif', '.png', '.jpg', '.jpeg', '.bmp', '.svg', '.tif'}
+[DEBUG _get_file_type] AUDIO_EXTENSIONS: {'.aac', '.ogg', '.flac', '.m4a', '.mp3', '.wav'}
+[DEBUG _get_file_type] VIDEO_EXTENSIONS: {'.mov', '.webm', '.mp4', '.avi', '.mkv'}
+[DEBUG _get_file_type] TABLE_EXTENSIONS: {'.tsv', '.csv'}
+[DEBUG _get_file_type] HTML_EXTENSIONS: {'.htm', '.html'}
+[DEBUG _get_file_type] No match - returning 'file'
+[DEBUG _upload_rich_file] Detected file_type: file
+[DEBUG _upload_rich_file] Unknown file_type 'file' - returning False
+[DEBUG upload_artifacts] Rich upload failed, falling back to artifact
+
+[DEBUG upload_artifacts] Processing 10 file_series items
+
+[DEBUG upload_artifacts] Processing file_series group: images/samples
+[DEBUG upload_artifacts] Group has 10 items
+[DEBUG upload_artifacts] File series item: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/samples/8.png
+[DEBUG upload_artifacts] Step: 8
+[DEBUG upload_artifacts] Attempting rich upload for file_series...
+
+[DEBUG _upload_rich_file] Called with:
+  - file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/samples/8.png
+  - attr_name: images_samples
+  - step: 8
+  - file exists: True
+  - is file: True
+[DEBUG _get_file_type] file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/samples/8.png, ext: '.png'
+[DEBUG _get_file_type] IMAGE_EXTENSIONS: {'.tiff', '.webp', '.gif', '.png', '.jpg', '.jpeg', '.bmp', '.svg', '.tif'}
+[DEBUG _get_file_type] AUDIO_EXTENSIONS: {'.aac', '.ogg', '.flac', '.m4a', '.mp3', '.wav'}
+[DEBUG _get_file_type] VIDEO_EXTENSIONS: {'.mov', '.webm', '.mp4', '.avi', '.mkv'}
+[DEBUG _get_file_type] TABLE_EXTENSIONS: {'.tsv', '.csv'}
+[DEBUG _get_file_type] HTML_EXTENSIONS: {'.htm', '.html'}
+[DEBUG _get_file_type] Matched IMAGE
+[DEBUG _upload_rich_file] Detected file_type: image
+[DEBUG _upload_rich_file] Creating wandb.Image for exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/samples/8.png
+[DEBUG _upload_rich_file] Logging media to wandb with attr_name: images_samples
+[DEBUG _upload_rich_file] Successfully logged! Returning True
+[DEBUG upload_artifacts] Rich upload succeeded for file_series
+[DEBUG upload_artifacts] File series item: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/samples/9.png
+[DEBUG upload_artifacts] Step: 9
+[DEBUG upload_artifacts] Attempting rich upload for file_series...
+
+[DEBUG _upload_rich_file] Called with:
+  - file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/samples/9.png
+  - attr_name: images_samples
+  - step: 9
+  - file exists: True
+  - is file: True
+[DEBUG _get_file_type] file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/samples/9.png, ext: '.png'
+[DEBUG _get_file_type] IMAGE_EXTENSIONS: {'.tiff', '.webp', '.gif', '.png', '.jpg', '.jpeg', '.bmp', '.svg', '.tif'}
+[DEBUG _get_file_type] AUDIO_EXTENSIONS: {'.aac', '.ogg', '.flac', '.m4a', '.mp3', '.wav'}
+[DEBUG _get_file_type] VIDEO_EXTENSIONS: {'.mov', '.webm', '.mp4', '.avi', '.mkv'}
+[DEBUG _get_file_type] TABLE_EXTENSIONS: {'.tsv', '.csv'}
+[DEBUG _get_file_type] HTML_EXTENSIONS: {'.htm', '.html'}
+[DEBUG _get_file_type] Matched IMAGE
+[DEBUG _upload_rich_file] Detected file_type: image
+[DEBUG _upload_rich_file] Creating wandb.Image for exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/samples/9.png
+[DEBUG _upload_rich_file] Logging media to wandb with attr_name: images_samples
+[DEBUG _upload_rich_file] Successfully logged! Returning True
+[DEBUG upload_artifacts] Rich upload succeeded for file_series
+[DEBUG upload_artifacts] File series item: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/samples/4.png
+[DEBUG upload_artifacts] Step: 4
+[DEBUG upload_artifacts] Attempting rich upload for file_series...
+
+[DEBUG _upload_rich_file] Called with:
+  - file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/samples/4.png
+  - attr_name: images_samples
+  - step: 4
+  - file exists: True
+  - is file: True
+[DEBUG _get_file_type] file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/samples/4.png, ext: '.png'
+[DEBUG _get_file_type] IMAGE_EXTENSIONS: {'.tiff', '.webp', '.gif', '.png', '.jpg', '.jpeg', '.bmp', '.svg', '.tif'}
+[DEBUG _get_file_type] AUDIO_EXTENSIONS: {'.aac', '.ogg', '.flac', '.m4a', '.mp3', '.wav'}
+[DEBUG _get_file_type] VIDEO_EXTENSIONS: {'.mov', '.webm', '.mp4', '.avi', '.mkv'}
+[DEBUG _get_file_type] TABLE_EXTENSIONS: {'.tsv', '.csv'}
+[DEBUG _get_file_type] HTML_EXTENSIONS: {'.htm', '.html'}
+[DEBUG _get_file_type] Matched IMAGE
+[DEBUG _upload_rich_file] Detected file_type: image
+[DEBUG _upload_rich_file] Creating wandb.Image for exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/samples/4.png
+[DEBUG _upload_rich_file] Logging media to wandb with attr_name: images_samples
+[DEBUG _upload_rich_file] Successfully logged! Returning True
+[DEBUG upload_artifacts] Rich upload succeeded for file_series
+[DEBUG upload_artifacts] File series item: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/samples/5.png
+[DEBUG upload_artifacts] Step: 5
+[DEBUG upload_artifacts] Attempting rich upload for file_series...
+
+[DEBUG _upload_rich_file] Called with:
+  - file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/samples/5.png
+  - attr_name: images_samples
+  - step: 5
+  - file exists: True
+  - is file: True
+[DEBUG _get_file_type] file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/samples/5.png, ext: '.png'
+[DEBUG _get_file_type] IMAGE_EXTENSIONS: {'.tiff', '.webp', '.gif', '.png', '.jpg', '.jpeg', '.bmp', '.svg', '.tif'}
+[DEBUG _get_file_type] AUDIO_EXTENSIONS: {'.aac', '.ogg', '.flac', '.m4a', '.mp3', '.wav'}
+[DEBUG _get_file_type] VIDEO_EXTENSIONS: {'.mov', '.webm', '.mp4', '.avi', '.mkv'}
+[DEBUG _get_file_type] TABLE_EXTENSIONS: {'.tsv', '.csv'}
+[DEBUG _get_file_type] HTML_EXTENSIONS: {'.htm', '.html'}
+[DEBUG _get_file_type] Matched IMAGE
+[DEBUG _upload_rich_file] Detected file_type: image
+[DEBUG _upload_rich_file] Creating wandb.Image for exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/samples/5.png
+[DEBUG _upload_rich_file] Logging media to wandb with attr_name: images_samples
+[DEBUG _upload_rich_file] Successfully logged! Returning True
+[DEBUG upload_artifacts] Rich upload succeeded for file_series
+[DEBUG upload_artifacts] File series item: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/samples/7.png
+[DEBUG upload_artifacts] Step: 7
+[DEBUG upload_artifacts] Attempting rich upload for file_series...
+
+[DEBUG _upload_rich_file] Called with:
+  - file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/samples/7.png
+  - attr_name: images_samples
+  - step: 7
+  - file exists: True
+  - is file: True
+[DEBUG _get_file_type] file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/samples/7.png, ext: '.png'
+[DEBUG _get_file_type] IMAGE_EXTENSIONS: {'.tiff', '.webp', '.gif', '.png', '.jpg', '.jpeg', '.bmp', '.svg', '.tif'}
+[DEBUG _get_file_type] AUDIO_EXTENSIONS: {'.aac', '.ogg', '.flac', '.m4a', '.mp3', '.wav'}
+[DEBUG _get_file_type] VIDEO_EXTENSIONS: {'.mov', '.webm', '.mp4', '.avi', '.mkv'}
+[DEBUG _get_file_type] TABLE_EXTENSIONS: {'.tsv', '.csv'}
+[DEBUG _get_file_type] HTML_EXTENSIONS: {'.htm', '.html'}
+[DEBUG _get_file_type] Matched IMAGE
+[DEBUG _upload_rich_file] Detected file_type: image
+[DEBUG _upload_rich_file] Creating wandb.Image for exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/samples/7.png
+[DEBUG _upload_rich_file] Logging media to wandb with attr_name: images_samples
+[DEBUG _upload_rich_file] Successfully logged! Returning True
+[DEBUG upload_artifacts] Rich upload succeeded for file_series
+[DEBUG upload_artifacts] File series item: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/samples/6.png
+[DEBUG upload_artifacts] Step: 6
+[DEBUG upload_artifacts] Attempting rich upload for file_series...
+
+[DEBUG _upload_rich_file] Called with:
+  - file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/samples/6.png
+  - attr_name: images_samples
+  - step: 6
+  - file exists: True
+  - is file: True
+[DEBUG _get_file_type] file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/samples/6.png, ext: '.png'
+[DEBUG _get_file_type] IMAGE_EXTENSIONS: {'.tiff', '.webp', '.gif', '.png', '.jpg', '.jpeg', '.bmp', '.svg', '.tif'}
+[DEBUG _get_file_type] AUDIO_EXTENSIONS: {'.aac', '.ogg', '.flac', '.m4a', '.mp3', '.wav'}
+[DEBUG _get_file_type] VIDEO_EXTENSIONS: {'.mov', '.webm', '.mp4', '.avi', '.mkv'}
+[DEBUG _get_file_type] TABLE_EXTENSIONS: {'.tsv', '.csv'}
+[DEBUG _get_file_type] HTML_EXTENSIONS: {'.htm', '.html'}
+[DEBUG _get_file_type] Matched IMAGE
+[DEBUG _upload_rich_file] Detected file_type: image
+[DEBUG _upload_rich_file] Creating wandb.Image for exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/samples/6.png
+[DEBUG _upload_rich_file] Logging media to wandb with attr_name: images_samples
+[DEBUG _upload_rich_file] Successfully logged! Returning True
+[DEBUG upload_artifacts] Rich upload succeeded for file_series
+[DEBUG upload_artifacts] File series item: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/samples/2.png
+[DEBUG upload_artifacts] Step: 2
+[DEBUG upload_artifacts] Attempting rich upload for file_series...
+
+[DEBUG _upload_rich_file] Called with:
+  - file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/samples/2.png
+  - attr_name: images_samples
+  - step: 2
+  - file exists: True
+  - is file: True
+[DEBUG _get_file_type] file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/samples/2.png, ext: '.png'
+[DEBUG _get_file_type] IMAGE_EXTENSIONS: {'.tiff', '.webp', '.gif', '.png', '.jpg', '.jpeg', '.bmp', '.svg', '.tif'}
+[DEBUG _get_file_type] AUDIO_EXTENSIONS: {'.aac', '.ogg', '.flac', '.m4a', '.mp3', '.wav'}
+[DEBUG _get_file_type] VIDEO_EXTENSIONS: {'.mov', '.webm', '.mp4', '.avi', '.mkv'}
+[DEBUG _get_file_type] TABLE_EXTENSIONS: {'.tsv', '.csv'}
+[DEBUG _get_file_type] HTML_EXTENSIONS: {'.htm', '.html'}
+[DEBUG _get_file_type] Matched IMAGE
+[DEBUG _upload_rich_file] Detected file_type: image
+[DEBUG _upload_rich_file] Creating wandb.Image for exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/samples/2.png
+[DEBUG _upload_rich_file] Logging media to wandb with attr_name: images_samples
+[DEBUG _upload_rich_file] Successfully logged! Returning True
+[DEBUG upload_artifacts] Rich upload succeeded for file_series
+[DEBUG upload_artifacts] File series item: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/samples/3.png
+[DEBUG upload_artifacts] Step: 3
+[DEBUG upload_artifacts] Attempting rich upload for file_series...
+
+[DEBUG _upload_rich_file] Called with:
+  - file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/samples/3.png
+  - attr_name: images_samples
+  - step: 3
+  - file exists: True
+  - is file: True
+[DEBUG _get_file_type] file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/samples/3.png, ext: '.png'
+[DEBUG _get_file_type] IMAGE_EXTENSIONS: {'.tiff', '.webp', '.gif', '.png', '.jpg', '.jpeg', '.bmp', '.svg', '.tif'}
+[DEBUG _get_file_type] AUDIO_EXTENSIONS: {'.aac', '.ogg', '.flac', '.m4a', '.mp3', '.wav'}
+[DEBUG _get_file_type] VIDEO_EXTENSIONS: {'.mov', '.webm', '.mp4', '.avi', '.mkv'}
+[DEBUG _get_file_type] TABLE_EXTENSIONS: {'.tsv', '.csv'}
+[DEBUG _get_file_type] HTML_EXTENSIONS: {'.htm', '.html'}
+[DEBUG _get_file_type] Matched IMAGE
+[DEBUG _upload_rich_file] Detected file_type: image
+[DEBUG _upload_rich_file] Creating wandb.Image for exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/samples/3.png
+[DEBUG _upload_rich_file] Logging media to wandb with attr_name: images_samples
+[DEBUG _upload_rich_file] Successfully logged! Returning True
+[DEBUG upload_artifacts] Rich upload succeeded for file_series
+[DEBUG upload_artifacts] File series item: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/samples/1.png
+[DEBUG upload_artifacts] Step: 1
+[DEBUG upload_artifacts] Attempting rich upload for file_series...
+
+[DEBUG _upload_rich_file] Called with:
+  - file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/samples/1.png
+  - attr_name: images_samples
+  - step: 1
+  - file exists: True
+  - is file: True
+[DEBUG _get_file_type] file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/samples/1.png, ext: '.png'
+[DEBUG _get_file_type] IMAGE_EXTENSIONS: {'.tiff', '.webp', '.gif', '.png', '.jpg', '.jpeg', '.bmp', '.svg', '.tif'}
+[DEBUG _get_file_type] AUDIO_EXTENSIONS: {'.aac', '.ogg', '.flac', '.m4a', '.mp3', '.wav'}
+[DEBUG _get_file_type] VIDEO_EXTENSIONS: {'.mov', '.webm', '.mp4', '.avi', '.mkv'}
+[DEBUG _get_file_type] TABLE_EXTENSIONS: {'.tsv', '.csv'}
+[DEBUG _get_file_type] HTML_EXTENSIONS: {'.htm', '.html'}
+[DEBUG _get_file_type] Matched IMAGE
+[DEBUG _upload_rich_file] Detected file_type: image
+[DEBUG _upload_rich_file] Creating wandb.Image for exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/samples/1.png
+[DEBUG _upload_rich_file] Logging media to wandb with attr_name: images_samples
+[DEBUG _upload_rich_file] Successfully logged! Returning True
+[DEBUG upload_artifacts] Rich upload succeeded for file_series
+[DEBUG upload_artifacts] File series item: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/samples/0.png
+[DEBUG upload_artifacts] Step: 0
+[DEBUG upload_artifacts] Attempting rich upload for file_series...
+
+[DEBUG _upload_rich_file] Called with:
+  - file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/samples/0.png
+  - attr_name: images_samples
+  - step: 0
+  - file exists: True
+  - is file: True
+[DEBUG _get_file_type] file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/samples/0.png, ext: '.png'
+[DEBUG _get_file_type] IMAGE_EXTENSIONS: {'.tiff', '.webp', '.gif', '.png', '.jpg', '.jpeg', '.bmp', '.svg', '.tif'}
+[DEBUG _get_file_type] AUDIO_EXTENSIONS: {'.aac', '.ogg', '.flac', '.m4a', '.mp3', '.wav'}
+[DEBUG _get_file_type] VIDEO_EXTENSIONS: {'.mov', '.webm', '.mp4', '.avi', '.mkv'}
+[DEBUG _get_file_type] TABLE_EXTENSIONS: {'.tsv', '.csv'}
+[DEBUG _get_file_type] HTML_EXTENSIONS: {'.htm', '.html'}
+[DEBUG _get_file_type] Matched IMAGE
+[DEBUG _upload_rich_file] Detected file_type: image
+[DEBUG _upload_rich_file] Creating wandb.Image for exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/samples/0.png
+[DEBUG _upload_rich_file] Logging media to wandb with attr_name: images_samples
+[DEBUG _upload_rich_file] Successfully logged! Returning True
+[DEBUG upload_artifacts] Rich upload succeeded for file_series

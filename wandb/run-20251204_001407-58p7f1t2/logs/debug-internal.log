@@ -1,0 +1,24 @@
+{"time":"2025-12-04T00:14:08.188214-06:00","level":"INFO","msg":"stream: starting","core version":"0.22.3"}
+{"time":"2025-12-04T00:14:09.481572-06:00","level":"INFO","msg":"stream: created new stream","id":"58p7f1t2"}
+{"time":"2025-12-04T00:14:09.48164-06:00","level":"INFO","msg":"handler: started","stream_id":"58p7f1t2"}
+{"time":"2025-12-04T00:14:09.48181-06:00","level":"INFO","msg":"stream: started","id":"58p7f1t2"}
+{"time":"2025-12-04T00:14:09.481812-06:00","level":"INFO","msg":"writer: started","stream_id":"58p7f1t2"}
+{"time":"2025-12-04T00:14:09.482056-06:00","level":"INFO","msg":"sender: started","stream_id":"58p7f1t2"}
+{"time":"2025-12-04T00:14:10.210725-06:00","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":37}
+{"time":"2025-12-04T00:14:10.604775-06:00","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":269}
+{"time":"2025-12-04T00:16:09.551915-06:00","level":"WARN","msg":"handler: ignoring partial history record","step":8,"current":99}
+{"time":"2025-12-04T00:16:09.557529-06:00","level":"WARN","msg":"handler: ignoring partial history record","step":9,"current":99}
+{"time":"2025-12-04T00:16:09.563773-06:00","level":"WARN","msg":"handler: ignoring partial history record","step":4,"current":99}
+{"time":"2025-12-04T00:16:09.567655-06:00","level":"WARN","msg":"handler: ignoring partial history record","step":5,"current":99}
+{"time":"2025-12-04T00:16:09.571256-06:00","level":"WARN","msg":"handler: ignoring partial history record","step":7,"current":99}
+{"time":"2025-12-04T00:16:09.573728-06:00","level":"WARN","msg":"handler: ignoring partial history record","step":6,"current":99}
+{"time":"2025-12-04T00:16:09.576285-06:00","level":"WARN","msg":"handler: ignoring partial history record","step":2,"current":99}
+{"time":"2025-12-04T00:16:09.578143-06:00","level":"WARN","msg":"handler: ignoring partial history record","step":3,"current":99}
+{"time":"2025-12-04T00:16:09.579762-06:00","level":"WARN","msg":"handler: ignoring partial history record","step":1,"current":99}
+{"time":"2025-12-04T00:16:09.581568-06:00","level":"WARN","msg":"handler: ignoring partial history record","step":0,"current":99}
+{"time":"2025-12-04T00:16:51.723496-06:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-12-04T00:16:52.781208-06:00","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2025-12-04T00:16:52.800455-06:00","level":"INFO","msg":"stream: closing","id":"58p7f1t2"}
+{"time":"2025-12-04T00:16:52.800795-06:00","level":"INFO","msg":"handler: closed","stream_id":"58p7f1t2"}
+{"time":"2025-12-04T00:16:52.801262-06:00","level":"INFO","msg":"sender: closed","stream_id":"58p7f1t2"}
+{"time":"2025-12-04T00:16:52.801291-06:00","level":"INFO","msg":"stream: closed","id":"58p7f1t2"}

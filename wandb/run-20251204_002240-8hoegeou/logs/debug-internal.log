@@ -1,0 +1,27 @@
+{"time":"2025-12-04T00:22:40.792514-06:00","level":"INFO","msg":"stream: starting","core version":"0.19.8","symlink path":"/Users/brettyoung/Desktop/dev25/tutorials/neptune_migration/neptune-exporter/wandb/run-20251204_002240-8hoegeou/logs/debug-core.log"}
+{"time":"2025-12-04T00:22:41.00482-06:00","level":"INFO","msg":"created new stream","id":"8hoegeou"}
+{"time":"2025-12-04T00:22:41.004881-06:00","level":"INFO","msg":"stream: started","id":"8hoegeou"}
+{"time":"2025-12-04T00:22:41.004916-06:00","level":"INFO","msg":"writer: Do: started","stream_id":"8hoegeou"}
+{"time":"2025-12-04T00:22:41.004925-06:00","level":"INFO","msg":"handler: started","stream_id":"8hoegeou"}
+{"time":"2025-12-04T00:22:41.004972-06:00","level":"INFO","msg":"sender: started","stream_id":"8hoegeou"}
+{"time":"2025-12-04T00:22:42.431695-06:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-12-04T00:22:44.373291-06:00","level":"WARN","msg":"handler: ignoring partial history record","step":0,"current":1}
+{"time":"2025-12-04T00:22:46.610258-06:00","level":"WARN","msg":"handler: ignoring partial history record","step":0,"current":10}
+{"time":"2025-12-04T00:22:46.610336-06:00","level":"WARN","msg":"handler: ignoring partial history record","step":1,"current":10}
+{"time":"2025-12-04T00:22:46.610404-06:00","level":"WARN","msg":"handler: ignoring partial history record","step":2,"current":10}
+{"time":"2025-12-04T00:22:46.610467-06:00","level":"WARN","msg":"handler: ignoring partial history record","step":3,"current":10}
+{"time":"2025-12-04T00:22:46.61061-06:00","level":"WARN","msg":"handler: ignoring partial history record","step":4,"current":10}
+{"time":"2025-12-04T00:22:46.610629-06:00","level":"WARN","msg":"handler: ignoring partial history record","step":5,"current":10}
+{"time":"2025-12-04T00:22:46.61069-06:00","level":"WARN","msg":"handler: ignoring partial history record","step":6,"current":10}
+{"time":"2025-12-04T00:22:46.610706-06:00","level":"WARN","msg":"handler: ignoring partial history record","step":7,"current":10}
+{"time":"2025-12-04T00:22:46.61075-06:00","level":"WARN","msg":"handler: ignoring partial history record","step":8,"current":10}
+{"time":"2025-12-04T00:22:46.610859-06:00","level":"WARN","msg":"handler: ignoring partial history record","step":9,"current":10}
+{"time":"2025-12-04T00:22:47.30824-06:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-12-04T00:22:47.309109-06:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-12-04T00:22:48.314233-06:00","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"uploading media/images/images/series_3_060c60be7a5e2a9cae8b.png","runtime_seconds":3.5722700830000003,"progress":"490B/490B"},{"desc":"uploading media/images/images/numpy_image_4_933a70edf5da88ddb6cd.png","runtime_seconds":3.572269709,"progress":"29.5KB/29.5KB"},{"desc":"uploading media/audio/audio/test_tone_5_e4a9079027100b1ffa2e.wav","runtime_seconds":3.572269125,"progress":"86.2KB/86.2KB"},{"desc":"uploading media/audio/audio/numpy_audio_6_7f0f028d112965843583.wav","runtime_seconds":3.572267542,"progress":"43.1KB/43.1KB"},{"desc":"uploading media/images/images/series_1_531c6a3f389e516bdda6.png","runtime_seconds":3.572263583,"progress":"544B/544B"},{"desc":"uploading media/images/images/series_2_2ebf07f95b7fd97b305a.png","runtime_seconds":3.572261625,"progress":"523B/523B"},{"desc":"uploading wandb-metadata.json","runtime_seconds":2.91696125,"progress":"1.2KB/1.2KB"},{"desc":"uploading media/videos/video/animation_7_7fc6655d446c4d12ae8f.gif","runtime_seconds":2.385875666,"progress":"91B/91B"},{"desc":"uploading artifact run-8hoegeou-tablesresults","runtime_seconds":1.711980834},{"desc":"uploading media/table/tables/results_8_6e952b425899f6fde7f3.table.json","runtime_seconds":1.3432999589999999,"progress":"624B/624B"}],"total_operations":14}}
+{"time":"2025-12-04T00:22:55.820162-06:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-12-04T00:22:57.048736-06:00","level":"INFO","msg":"stream: closing","id":"8hoegeou"}
+{"time":"2025-12-04T00:22:57.04877-06:00","level":"INFO","msg":"handler: closed","stream_id":"8hoegeou"}
+{"time":"2025-12-04T00:22:57.048778-06:00","level":"INFO","msg":"writer: Close: closed","stream_id":"8hoegeou"}
+{"time":"2025-12-04T00:22:57.048791-06:00","level":"INFO","msg":"sender: closed","stream_id":"8hoegeou"}
+{"time":"2025-12-04T00:22:57.048918-06:00","level":"INFO","msg":"stream: closed","id":"8hoegeou"}

@@ -1,0 +1,218 @@
+
+[DEBUG upload_artifacts] Processing 9 regular files
+[DEBUG upload_artifacts] self.rich = True
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-5/artifacts/model
+[DEBUG upload_artifacts] attribute_path: artifacts/model
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Attempting rich upload...
+
+[DEBUG _upload_rich_file] Called with:
+  - file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-5/artifacts/model
+  - attr_name: artifacts_model
+  - step: None
+  - file exists: True
+  - is file: True
+[DEBUG _get_file_type] file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-5/artifacts/model, ext: ''
+[DEBUG _get_file_type] No extension match, trying magic bytes...
+[DEBUG _get_file_type] Detected MIME type: application/octet-stream
+[DEBUG _get_file_type] Trying directory hint: artifacts
+[DEBUG _get_file_type] No match - returning 'file'
+[DEBUG _upload_rich_file] Detected file_type: file
+[DEBUG _upload_rich_file] Unknown file_type 'file' - returning False
+[DEBUG upload_artifacts] Rich upload failed, falling back to artifact
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-5/audio/tone
+[DEBUG upload_artifacts] attribute_path: audio/tone
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Attempting rich upload...
+
+[DEBUG _upload_rich_file] Called with:
+  - file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-5/audio/tone
+  - attr_name: audio_tone
+  - step: None
+  - file exists: True
+  - is file: True
+[DEBUG _get_file_type] file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-5/audio/tone, ext: ''
+[DEBUG _get_file_type] No extension match, trying magic bytes...
+[DEBUG _get_file_type] Detected MIME type: audio/x-wav
+[DEBUG _get_file_type] Matched AUDIO by magic
+[DEBUG _upload_rich_file] Detected file_type: audio
+[DEBUG _upload_rich_file] File has no extension, detecting MIME type...
+[DEBUG _upload_rich_file] MIME: audio/x-wav, Extension: .wav
+[DEBUG _upload_rich_file] Created temp file with extension: /var/folders/7z/xf0b524s1sz57ng92d9l6b0r0000gn/T/tmpi2fmu9pn.wav
+[DEBUG _upload_rich_file] Creating wandb.Audio for /var/folders/7z/xf0b524s1sz57ng92d9l6b0r0000gn/T/tmpi2fmu9pn.wav
+[DEBUG _upload_rich_file] Logging media to wandb with attr_name: audio_tone
+[DEBUG _upload_rich_file] Successfully logged! Returning True
+[DEBUG _upload_rich_file] Cleaning up temp file: /var/folders/7z/xf0b524s1sz57ng92d9l6b0r0000gn/T/tmpi2fmu9pn.wav
+[DEBUG upload_artifacts] Rich upload succeeded, skipping artifact
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-5/images/random_sample
+[DEBUG upload_artifacts] attribute_path: images/random_sample
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Attempting rich upload...
+
+[DEBUG _upload_rich_file] Called with:
+  - file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-5/images/random_sample
+  - attr_name: images_random_sample
+  - step: None
+  - file exists: True
+  - is file: True
+[DEBUG _get_file_type] file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-5/images/random_sample, ext: ''
+[DEBUG _get_file_type] No extension match, trying magic bytes...
+[DEBUG _get_file_type] Detected MIME type: image/png
+[DEBUG _get_file_type] Matched IMAGE by magic
+[DEBUG _upload_rich_file] Detected file_type: image
+[DEBUG _upload_rich_file] Creating wandb.Image for exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-5/images/random_sample
+[DEBUG _upload_rich_file] Logging media to wandb with attr_name: images_random_sample
+[DEBUG _upload_rich_file] Successfully logged! Returning True
+[DEBUG upload_artifacts] Rich upload succeeded, skipping artifact
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-5/plots/trig_functions
+[DEBUG upload_artifacts] attribute_path: plots/trig_functions
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Attempting rich upload...
+
+[DEBUG _upload_rich_file] Called with:
+  - file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-5/plots/trig_functions
+  - attr_name: plots_trig_functions
+  - step: None
+  - file exists: True
+  - is file: True
+[DEBUG _get_file_type] file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-5/plots/trig_functions, ext: ''
+[DEBUG _get_file_type] No extension match, trying magic bytes...
+[DEBUG _get_file_type] Detected MIME type: image/png
+[DEBUG _get_file_type] Matched IMAGE by magic
+[DEBUG _upload_rich_file] Detected file_type: image
+[DEBUG _upload_rich_file] Creating wandb.Image for exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-5/plots/trig_functions
+[DEBUG _upload_rich_file] Logging media to wandb with attr_name: plots_trig_functions
+[DEBUG _upload_rich_file] Successfully logged! Returning True
+[DEBUG upload_artifacts] Rich upload succeeded, skipping artifact
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-5/reports/summary
+[DEBUG upload_artifacts] attribute_path: reports/summary
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Attempting rich upload...
+
+[DEBUG _upload_rich_file] Called with:
+  - file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-5/reports/summary
+  - attr_name: reports_summary
+  - step: None
+  - file exists: True
+  - is file: True
+[DEBUG _get_file_type] file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-5/reports/summary, ext: ''
+[DEBUG _get_file_type] No extension match, trying magic bytes...
+[DEBUG _get_file_type] Detected MIME type: text/plain
+[DEBUG _get_file_type] Trying directory hint: reports
+[DEBUG _get_file_type] No match - returning 'file'
+[DEBUG _upload_rich_file] Detected file_type: file
+[DEBUG _upload_rich_file] Unknown file_type 'file' - returning False
+[DEBUG upload_artifacts] Rich upload failed, falling back to artifact
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-5/source_code/diff
+[DEBUG upload_artifacts] attribute_path: source_code/diff
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Attempting rich upload...
+
+[DEBUG _upload_rich_file] Called with:
+  - file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-5/source_code/diff
+  - attr_name: source_code_diff
+  - step: None
+  - file exists: True
+  - is file: True
+[DEBUG _get_file_type] file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-5/source_code/diff, ext: ''
+[DEBUG _get_file_type] No extension match, trying magic bytes...
+[DEBUG _get_file_type] Detected MIME type: text/x-diff
+[DEBUG _get_file_type] Trying directory hint: source_code
+[DEBUG _get_file_type] No match - returning 'file'
+[DEBUG _upload_rich_file] Detected file_type: file
+[DEBUG _upload_rich_file] Unknown file_type 'file' - returning False
+[DEBUG upload_artifacts] Rich upload failed, falling back to artifact
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-5/source_code/files
+[DEBUG upload_artifacts] attribute_path: source_code/files
+[DEBUG upload_artifacts] attribute_type: file_set
+[DEBUG upload_artifacts] Skipping rich upload (rich=True, is_file=False)
+wandb: Adding directory to artifact (exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-5/source_code/files)... Done. 0.0s
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-5/tables/results
+[DEBUG upload_artifacts] attribute_path: tables/results
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Attempting rich upload...
+
+[DEBUG _upload_rich_file] Called with:
+  - file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-5/tables/results
+  - attr_name: tables_results
+  - step: None
+  - file exists: True
+  - is file: True
+[DEBUG _get_file_type] file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-5/tables/results, ext: ''
+[DEBUG _get_file_type] No extension match, trying magic bytes...
+[DEBUG _get_file_type] Detected MIME type: text/html
+[DEBUG _get_file_type] Matched HTML by magic
+[DEBUG _upload_rich_file] Detected file_type: html
+[DEBUG _upload_rich_file] Creating wandb.Html for exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-5/tables/results
+[DEBUG _upload_rich_file] Logging media to wandb with attr_name: tables_results
+[DEBUG _upload_rich_file] Successfully logged! Returning True
+[DEBUG upload_artifacts] Rich upload succeeded, skipping artifact
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-5/video/animation
+[DEBUG upload_artifacts] attribute_path: video/animation
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Attempting rich upload...
+
+[DEBUG _upload_rich_file] Called with:
+  - file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-5/video/animation
+  - attr_name: video_animation
+  - step: None
+  - file exists: True
+  - is file: True
+[DEBUG _get_file_type] file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-5/video/animation, ext: ''
+[DEBUG _get_file_type] No extension match, trying magic bytes...
+[DEBUG _get_file_type] Detected MIME type: image/gif
+[DEBUG _get_file_type] GIF in video folder - treating as video
+[DEBUG _upload_rich_file] Detected file_type: video
+[DEBUG _upload_rich_file] File has no extension, detecting MIME type...
+[DEBUG _upload_rich_file] MIME: image/gif, Extension: .gif
+[DEBUG _upload_rich_file] Created temp file with extension: /var/folders/7z/xf0b524s1sz57ng92d9l6b0r0000gn/T/tmpqxawjwj3.gif
+[DEBUG _upload_rich_file] Re-encoding video to H.264 for browser compatibility...
+[DEBUG _reencode_video_to_h264] Re-encoding video: /var/folders/7z/xf0b524s1sz57ng92d9l6b0r0000gn/T/tmpqxawjwj3.gif
+[DEBUG _reencode_video_to_h264] Successfully re-encoded to: /var/folders/7z/xf0b524s1sz57ng92d9l6b0r0000gn/T/tmpmjwrdf2h.mp4
+[DEBUG _upload_rich_file] Creating wandb.Video for /var/folders/7z/xf0b524s1sz57ng92d9l6b0r0000gn/T/tmpmjwrdf2h.mp4
+wandb: WARNING `format` argument was not provided, defaulting to `gif`. This parameter will be required in v0.20.0, please specify the format explicitly.
+[DEBUG _upload_rich_file] Logging media to wandb with attr_name: video_animation
+[DEBUG _upload_rich_file] Successfully logged! Returning True
+[DEBUG _upload_rich_file] Cleaning up temp file: /var/folders/7z/xf0b524s1sz57ng92d9l6b0r0000gn/T/tmpqxawjwj3.gif
+[DEBUG _upload_rich_file] Cleaning up re-encoded video: /var/folders/7z/xf0b524s1sz57ng92d9l6b0r0000gn/T/tmpmjwrdf2h.mp4
+[DEBUG upload_artifacts] Rich upload succeeded, skipping artifact
+
+[DEBUG upload_artifacts] Processing 10 file_series items
+
+[DEBUG upload_artifacts] Processing file_series group: images/samples
+[DEBUG upload_artifacts] Group has 10 items
+[DEBUG upload_artifacts] Rich mode: collecting files for table...
+[DEBUG _get_file_type] file_path: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-5/images/samples/8.png, ext: '.png'
+[DEBUG _get_file_type] Matched IMAGE by extension
+[DEBUG upload_artifacts] Detected file_series type: image
+[DEBUG upload_artifacts] Creating wandb.Table for 10 images
+[DEBUG] Creating wandb.Image from: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-5/images/samples/0.png
+[DEBUG] Added image at step 0 to table
+[DEBUG] Creating wandb.Image from: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-5/images/samples/1.png
+[DEBUG] Added image at step 1 to table
+[DEBUG] Creating wandb.Image from: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-5/images/samples/2.png
+[DEBUG] Added image at step 2 to table
+[DEBUG] Creating wandb.Image from: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-5/images/samples/3.png
+[DEBUG] Added image at step 3 to table
+[DEBUG] Creating wandb.Image from: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-5/images/samples/4.png
+[DEBUG] Added image at step 4 to table
+[DEBUG] Creating wandb.Image from: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-5/images/samples/5.png
+[DEBUG] Added image at step 5 to table
+[DEBUG] Creating wandb.Image from: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-5/images/samples/6.png
+[DEBUG] Added image at step 6 to table
+[DEBUG] Creating wandb.Image from: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-5/images/samples/7.png
+[DEBUG] Added image at step 7 to table
+[DEBUG] Creating wandb.Image from: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-5/images/samples/8.png
+[DEBUG] Added image at step 8 to table
+[DEBUG] Creating wandb.Image from: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-5/images/samples/9.png
+[DEBUG] Added image at step 9 to table
+[DEBUG upload_artifacts] Successfully logged table with 10 items

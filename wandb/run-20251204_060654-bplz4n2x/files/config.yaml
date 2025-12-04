@@ -1,0 +1,129 @@
+_wandb:
+    value:
+        cli_version: 0.22.3
+        e:
+            ve8or9jovm17xf7g04xoku3fdmwv0l5e:
+                apple:
+                    ecpuCores: 2
+                    gpuCores: 16
+                    memoryGb: 16
+                    name: Apple M1 Pro
+                    pcpuCores: 8
+                    ramTotalBytes: "17179869184"
+                    swapTotalBytes: "35433480192"
+                args:
+                    - load
+                    - --loader
+                    - wandb
+                    - --wandb-entity
+                    - byyoung3
+                    - --wandb-api-key
+                    - 6e72a6be0f5364634d9c4dd9c9d6e7fbcc0cf8a0
+                    - --data-path
+                    - ./exports/data
+                    - --files-path
+                    - ./exports/files
+                    - --rich
+                codePath: .venv/bin/neptune-exporter
+                codePathLocal: .venv/bin/neptune-exporter
+                cpu_count: 10
+                cpu_count_logical: 10
+                disk:
+                    /:
+                        total: "494384795648"
+                        used: "484718395392"
+                email: byyoung3@gmail.com
+                executable: /Users/brettyoung/Desktop/dev25/tutorials/neptune_migration/neptune-exporter/.venv/bin/python3
+                git:
+                    commit: 50bf61f7a78e8c3f22be1de4c914ce539f8bcd78
+                    remote: https://github.com/neptune-ai/neptune-exporter.git
+                host: Bretts-MacBook-Pro-2.local
+                memory:
+                    total: "17179869184"
+                os: macOS-14.4.1-arm64-arm-64bit-Mach-O
+                program: /Users/brettyoung/Desktop/dev25/tutorials/neptune_migration/neptune-exporter/.venv/bin/neptune-exporter
+                python: CPython 3.13.2
+                root: /Users/brettyoung/Desktop/dev25/tutorials/neptune_migration/neptune-exporter
+                startedAt: "2025-12-04T12:06:54.088188Z"
+                writerId: ve8or9jovm17xf7g04xoku3fdmwv0l5e
+        m: []
+        python_version: 3.13.2
+        t:
+            "3":
+                - 2
+                - 13
+                - 61
+            "4": 3.13.2
+            "5": 0.22.3
+            "12": 0.22.3
+            "13": darwin-arm64
+evaluation_accuracy:
+    value: 0.956
+evaluation_f1_score:
+    value: 0.948
+evaluation_loss:
+    value: 0.042
+info_author:
+    value: ML Team
+info_description:
+    value: Testing migration patterns
+info_version:
+    value: 1.0.0
+monitoring_a72835b6_hostname:
+    value: Bretts-MacBook-Pro-2.local
+monitoring_a72835b6_pid:
+    value: "33737"
+monitoring_a72835b6_tid:
+    value: "8447556288"
+parameters_data_augmentation:
+    value: true
+parameters_data_dataset:
+    value: CIFAR-10
+parameters_model_architecture:
+    value: ResNet50
+parameters_model_dropout:
+    value: 0.2
+parameters_model_num_layers:
+    value: 50
+parameters_training_batch_size:
+    value: 32
+parameters_training_learning_rate:
+    value: 0.001
+parameters_training_optimizer:
+    value: AdamW
+source_code_entrypoint:
+    value: cmp_logging.py
+sys_creation_time:
+    value: 2025-12-04 10:36:35.033000+00:00
+sys_description:
+    value: Testing logging patterns
+sys_failed:
+    value: false
+sys_group_tags:
+    value: []
+sys_hostname:
+    value: Bretts-MacBook-Pro-2.local
+sys_id:
+    value: TES-4
+sys_modification_time:
+    value: 2025-12-04 10:36:49.688000+00:00
+sys_monitoring_time:
+    value: 13
+sys_name:
+    value: side-by-side-test
+sys_owner:
+    value: byyoung3
+sys_ping_time:
+    value: 2025-12-04 10:36:49.688000+00:00
+sys_running_time:
+    value: 14.654
+sys_size:
+    value: 310598
+sys_tags:
+    value:
+        - v2.0
+        - production
+        - comparison-test
+        - migration
+sys_trashed:
+    value: false

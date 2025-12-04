@@ -1,0 +1,6 @@
+
+        <div style="padding:20px; background:#e8f5e9; border-radius:8px;">
+            <h2 style="color:#2e7d32;">✓ Training Complete</h2>
+            <p>Final accuracy: <strong>95.6%</strong></p>
+        </div>
+        

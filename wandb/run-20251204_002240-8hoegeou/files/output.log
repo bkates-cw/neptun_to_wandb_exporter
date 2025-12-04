@@ -1,0 +1,24 @@
+📊 Run URL: https://wandb.ai/byyoung3/rich-media-test/runs/8hoegeou
+
+🖼️  Uploading images...
+  ✓ Images uploaded
+
+🔊 Uploading audio...
+  ✓ Audio uploaded
+
+🎬 Uploading video...
+/Users/brettyoung/miniconda3/lib/python3.10/site-packages/imageio_ffmpeg/_utils.py:6: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import resource_filename
+  ✓ Video uploaded
+
+📋 Uploading tables...
+  ✓ Tables uploaded
+
+🌐 Uploading HTML...
+  ✓ HTML uploaded
+
+📈 Uploading metrics...
+  ✓ Metrics uploaded
+
+📊 Uploading matplotlib figure...
+  ✓ Matplotlib figure uploaded

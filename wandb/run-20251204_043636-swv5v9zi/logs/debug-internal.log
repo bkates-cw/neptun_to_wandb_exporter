@@ -1,0 +1,16 @@
+{"time":"2025-12-04T04:36:36.982486-06:00","level":"INFO","msg":"stream: starting","core version":"0.19.8","symlink path":"/Users/brettyoung/Desktop/dev25/tutorials/neptune_migration/neptune-exporter/wandb/run-20251204_043636-swv5v9zi/logs/debug-core.log"}
+{"time":"2025-12-04T04:36:37.095156-06:00","level":"INFO","msg":"created new stream","id":"swv5v9zi"}
+{"time":"2025-12-04T04:36:37.095208-06:00","level":"INFO","msg":"stream: started","id":"swv5v9zi"}
+{"time":"2025-12-04T04:36:37.095432-06:00","level":"INFO","msg":"writer: Do: started","stream_id":"swv5v9zi"}
+{"time":"2025-12-04T04:36:37.095462-06:00","level":"INFO","msg":"handler: started","stream_id":"swv5v9zi"}
+{"time":"2025-12-04T04:36:37.095615-06:00","level":"INFO","msg":"sender: started","stream_id":"swv5v9zi"}
+{"time":"2025-12-04T04:36:38.159183-06:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-12-04T04:36:49.507431-06:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-12-04T04:36:49.509626-06:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-12-04T04:36:50.512343-06:00","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"uploading config.yaml","runtime_seconds":0.170612375,"progress":"936B/936B"}],"total_operations":1}}
+{"time":"2025-12-04T04:36:50.747196-06:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-12-04T04:36:52.021611-06:00","level":"INFO","msg":"stream: closing","id":"swv5v9zi"}
+{"time":"2025-12-04T04:36:52.021648-06:00","level":"INFO","msg":"sender: closed","stream_id":"swv5v9zi"}
+{"time":"2025-12-04T04:36:52.021643-06:00","level":"INFO","msg":"writer: Close: closed","stream_id":"swv5v9zi"}
+{"time":"2025-12-04T04:36:52.021788-06:00","level":"INFO","msg":"handler: closed","stream_id":"swv5v9zi"}
+{"time":"2025-12-04T04:36:52.021891-06:00","level":"INFO","msg":"stream: closed","id":"swv5v9zi"}

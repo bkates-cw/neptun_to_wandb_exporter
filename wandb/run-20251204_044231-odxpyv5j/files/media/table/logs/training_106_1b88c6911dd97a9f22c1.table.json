@@ -1,0 +1,1 @@
+{"columns": ["step", "message"], "data": [[0, "[INFO] Starting training..."], [1, "[INFO] Epoch 1/100 - loss: 2.45"], [2, "[INFO] Epoch 50/100 - loss: 0.32"], [3, "[INFO] Epoch 100/100 - loss: 0.08"], [4, "[INFO] Training complete!"]]}

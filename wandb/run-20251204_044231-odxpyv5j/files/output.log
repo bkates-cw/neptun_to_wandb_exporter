@@ -1,0 +1,7 @@
+/Users/brettyoung/miniconda3/lib/python3.10/site-packages/imageio_ffmpeg/_utils.py:6: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import resource_filename
+[neptune] [info   ] Shutting down background jobs, please wait a moment...
+[neptune] [info   ] Done!
+[neptune] [info   ] Waiting for the remaining 70 operations to synchronize with Neptune. Do not kill this process.
+[neptune] [info   ] All 70 operations synced, thanks for waiting!
+[neptune] [info   ] Explore the metadata in the Neptune app: https://app.neptune.ai/byyoung3/testing2/e/TES-5/metadata

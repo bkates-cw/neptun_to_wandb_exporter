@@ -1,0 +1,9 @@
+/Users/brettyoung/miniconda3/lib/python3.10/site-packages/imageio_ffmpeg/_utils.py:6: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import resource_filename
+[neptune] [info   ] Shutting down background jobs, please wait a moment...
+[neptune] [info   ] Done!
+[neptune] [info   ] Waiting for the remaining 72 operations to synchronize with Neptune. Do not kill this process.
+[neptune] [error  ] Error occurred during asynchronous operation processing: Cannot upload file /var/folders/7z/xf0b524s1sz57ng92d9l6b0r0000gn/T/tmpp9_wbwog.wav: Path not found or is a not a file.
+[neptune] [error  ] Error occurred during asynchronous operation processing: Cannot upload file /var/folders/7z/xf0b524s1sz57ng92d9l6b0r0000gn/T/tmpiec7mpn9.gif: Path not found or is a not a file.
+[neptune] [info   ] All 72 operations synced, thanks for waiting!
+[neptune] [info   ] Explore the metadata in the Neptune app: https://app.neptune.ai/byyoung3/testing2/e/TES-3/metadata

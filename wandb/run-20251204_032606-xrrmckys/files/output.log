@@ -1,0 +1,89 @@
+📊 Run URL: https://wandb.ai/byyoung3/rich-media-test/runs/xrrmckys
+
+🖼️  Uploading images...
+  - Logging image series individually...
+  - Logging image series as table...
+  ✓ Images uploaded (including table with 10 samples)
+
+🔊 Uploading audio...
+  - Logging audio series as table...
+Traceback (most recent call last):
+  File "/Users/brettyoung/Desktop/dev25/tutorials/neptune_migration/neptune-exporter/upload_media.py", line 260, in <module>
+    main()
+  File "/Users/brettyoung/Desktop/dev25/tutorials/neptune_migration/neptune-exporter/upload_media.py", line 164, in main
+    wandb.log({"audio/notes_table": audio_table})
+  File "/Users/brettyoung/miniconda3/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 449, in wrapper
+    return func(self, *args, **kwargs)
+  File "/Users/brettyoung/miniconda3/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 401, in wrapper_fn
+    return func(self, *args, **kwargs)
+  File "/Users/brettyoung/miniconda3/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 391, in wrapper
+    return func(self, *args, **kwargs)
+  File "/Users/brettyoung/miniconda3/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 1873, in log
+    self._log(data=data, step=step, commit=commit)
+  File "/Users/brettyoung/miniconda3/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 1587, in _log
+    self._partial_history_callback(data, step, commit)
+  File "/Users/brettyoung/miniconda3/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 1417, in _partial_history_callback
+    self._backend.interface.publish_partial_history(
+  File "/Users/brettyoung/miniconda3/lib/python3.10/site-packages/wandb/sdk/interface/interface.py", line 672, in publish_partial_history
+    data = history_dict_to_json(run, data, step=user_step, ignore_copy_err=True)
+  File "/Users/brettyoung/miniconda3/lib/python3.10/site-packages/wandb/sdk/data_types/utils.py", line 54, in history_dict_to_json
+    payload[key] = val_to_json(
+  File "/Users/brettyoung/miniconda3/lib/python3.10/site-packages/wandb/sdk/data_types/utils.py", line 154, in val_to_json
+    art.add(val, key)
+  File "/Users/brettyoung/miniconda3/lib/python3.10/site-packages/wandb/sdk/artifacts/_validators.py", line 115, in wrapper
+    return method(self, *args, **kwargs)
+  File "/Users/brettyoung/miniconda3/lib/python3.10/site-packages/wandb/sdk/artifacts/artifact.py", line 1547, in add
+    val = obj.to_json(self)
+  File "/Users/brettyoung/miniconda3/lib/python3.10/site-packages/wandb/sdk/data_types/table.py", line 656, in to_json
+    mapped_row.append(_json_helper(v, artifact))
+  File "/Users/brettyoung/miniconda3/lib/python3.10/site-packages/wandb/sdk/data_types/utils.py", line 182, in _json_helper
+    return val.to_json(artifact)
+  File "/Users/brettyoung/miniconda3/lib/python3.10/site-packages/wandb/sdk/data_types/audio.py", line 79, in to_json
+    json_dict = super().to_json(run)
+  File "/Users/brettyoung/miniconda3/lib/python3.10/site-packages/wandb/sdk/data_types/base_types/media.py", line 302, in to_json
+    entry = artifact.add_file(
+  File "/Users/brettyoung/miniconda3/lib/python3.10/site-packages/wandb/sdk/artifacts/_validators.py", line 115, in wrapper
+    return method(self, *args, **kwargs)
+  File "/Users/brettyoung/miniconda3/lib/python3.10/site-packages/wandb/sdk/artifacts/artifact.py", line 1322, in add_file
+    raise ValueError(f"Path is not a file: {local_path!r}")
+ValueError: Path is not a file: '/var/folders/7z/xf0b524s1sz57ng92d9l6b0r0000gn/T/tmp2s79i44c.wav'
+Traceback (most recent call last):
+  File "/Users/brettyoung/Desktop/dev25/tutorials/neptune_migration/neptune-exporter/upload_media.py", line 260, in <module>
+    main()
+  File "/Users/brettyoung/Desktop/dev25/tutorials/neptune_migration/neptune-exporter/upload_media.py", line 164, in main
+    wandb.log({"audio/notes_table": audio_table})
+  File "/Users/brettyoung/miniconda3/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 449, in wrapper
+    return func(self, *args, **kwargs)
+  File "/Users/brettyoung/miniconda3/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 401, in wrapper_fn
+    return func(self, *args, **kwargs)
+  File "/Users/brettyoung/miniconda3/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 391, in wrapper
+    return func(self, *args, **kwargs)
+  File "/Users/brettyoung/miniconda3/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 1873, in log
+    self._log(data=data, step=step, commit=commit)
+  File "/Users/brettyoung/miniconda3/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 1587, in _log
+    self._partial_history_callback(data, step, commit)
+  File "/Users/brettyoung/miniconda3/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 1417, in _partial_history_callback
+    self._backend.interface.publish_partial_history(
+  File "/Users/brettyoung/miniconda3/lib/python3.10/site-packages/wandb/sdk/interface/interface.py", line 672, in publish_partial_history
+    data = history_dict_to_json(run, data, step=user_step, ignore_copy_err=True)
+  File "/Users/brettyoung/miniconda3/lib/python3.10/site-packages/wandb/sdk/data_types/utils.py", line 54, in history_dict_to_json
+    payload[key] = val_to_json(
+  File "/Users/brettyoung/miniconda3/lib/python3.10/site-packages/wandb/sdk/data_types/utils.py", line 154, in val_to_json
+    art.add(val, key)
+  File "/Users/brettyoung/miniconda3/lib/python3.10/site-packages/wandb/sdk/artifacts/_validators.py", line 115, in wrapper
+    return method(self, *args, **kwargs)
+  File "/Users/brettyoung/miniconda3/lib/python3.10/site-packages/wandb/sdk/artifacts/artifact.py", line 1547, in add
+    val = obj.to_json(self)
+  File "/Users/brettyoung/miniconda3/lib/python3.10/site-packages/wandb/sdk/data_types/table.py", line 656, in to_json
+    mapped_row.append(_json_helper(v, artifact))
+  File "/Users/brettyoung/miniconda3/lib/python3.10/site-packages/wandb/sdk/data_types/utils.py", line 182, in _json_helper
+    return val.to_json(artifact)
+  File "/Users/brettyoung/miniconda3/lib/python3.10/site-packages/wandb/sdk/data_types/audio.py", line 79, in to_json
+    json_dict = super().to_json(run)
+  File "/Users/brettyoung/miniconda3/lib/python3.10/site-packages/wandb/sdk/data_types/base_types/media.py", line 302, in to_json
+    entry = artifact.add_file(
+  File "/Users/brettyoung/miniconda3/lib/python3.10/site-packages/wandb/sdk/artifacts/_validators.py", line 115, in wrapper
+    return method(self, *args, **kwargs)
+  File "/Users/brettyoung/miniconda3/lib/python3.10/site-packages/wandb/sdk/artifacts/artifact.py", line 1322, in add_file
+    raise ValueError(f"Path is not a file: {local_path!r}")
+ValueError: Path is not a file: '/var/folders/7z/xf0b524s1sz57ng92d9l6b0r0000gn/T/tmp2s79i44c.wav'

@@ -1,0 +1,44 @@
+{
+  "os": "macOS-14.4.1-arm64-arm-64bit",
+  "python": "CPython 3.10.10",
+  "startedAt": "2025-12-04T09:26:06.888718Z",
+  "program": "/Users/brettyoung/Desktop/dev25/tutorials/neptune_migration/neptune-exporter/upload_media.py",
+  "codePath": "upload_media.py",
+  "git": {
+    "remote": "https://github.com/neptune-ai/neptune-exporter.git",
+    "commit": "50bf61f7a78e8c3f22be1de4c914ce539f8bcd78"
+  },
+  "email": "byyoung3@gmail.com",
+  "root": "/Users/brettyoung/Desktop/dev25/tutorials/neptune_migration/neptune-exporter",
+  "host": "Bretts-MacBook-Pro-2.local",
+  "executable": "/Users/brettyoung/miniconda3/bin/python",
+  "codePathLocal": "upload_media.py",
+  "cpu_count": 10,
+  "cpu_count_logical": 10,
+  "disk": {
+    "/": {
+      "total": "494384795648",
+      "used": "481351442432"
+    },
+    "/System/Volumes/Data": {
+      "total": "494384795648",
+      "used": "481351442432"
+    }
+  },
+  "memory": {
+    "total": "17179869184"
+  },
+  "cpu": {
+    "count": 10,
+    "countLogical": 10
+  },
+  "apple": {
+    "name": "Apple M1 Pro",
+    "ecpuCores": 2,
+    "pcpuCores": 8,
+    "gpuCores": 16,
+    "memoryGb": 16,
+    "swapTotalBytes": "32212254720",
+    "ramTotalBytes": "17179869184"
+  }
+}

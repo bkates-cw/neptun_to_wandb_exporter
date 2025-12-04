@@ -1,0 +1,44 @@
+2025-12-04 06:26:43,476 neptune_exporter.main:INFO: Starting wandb loading from /Users/brettyoung/Desktop/dev25/tutorials/neptune_migration/neptune-exporter/exports/data using arguments:
+2025-12-04 06:26:43,476 neptune_exporter.main:INFO:   Project IDs: all
+2025-12-04 06:26:43,476 neptune_exporter.main:INFO:   Runs: all
+2025-12-04 06:26:43,476 neptune_exporter.main:INFO:   Step multiplier: 1
+2025-12-04 06:26:43,476 neptune_exporter.main:INFO:   Files directory: /Users/brettyoung/Desktop/dev25/tutorials/neptune_migration/neptune-exporter/exports/files
+2025-12-04 06:26:43,476 neptune_exporter.main:INFO:   W&B entity: byyoung3
+2025-12-04 06:26:43,476 neptune_exporter.main:INFO:   Name prefix: migration-test
+2025-12-04 06:26:45,117 neptune_exporter.loader_manager:INFO: Starting data loading for 1 project(s)
+2025-12-04 06:26:45,133 neptune_exporter.loader_manager:INFO: Loading data from exports/data/byyoung3_testing2-8ecbc7dd987961e5 to target platform
+2025-12-04 06:26:48,047 neptune_exporter.loaders.wandb_loader:ERROR: Error finding project byyoung3/testing2, run 'TES-2'
+Traceback (most recent call last):
+  File "/Users/brettyoung/Desktop/dev25/tutorials/neptune_migration/neptune-exporter/src/neptune_exporter/loaders/wandb_loader.py", line 885, in find_run
+    for run in runs:
+               ^^^^
+  File "/Users/brettyoung/Desktop/dev25/tutorials/neptune_migration/neptune-exporter/.venv/lib/python3.13/site-packages/wandb/apis/paginator.py", line 105, in __next__
+    if not self._load_page():
+           ~~~~~~~~~~~~~~~^^
+  File "/Users/brettyoung/Desktop/dev25/tutorials/neptune_migration/neptune-exporter/.venv/lib/python3.13/site-packages/wandb/apis/paginator.py", line 87, in _load_page
+    self.objects.extend(self.convert_objects())
+                        ~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/brettyoung/Desktop/dev25/tutorials/neptune_migration/neptune-exporter/.venv/lib/python3.13/site-packages/wandb/apis/public/runs.py", line 351, in convert_objects
+    raise ValueError("Could not find project {}".format(self.project))
+ValueError: Could not find project migration-test_byyoung3_testing2
+2025-12-04 06:26:50,741 neptune_exporter.loaders.wandb_loader:INFO: Created run 'TES-2' with W&B ID 5qm7v5j5
+2025-12-04 06:26:50,777 neptune_exporter.loaders.wandb_loader:INFO: Uploaded 78 parameters for run 5qm7v5j5
+2025-12-04 06:26:50,823 neptune_exporter.loaders.wandb_loader:INFO: Uploaded metrics for run 5qm7v5j5
+2025-12-04 06:29:53,212 neptune_exporter.loaders.wandb_loader:INFO: Uploaded artifacts for run 5qm7v5j5
+2025-12-04 06:29:55,854 neptune_exporter.loaders.wandb_loader:INFO: Successfully uploaded run 5qm7v5j5 to W&B
+2025-12-04 06:29:55,866 neptune_exporter.loader_manager:INFO: Created and uploaded run 'TES-2'
+2025-12-04 06:30:00,802 neptune_exporter.loaders.wandb_loader:INFO: Created run 'TES-3' with W&B ID hkxsjy0j
+2025-12-04 06:30:00,841 neptune_exporter.loaders.wandb_loader:INFO: Uploaded 33 parameters for run hkxsjy0j
+2025-12-04 06:30:00,896 neptune_exporter.loaders.wandb_loader:INFO: Uploaded metrics for run hkxsjy0j
+2025-12-04 06:31:18,688 neptune_exporter.loaders.wandb_loader:INFO: Uploaded artifacts for run hkxsjy0j
+2025-12-04 06:31:21,262 neptune_exporter.loaders.wandb_loader:INFO: Successfully uploaded run hkxsjy0j to W&B
+2025-12-04 06:31:21,264 neptune_exporter.loader_manager:INFO: Created and uploaded run 'TES-3'
+2025-12-04 06:31:25,653 neptune_exporter.loaders.wandb_loader:INFO: Created run 'TES-4' with W&B ID x7y0ml19
+2025-12-04 06:31:25,665 neptune_exporter.loaders.wandb_loader:INFO: Uploaded 33 parameters for run x7y0ml19
+2025-12-04 06:31:25,700 neptune_exporter.loaders.wandb_loader:INFO: Uploaded metrics for run x7y0ml19
+2025-12-04 06:33:00,136 neptune_exporter.loaders.wandb_loader:INFO: Uploaded artifacts for run x7y0ml19
+2025-12-04 06:33:03,233 neptune_exporter.loaders.wandb_loader:INFO: Successfully uploaded run x7y0ml19 to W&B
+2025-12-04 06:33:03,240 neptune_exporter.loader_manager:INFO: Created and uploaded run 'TES-4'
+2025-12-04 06:33:07,563 neptune_exporter.loaders.wandb_loader:INFO: Created run 'TES-5' with W&B ID 2f6mxwj5
+2025-12-04 06:33:07,577 neptune_exporter.loaders.wandb_loader:INFO: Uploaded 33 parameters for run 2f6mxwj5
+2025-12-04 06:33:07,624 neptune_exporter.loaders.wandb_loader:INFO: Uploaded metrics for run 2f6mxwj5

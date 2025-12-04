@@ -1,0 +1,1 @@
+{"_runtime":78.1698705,"_timestamp":1.764851400895958e+09,"monitoring_c66217e6_cpu":21.6,"train_accuracy":0.9490435677209187,"validation_loss":0.011983450643774499,"_wandb":{"runtime":78},"monitoring_c66217e6_memory":13.477081298828125,"validation_accuracy":0.914534719577527,"_step":99,"train_learning_rate":0.0006302494097246091,"train_loss":0.10739621889544929}

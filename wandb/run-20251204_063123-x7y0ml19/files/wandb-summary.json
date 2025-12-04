@@ -1,0 +1,1 @@
+{"_runtime":94.688828625,"train_loss":0.035622345043203,"monitoring_a72835b6_cpu":18.1,"monitoring_a72835b6_memory":13.307891845703125,"_step":99,"train_accuracy":0.9490435677209187,"validation_loss":0.10076249271371182,"train_learning_rate":0.0006302494097246091,"_timestamp":1.764851485700444e+09,"validation_accuracy":0.914534719577527,"_wandb":{"runtime":94}}

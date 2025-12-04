@@ -1,0 +1,220 @@
+_wandb:
+    value:
+        cli_version: 0.22.3
+        e:
+            8vf3f5acblffkx6easacgrv3rdlw9bqz:
+                apple:
+                    ecpuCores: 2
+                    gpuCores: 16
+                    memoryGb: 16
+                    name: Apple M1 Pro
+                    pcpuCores: 8
+                    ramTotalBytes: "17179869184"
+                    swapTotalBytes: "36507222016"
+                args:
+                    - load
+                    - --loader
+                    - wandb
+                    - --wandb-entity
+                    - byyoung3
+                    - --wandb-api-key
+                    - 6e72a6be0f5364634d9c4dd9c9d6e7fbcc0cf8a0
+                    - --data-path
+                    - ./exports/data
+                    - --files-path
+                    - ./exports/files
+                    - --name-prefix
+                    - migration-test
+                codePath: .venv/bin/neptune-exporter
+                codePathLocal: .venv/bin/neptune-exporter
+                cpu_count: 10
+                cpu_count_logical: 10
+                disk:
+                    /:
+                        total: "494384795648"
+                        used: "485809397760"
+                email: byyoung3@gmail.com
+                executable: /Users/brettyoung/Desktop/dev25/tutorials/neptune_migration/neptune-exporter/.venv/bin/python3
+                host: Bretts-MacBook-Pro-2.local
+                memory:
+                    total: "17179869184"
+                os: macOS-14.4.1-arm64-arm-64bit-Mach-O
+                program: /Users/brettyoung/Desktop/dev25/tutorials/neptune_migration/neptune-exporter/.venv/bin/neptune-exporter
+                python: CPython 3.13.2
+                root: /Users/brettyoung/Desktop/dev25/tutorials/neptune_migration/neptune-exporter
+                startedAt: "2025-12-04T12:26:48.071386Z"
+                writerId: 8vf3f5acblffkx6easacgrv3rdlw9bqz
+        m: []
+        python_version: 3.13.2
+        t:
+            "3":
+                - 2
+                - 13
+                - 61
+            "4": 3.13.2
+            "5": 0.22.3
+            "12": 0.22.3
+            "13": darwin-arm64
+config_batch_size:
+    value: 32
+config_dataset:
+    value: CIFAR-10
+config_epochs:
+    value: 100
+config_learning_rate:
+    value: 0.001
+config_model:
+    value: ResNet50
+config_optimizer:
+    value: AdamW
+custom_experiment_group:
+    value: architecture_comparison
+custom_hardware_info_cpu:
+    value: AMD EPYC 7763
+custom_hardware_info_gpu:
+    value: NVIDIA A100 80GB
+custom_hardware_info_ram_gb:
+    value: 512
+custom_hardware_info_storage:
+    value: NVMe SSD
+custom_priority:
+    value: high
+custom_started_at:
+    value: 2025-12-03T23:19:48.451244
+custom_status:
+    value: completed
+evaluation_accuracy:
+    value: 0.956
+evaluation_f1_score:
+    value: 0.948
+evaluation_loss:
+    value: 0.042
+evaluation_precision:
+    value: 0.952
+evaluation_recall:
+    value: 0.944
+git_branch:
+    value: main
+git_commit:
+    value: a1b2c3d4e5f6789012345678901234567890abcd
+git_dirty:
+    value: false
+git_message:
+    value: Add comprehensive Neptune logging
+git_remote:
+    value: https://github.com/user/ml-experiments
+info_author:
+    value: ML Team
+info_description:
+    value: Comprehensive Neptune upload test
+info_framework:
+    value: PyTorch 2.0
+info_version:
+    value: 1.0.0
+model_architecture:
+    value: ResNet50
+model_best_epoch:
+    value: 87
+model_checkpoint_path:
+    value: checkpoints/best_model.pt
+model_num_parameters:
+    value: 325002
+model_precision:
+    value: float32
+monitoring_4282f86d_hostname:
+    value: Bretts-MacBook-Pro-2.local
+monitoring_4282f86d_pid:
+    value: "12568"
+monitoring_4282f86d_tid:
+    value: "8447556288"
+parameters_data_dataset:
+    value: CIFAR-10
+parameters_data_image_size:
+    value: 224
+parameters_data_train_samples:
+    value: 50000
+parameters_data_val_samples:
+    value: 10000
+parameters_experiment_deterministic:
+    value: true
+parameters_experiment_run_id:
+    value: exp_20251203_231946
+parameters_experiment_seed:
+    value: 42
+parameters_hardware_device:
+    value: cuda
+parameters_hardware_distributed:
+    value: true
+parameters_hardware_gpu_type:
+    value: NVIDIA A100
+parameters_hardware_num_gpus:
+    value: 4
+parameters_hardware_precision:
+    value: fp16
+parameters_model_activation:
+    value: ReLU
+parameters_model_architecture:
+    value: ResNet50
+parameters_model_dropout:
+    value: 0.2
+parameters_model_hidden_size:
+    value: 2048
+parameters_model_num_classes:
+    value: 10
+parameters_model_num_layers:
+    value: 50
+parameters_model_pretrained:
+    value: true
+parameters_training_batch_size:
+    value: 32
+parameters_training_epochs:
+    value: 100
+parameters_training_gradient_clip:
+    value: 1
+parameters_training_learning_rate:
+    value: 0.001
+parameters_training_optimizer:
+    value: AdamW
+parameters_training_warmup_steps:
+    value: 500
+parameters_training_weight_decay:
+    value: 0.01
+source_code_entrypoint:
+    value: neptune_upload.py
+sys_creation_time:
+    value: 2025-12-04 05:19:46.529000+00:00
+sys_description:
+    value: Comprehensive Neptune upload test with all data generated internally
+sys_failed:
+    value: false
+sys_group_tags:
+    value: []
+sys_hostname:
+    value: Bretts-MacBook-Pro-2.local
+sys_id:
+    value: TES-2
+sys_modification_time:
+    value: 2025-12-04 05:21:07.561000+00:00
+sys_monitoring_time:
+    value: 79
+sys_name:
+    value: comprehensive-20251203-231938
+sys_owner:
+    value: byyoung3
+sys_ping_time:
+    value: 2025-12-04 05:21:07.561000+00:00
+sys_running_time:
+    value: 4.019
+sys_size:
+    value: 6.647489e+06
+sys_tags:
+    value:
+        - all-data-types
+        - self-contained
+        - comprehensive-test
+        - pytorch
+        - production-ready
+        - v2.0
+        - resnet
+sys_trashed:
+    value: false

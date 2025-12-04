@@ -1,0 +1,36 @@
+2025-12-04 04:36:36,956 INFO    MainThread:33737 [wandb_setup.py:_flush():67] Current SDK version is 0.19.8
+2025-12-04 04:36:36,956 INFO    MainThread:33737 [wandb_setup.py:_flush():67] Configure stats pid to 33737
+2025-12-04 04:36:36,956 INFO    MainThread:33737 [wandb_setup.py:_flush():67] Loading settings from /Users/brettyoung/.config/wandb/settings
+2025-12-04 04:36:36,956 INFO    MainThread:33737 [wandb_setup.py:_flush():67] Loading settings from /Users/brettyoung/Desktop/dev25/tutorials/neptune_migration/neptune-exporter/wandb/settings
+2025-12-04 04:36:36,956 INFO    MainThread:33737 [wandb_setup.py:_flush():67] Loading settings from environment variables
+2025-12-04 04:36:36,956 INFO    MainThread:33737 [wandb_init.py:setup_run_log_directory():647] Logging user logs to /Users/brettyoung/Desktop/dev25/tutorials/neptune_migration/neptune-exporter/wandb/run-20251204_043636-swv5v9zi/logs/debug.log
+2025-12-04 04:36:36,956 INFO    MainThread:33737 [wandb_init.py:setup_run_log_directory():648] Logging internal logs to /Users/brettyoung/Desktop/dev25/tutorials/neptune_migration/neptune-exporter/wandb/run-20251204_043636-swv5v9zi/logs/debug-internal.log
+2025-12-04 04:36:36,956 INFO    MainThread:33737 [wandb_init.py:init():761] calling init triggers
+2025-12-04 04:36:36,957 INFO    MainThread:33737 [wandb_init.py:init():766] wandb.init called with sweep_config: {}
+config: {'_wandb': {}}
+2025-12-04 04:36:36,957 INFO    MainThread:33737 [wandb_init.py:init():784] starting backend
+2025-12-04 04:36:36,957 INFO    MainThread:33737 [wandb_init.py:init():788] sending inform_init request
+2025-12-04 04:36:36,976 INFO    MainThread:33737 [backend.py:_multiprocessing_setup():101] multiprocessing start_methods=spawn,fork,forkserver, using: spawn
+2025-12-04 04:36:36,976 INFO    MainThread:33737 [wandb_init.py:init():798] backend started and connected
+2025-12-04 04:36:36,979 INFO    MainThread:33737 [wandb_init.py:init():891] updated telemetry
+2025-12-04 04:36:36,997 INFO    MainThread:33737 [wandb_init.py:init():915] communicating run to backend with 90.0 second timeout
+2025-12-04 04:36:38,157 INFO    MainThread:33737 [wandb_init.py:init():990] starting run threads in backend
+2025-12-04 04:36:38,782 INFO    MainThread:33737 [wandb_run.py:_console_start():2375] atexit reg
+2025-12-04 04:36:38,783 INFO    MainThread:33737 [wandb_run.py:_redirect():2227] redirect: wrap_raw
+2025-12-04 04:36:38,783 INFO    MainThread:33737 [wandb_run.py:_redirect():2292] Wrapping output streams.
+2025-12-04 04:36:38,783 INFO    MainThread:33737 [wandb_run.py:_redirect():2315] Redirects installed.
+2025-12-04 04:36:38,785 INFO    MainThread:33737 [wandb_init.py:init():1032] run started, returning control to user process
+2025-12-04 04:36:38,786 INFO    MainThread:33737 [wandb_run.py:_config_callback():1261] config_cb None None {'model': {'architecture': 'ResNet50', 'num_layers': 50, 'dropout': 0.2}, 'training': {'optimizer': 'AdamW', 'learning_rate': 0.001, 'batch_size': 32}, 'data': {'dataset': 'CIFAR-10', 'augmentation': True}}
+2025-12-04 04:36:42,878 INFO    MainThread:33737 [wandb_config.py:__setitem__():154] config set description = Testing migration patterns - <bound method Run._config_callback of <wandb.sdk.wandb_run.Run object at 0x177136b60>>
+2025-12-04 04:36:42,878 INFO    MainThread:33737 [wandb_run.py:_config_callback():1261] config_cb description Testing migration patterns None
+2025-12-04 04:36:42,879 INFO    MainThread:33737 [wandb_config.py:__setitem__():154] config set author = ML Team - <bound method Run._config_callback of <wandb.sdk.wandb_run.Run object at 0x177136b60>>
+2025-12-04 04:36:42,879 INFO    MainThread:33737 [wandb_run.py:_config_callback():1261] config_cb author ML Team None
+2025-12-04 04:36:42,879 INFO    MainThread:33737 [wandb_config.py:__setitem__():154] config set version = 1.0.0 - <bound method Run._config_callback of <wandb.sdk.wandb_run.Run object at 0x177136b60>>
+2025-12-04 04:36:42,879 INFO    MainThread:33737 [wandb_run.py:_config_callback():1261] config_cb version 1.0.0 None
+2025-12-04 04:36:49,505 INFO    MainThread:33737 [wandb_run.py:_finish():2112] finishing run byyoung3/comparison-test/swv5v9zi
+2025-12-04 04:36:49,505 INFO    MainThread:33737 [wandb_run.py:_atexit_cleanup():2340] got exitcode: 0
+2025-12-04 04:36:49,506 INFO    MainThread:33737 [wandb_run.py:_restore():2322] restore
+2025-12-04 04:36:49,506 INFO    MainThread:33737 [wandb_run.py:_restore():2328] restore done
+2025-12-04 04:36:52,019 INFO    MainThread:33737 [wandb_run.py:_footer_history_summary_info():3956] rendering history
+2025-12-04 04:36:52,020 INFO    MainThread:33737 [wandb_run.py:_footer_history_summary_info():3988] rendering summary
+2025-12-04 04:36:52,020 INFO    MainThread:33737 [wandb_run.py:_footer_sync_info():3917] logging synced files

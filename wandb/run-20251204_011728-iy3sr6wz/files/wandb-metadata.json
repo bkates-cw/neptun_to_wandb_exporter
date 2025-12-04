@@ -1,0 +1,51 @@
+{
+  "os": "macOS-14.4.1-arm64-arm-64bit-Mach-O",
+  "python": "CPython 3.13.2",
+  "startedAt": "2025-12-04T07:17:28.288164Z",
+  "args": [
+    "load",
+    "--loader",
+    "wandb",
+    "--wandb-entity",
+    "byyoung3",
+    "--wandb-api-key",
+    "6e72a6be0f5364634d9c4dd9c9d6e7fbcc0cf8a0",
+    "--data-path",
+    "./exports/data",
+    "--files-path",
+    "./exports/files",
+    "--rich"
+  ],
+  "program": "/Users/brettyoung/Desktop/dev25/tutorials/neptune_migration/neptune-exporter/.venv/bin/neptune-exporter",
+  "codePath": ".venv/bin/neptune-exporter",
+  "codePathLocal": ".venv/bin/neptune-exporter",
+  "git": {
+    "remote": "https://github.com/neptune-ai/neptune-exporter.git",
+    "commit": "50bf61f7a78e8c3f22be1de4c914ce539f8bcd78"
+  },
+  "email": "byyoung3@gmail.com",
+  "root": "/Users/brettyoung/Desktop/dev25/tutorials/neptune_migration/neptune-exporter",
+  "host": "Bretts-MacBook-Pro-2.local",
+  "executable": "/Users/brettyoung/Desktop/dev25/tutorials/neptune_migration/neptune-exporter/.venv/bin/python3",
+  "cpu_count": 10,
+  "cpu_count_logical": 10,
+  "disk": {
+    "/": {
+      "total": "494384795648",
+      "used": "478308118528"
+    }
+  },
+  "memory": {
+    "total": "17179869184"
+  },
+  "apple": {
+    "name": "Apple M1 Pro",
+    "ecpuCores": 2,
+    "pcpuCores": 8,
+    "gpuCores": 16,
+    "memoryGb": 16,
+    "swapTotalBytes": "28991029248",
+    "ramTotalBytes": "17179869184"
+  },
+  "writerId": "hw6dwc2fvuusa39yguvjfy6o3ajn352r"
+}

@@ -1,0 +1,150 @@
+
+[DEBUG upload_artifacts] Processing 28 regular files
+[DEBUG upload_artifacts] self.rich = False
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/artifacts/config
+[DEBUG upload_artifacts] attribute_path: artifacts/config
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Skipping rich upload (rich=False, is_file=True)
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/artifacts/model_binary
+[DEBUG upload_artifacts] attribute_path: artifacts/model_binary
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Skipping rich upload (rich=False, is_file=True)
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/artifacts/requirements
+[DEBUG upload_artifacts] attribute_path: artifacts/requirements
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Skipping rich upload (rich=False, is_file=True)
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/audio/chord_sample
+[DEBUG upload_artifacts] attribute_path: audio/chord_sample
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Skipping rich upload (rich=False, is_file=True)
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/audio/short_tone
+[DEBUG upload_artifacts] attribute_path: audio/short_tone
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Skipping rich upload (rich=False, is_file=True)
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/config/config_file
+[DEBUG upload_artifacts] attribute_path: config/config_file
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Skipping rich upload (rich=False, is_file=True)
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/files/summary
+[DEBUG upload_artifacts] attribute_path: files/summary
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Skipping rich upload (rich=False, is_file=True)
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/files/training_log
+[DEBUG upload_artifacts] attribute_path: files/training_log
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Skipping rich upload (rich=False, is_file=True)
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/grayscale_sample
+[DEBUG upload_artifacts] attribute_path: images/grayscale_sample
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Skipping rich upload (rich=False, is_file=True)
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/pil_example
+[DEBUG upload_artifacts] attribute_path: images/pil_example
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Skipping rich upload (rich=False, is_file=True)
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/train_sample
+[DEBUG upload_artifacts] attribute_path: images/train_sample
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Skipping rich upload (rich=False, is_file=True)
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/images/val_sample
+[DEBUG upload_artifacts] attribute_path: images/val_sample
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Skipping rich upload (rich=False, is_file=True)
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/model/checkpoint
+[DEBUG upload_artifacts] attribute_path: model/checkpoint
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Skipping rich upload (rich=False, is_file=True)
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/reports/experiment_report
+[DEBUG upload_artifacts] attribute_path: reports/experiment_report
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Skipping rich upload (rich=False, is_file=True)
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/reports/status_badge
+[DEBUG upload_artifacts] attribute_path: reports/status_badge
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Skipping rich upload (rich=False, is_file=True)
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/source/main_script
+[DEBUG upload_artifacts] attribute_path: source/main_script
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Skipping rich upload (rich=False, is_file=True)
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/source_code/files
+[DEBUG upload_artifacts] attribute_path: source_code/files
+[DEBUG upload_artifacts] attribute_type: file_set
+[DEBUG upload_artifacts] Skipping rich upload (rich=False, is_file=False)
+wandb: Adding directory to artifact (exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/source_code/files)... Done. 0.1s
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/tables/confusion_matrix
+[DEBUG upload_artifacts] attribute_path: tables/confusion_matrix
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Skipping rich upload (rich=False, is_file=True)
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/tables/experiment_results
+[DEBUG upload_artifacts] attribute_path: tables/experiment_results
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Skipping rich upload (rich=False, is_file=True)
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/tables/experiment_results_csv
+[DEBUG upload_artifacts] attribute_path: tables/experiment_results_csv
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Skipping rich upload (rich=False, is_file=True)
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/tables/per_class_metrics
+[DEBUG upload_artifacts] attribute_path: tables/per_class_metrics
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Skipping rich upload (rich=False, is_file=True)
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/tables/predictions
+[DEBUG upload_artifacts] attribute_path: tables/predictions
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Skipping rich upload (rich=False, is_file=True)
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/video/training_progress_gif
+[DEBUG upload_artifacts] attribute_path: video/training_progress_gif
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Skipping rich upload (rich=False, is_file=True)
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/video/training_progress_mp4
+[DEBUG upload_artifacts] attribute_path: video/training_progress_mp4
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Skipping rich upload (rich=False, is_file=True)
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/visualizations/confusion_matrix
+[DEBUG upload_artifacts] attribute_path: visualizations/confusion_matrix
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Skipping rich upload (rich=False, is_file=True)
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/visualizations/feature_maps
+[DEBUG upload_artifacts] attribute_path: visualizations/feature_maps
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Skipping rich upload (rich=False, is_file=True)
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/visualizations/training_curves
+[DEBUG upload_artifacts] attribute_path: visualizations/training_curves
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Skipping rich upload (rich=False, is_file=True)
+
+[DEBUG upload_artifacts] Processing file: exports/files/byyoung3_testing2-8ecbc7dd987961e5/byyoung3/testing2/TES-2/visualizations/training_curves_interactive
+[DEBUG upload_artifacts] attribute_path: visualizations/training_curves_interactive
+[DEBUG upload_artifacts] attribute_type: file
+[DEBUG upload_artifacts] Skipping rich upload (rich=False, is_file=True)
+
+[DEBUG upload_artifacts] Processing 10 file_series items
+
+[DEBUG upload_artifacts] Processing file_series group: images/samples
+[DEBUG upload_artifacts] Group has 10 items
+[DEBUG upload_artifacts] Falling back to artifact upload for file_series

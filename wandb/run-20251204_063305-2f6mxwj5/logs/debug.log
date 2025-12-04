@@ -1,0 +1,17 @@
+2025-12-04 06:33:05,918 INFO    MainThread:39769 [wandb_init.py:setup_run_log_directory():706] Logging user logs to /Users/brettyoung/Desktop/dev25/tutorials/neptune_migration/neptune-exporter/wandb/run-20251204_063305-2f6mxwj5/logs/debug.log
+2025-12-04 06:33:05,918 INFO    MainThread:39769 [wandb_init.py:setup_run_log_directory():707] Logging internal logs to /Users/brettyoung/Desktop/dev25/tutorials/neptune_migration/neptune-exporter/wandb/run-20251204_063305-2f6mxwj5/logs/debug-internal.log
+2025-12-04 06:33:05,918 INFO    MainThread:39769 [wandb_init.py:init():833] calling init triggers
+2025-12-04 06:33:05,918 INFO    MainThread:39769 [wandb_init.py:init():838] wandb.init called with sweep_config: {}
+config: {'_wandb': {}}
+2025-12-04 06:33:05,918 INFO    MainThread:39769 [wandb_init.py:init():881] starting backend
+2025-12-04 06:33:05,918 INFO    MainThread:39769 [wandb_init.py:init():884] sending inform_init request
+2025-12-04 06:33:05,926 INFO    MainThread:39769 [wandb_init.py:init():892] backend started and connected
+2025-12-04 06:33:05,946 INFO    MainThread:39769 [wandb_init.py:init():962] updated telemetry
+2025-12-04 06:33:05,948 INFO    MainThread:39769 [wandb_init.py:init():986] communicating run to backend with 90.0 second timeout
+2025-12-04 06:33:07,409 INFO    MainThread:39769 [wandb_init.py:init():1033] starting run threads in backend
+2025-12-04 06:33:07,562 INFO    MainThread:39769 [wandb_run.py:_console_start():2506] atexit reg
+2025-12-04 06:33:07,563 INFO    MainThread:39769 [wandb_run.py:_redirect():2354] redirect: wrap_raw
+2025-12-04 06:33:07,563 INFO    MainThread:39769 [wandb_run.py:_redirect():2423] Wrapping output streams.
+2025-12-04 06:33:07,563 INFO    MainThread:39769 [wandb_run.py:_redirect():2446] Redirects installed.
+2025-12-04 06:33:07,563 INFO    MainThread:39769 [wandb_init.py:init():1073] run started, returning control to user process
+2025-12-04 06:33:07,577 INFO    MainThread:39769 [wandb_run.py:_config_callback():1390] config_cb None None {'evaluation_accuracy': 0.956, 'evaluation_f1_score': 0.948, 'evaluation_loss': 0.042, 'info_author': 'ML Team', 'info_description': 'Testing migration patterns', 'info_version': '1.0.0', 'monitoring_f0100701_hostname': 'Bretts-MacBook-Pro-2.local', 'monitoring_f0100701_pid': '34115', 'monitoring_f0100701_tid': '8447556288', 'parameters_data_augmentation': True, 'parameters_data_dataset': 'CIFAR-10', 'parameters_model_architecture': 'ResNet50', 'parameters_model_dropout': 0.2, 'parameters_model_num_layers': 50, 'parameters_training_batch_size': 32, 'parameters_training_learning_rate': 0.001, 'parameters_training_optimizer': 'AdamW', 'source_code_entrypoint': 'cmp_logging.py', 'sys_creation_time': '2025-12-04 10:42:29.420000+00:00', 'sys_description': 'Testing logging patterns', 'sys_failed': False, 'sys_group_tags': [], 'sys_hostname': 'Bretts-MacBook-Pro-2.local', 'sys_id': 'TES-5', 'sys_modification_time': '2025-12-04 10:42:44.357000+00:00', 'sys_monitoring_time': 13, 'sys_name': 'side-by-side-test', 'sys_owner': 'byyoung3', 'sys_ping_time': '2025-12-04 10:42:44.357000+00:00', 'sys_running_time': 14.936, 'sys_size': 310598.0, 'sys_tags': ['v2.0', 'production', 'comparison-test', 'migration'], 'sys_trashed': False}
