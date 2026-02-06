@@ -1,0 +1,23 @@
+============================================================
+TRAINING LOG - ResNet50 on CIFAR-10
+============================================================
+Started: 2025-12-03 23:19:48
+
+[INFO] Loading dataset...
+[INFO] Train samples: 50,000 | Val samples: 10,000
+[INFO] Model parameters: 25,557,032
+
+[EPOCH   1/100] loss: 2.5020 | acc: 0.0495 | lr: 0.001000
+[EPOCH  11/100] loss: 1.7101 | acc: 0.1236 | lr: 0.000950
+[EPOCH  21/100] loss: 1.1793 | acc: 0.2746 | lr: 0.000902
+[EPOCH  31/100] loss: 0.8235 | acc: 0.4987 | lr: 0.000857
+[EPOCH  41/100] loss: 0.5850 | acc: 0.7127 | lr: 0.000815
+[EPOCH  51/100] loss: 0.4251 | acc: 0.8464 | lr: 0.000774
+[EPOCH  61/100] loss: 0.3179 | acc: 0.9090 | lr: 0.000735
+[EPOCH  71/100] loss: 0.2461 | acc: 0.9345 | lr: 0.000698
+[EPOCH  81/100] loss: 0.1979 | acc: 0.9442 | lr: 0.000663
+[EPOCH  91/100] loss: 0.1656 | acc: 0.9479 | lr: 0.000630
+
+[INFO] Training completed!
+[INFO] Best epoch: 87 | Best val_acc: 0.9234
+[INFO] Model saved to: checkpoints/best_model.pt

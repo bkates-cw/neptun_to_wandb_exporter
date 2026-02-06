@@ -1,0 +1,54 @@
+[project]
+name = "neptune-exporter"
+version = "0.1.0"
+description = "A tool to export Neptune experiment data to a file or other services."
+readme = "README.md"
+requires-python = ">=3.13,<3.15"
+dependencies = [
+    "click>=8.1.0,<9.0.0",
+    "neptune>=1.14.0,<2.0.0",
+    "neptune-query>=1.5.1,<2.0.0",
+    "pyarrow>=21.0.0,<22.0.0",
+    "rich>=13.7.0,<14.0.0",
+]
+
+[dependency-groups]
+dev = [
+    "mypy>=1.18.2,<2.0.0",
+    "neptune-scale==0.27.0",
+    "pre-commit>=4.3.0,<5.0.0",
+    "pytest>=8.4.2,<9.0.0",
+    "pytest-dotenv>=0.5.2,<1.0.0",
+    "ruff>=0.13.2,<1.0.0",
+]
+
+[project.optional-dependencies]
+mlflow = ["mlflow>=3.4.0,<4.0.0"]
+wandb = ["wandb>=0.22.3,<1.0.0"]
+zenml = ["zenml>=0.90.0,<1.0.0"]
+cometml = ["comet-ml>=3.55.0"]
+litlogger = [
+    "litlogger>=0.1.0,<0.2.0",
+    "matplotlib",
+]
+minfx = ["minfx"]
+pluto = ["pluto-ml>=0.0.2"]
+
+[project.scripts]
+neptune-exporter = "neptune_exporter.main:main"
+
+[build-system]
+requires = ["uv_build>=0.8.22,<0.9.0"]
+build-backend = "uv_build"
+
+[tool.mypy]
+mypy_path = './src/'
+packages = 'neptune_exporter'
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+filterwarnings = [
+    "ignore:A newer version of lightning-sdk is available.*:UserWarning",
+    "ignore:jsonschema.RefResolver is deprecated.*:DeprecationWarning",
+    "ignore:The filesystem tracking backend.*:FutureWarning",
+]

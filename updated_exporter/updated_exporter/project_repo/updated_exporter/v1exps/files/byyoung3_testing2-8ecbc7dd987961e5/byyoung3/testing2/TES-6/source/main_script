@@ -1,0 +1,955 @@
+import os
+import io
+import json
+import struct
+import tempfile
+from datetime import datetime
+
+
+import neptune
+from neptune.types import File
+
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from PIL import Image, ImageDraw, ImageFont
+
+
+# Optional: for video generation
+try:
+    import cv2
+    HAS_CV2 = True
+except ImportError:
+    HAS_CV2 = False
+    print("Note: opencv-python not installed. Video will be created as GIF instead.")
+
+
+
+
+class NeptuneDataGenerator:
+    """Generates all test data internally."""
+    
+    @staticmethod
+    def generate_training_metrics(num_steps=100):
+        """Generate realistic training curves."""
+        steps = np.arange(num_steps)
+        
+        # Simulated loss curves (exponential decay with noise)
+        train_loss = 2.5 * np.exp(-steps / 25) + 0.1 + np.random.normal(0, 0.03, num_steps)
+        val_loss = 2.7 * np.exp(-steps / 30) + 0.15 + np.random.normal(0, 0.05, num_steps)
+        
+        # Simulated accuracy curves (sigmoid-like growth)
+        train_acc = 0.95 / (1 + np.exp(-0.1 * (steps - 30))) + np.random.normal(0, 0.01, num_steps)
+        val_acc = 0.92 / (1 + np.exp(-0.08 * (steps - 35))) + np.random.normal(0, 0.015, num_steps)
+        
+        # Clip to valid ranges
+        train_acc = np.clip(train_acc, 0, 1)
+        val_acc = np.clip(val_acc, 0, 1)
+        train_loss = np.clip(train_loss, 0, None)
+        val_loss = np.clip(val_loss, 0, None)
+        
+        # Learning rate schedule
+        lr = 0.001 * (0.95 ** (steps // 10))
+        
+        # Additional metrics
+        gradient_norm = np.abs(np.random.normal(1.0, 0.3, num_steps))
+        
+        return {
+            "steps": steps,
+            "train_loss": train_loss,
+            "val_loss": val_loss,
+            "train_acc": train_acc,
+            "val_acc": val_acc,
+            "learning_rate": lr,
+            "gradient_norm": gradient_norm,
+        }
+    
+    @staticmethod
+    def generate_config():
+        """Generate experiment configuration."""
+        return {
+            "model": {
+                "architecture": "ResNet50",
+                "num_layers": 50,
+                "hidden_size": 2048,
+                "num_classes": 10,
+                "dropout": 0.2,
+                "activation": "ReLU",
+                "pretrained": True,
+            },
+            "training": {
+                "optimizer": "AdamW",
+                "learning_rate": 0.001,
+                "weight_decay": 0.01,
+                "batch_size": 32,
+                "epochs": 100,
+                "warmup_steps": 500,
+                "gradient_clip": 1.0,
+            },
+            "data": {
+                "dataset": "CIFAR-10",
+                "train_samples": 50000,
+                "val_samples": 10000,
+                "image_size": 224,
+                "augmentation": ["RandomCrop", "HorizontalFlip", "ColorJitter", "Normalize"],
+            },
+            "hardware": {
+                "device": "cuda",
+                "num_gpus": 4,
+                "gpu_type": "NVIDIA A100",
+                "precision": "fp16",
+                "distributed": True,
+            },
+            "experiment": {
+                "seed": 42,
+                "deterministic": True,
+                "run_id": f"exp_{datetime.now().strftime('%Y%m%d_%H%M%S')}",
+            }
+        }
+    
+    @staticmethod
+    def generate_results_dataframe():
+        """Generate experiment results as DataFrame."""
+        np.random.seed(42)
+        n_experiments = 20
+        
+        return pd.DataFrame({
+            "experiment_id": [f"exp_{i:03d}" for i in range(n_experiments)],
+            "learning_rate": np.random.choice([1e-4, 5e-4, 1e-3, 5e-3], n_experiments),
+            "batch_size": np.random.choice([16, 32, 64, 128], n_experiments),
+            "dropout": np.random.choice([0.1, 0.2, 0.3, 0.5], n_experiments),
+            "accuracy": np.random.uniform(0.85, 0.96, n_experiments).round(4),
+            "loss": np.random.uniform(0.05, 0.25, n_experiments).round(4),
+            "f1_score": np.random.uniform(0.83, 0.95, n_experiments).round(4),
+            "training_time_min": np.random.uniform(30, 180, n_experiments).round(1),
+            "gpu_memory_gb": np.random.uniform(8, 24, n_experiments).round(1),
+        })
+    
+    @staticmethod
+    def generate_predictions_dataframe():
+        """Generate sample predictions table."""
+        np.random.seed(123)
+        classes = ["airplane", "automobile", "bird", "cat", "deer", 
+                   "dog", "frog", "horse", "ship", "truck"]
+        n_samples = 100
+        
+        true_labels = np.random.choice(classes, n_samples)
+        # Make predictions mostly correct with some errors
+        pred_labels = true_labels.copy()
+        error_idx = np.random.choice(n_samples, 15, replace=False)
+        pred_labels[error_idx] = np.random.choice(classes, 15)
+        
+        return pd.DataFrame({
+            "sample_id": range(n_samples),
+            "true_label": true_labels,
+            "predicted_label": pred_labels,
+            "confidence": np.random.uniform(0.6, 0.99, n_samples).round(3),
+            "correct": true_labels == pred_labels,
+        })
+    
+    @staticmethod
+    def generate_confusion_matrix():
+        """Generate confusion matrix data."""
+        classes = ["airplane", "auto", "bird", "cat", "deer", 
+                   "dog", "frog", "horse", "ship", "truck"]
+        n_classes = len(classes)
+        
+        # Generate realistic confusion matrix (mostly diagonal)
+        cm = np.zeros((n_classes, n_classes), dtype=int)
+        for i in range(n_classes):
+            cm[i, i] = np.random.randint(85, 98)  # Correct predictions
+            # Add some misclassifications
+            for j in range(n_classes):
+                if i != j:
+                    cm[i, j] = np.random.randint(0, 5)
+        
+        return cm, classes
+    
+    @staticmethod
+    def generate_matplotlib_figure():
+        """Generate a matplotlib training curves figure."""
+        metrics = NeptuneDataGenerator.generate_training_metrics()
+        
+        fig, axes = plt.subplots(2, 2, figsize=(12, 10))
+        
+        # Loss curves
+        axes[0, 0].plot(metrics["steps"], metrics["train_loss"], label="Train", color="blue")
+        axes[0, 0].plot(metrics["steps"], metrics["val_loss"], label="Validation", color="orange")
+        axes[0, 0].set_xlabel("Step")
+        axes[0, 0].set_ylabel("Loss")
+        axes[0, 0].set_title("Training & Validation Loss")
+        axes[0, 0].legend()
+        axes[0, 0].grid(True, alpha=0.3)
+        
+        # Accuracy curves
+        axes[0, 1].plot(metrics["steps"], metrics["train_acc"], label="Train", color="blue")
+        axes[0, 1].plot(metrics["steps"], metrics["val_acc"], label="Validation", color="orange")
+        axes[0, 1].set_xlabel("Step")
+        axes[0, 1].set_ylabel("Accuracy")
+        axes[0, 1].set_title("Training & Validation Accuracy")
+        axes[0, 1].legend()
+        axes[0, 1].grid(True, alpha=0.3)
+        
+        # Learning rate
+        axes[1, 0].plot(metrics["steps"], metrics["learning_rate"], color="green")
+        axes[1, 0].set_xlabel("Step")
+        axes[1, 0].set_ylabel("Learning Rate")
+        axes[1, 0].set_title("Learning Rate Schedule")
+        axes[1, 0].set_yscale("log")
+        axes[1, 0].grid(True, alpha=0.3)
+        
+        # Gradient norm
+        axes[1, 1].plot(metrics["steps"], metrics["gradient_norm"], color="red", alpha=0.7)
+        axes[1, 1].set_xlabel("Step")
+        axes[1, 1].set_ylabel("Gradient Norm")
+        axes[1, 1].set_title("Gradient Norm over Training")
+        axes[1, 1].grid(True, alpha=0.3)
+        
+        plt.tight_layout()
+        return fig
+    
+    @staticmethod
+    def generate_confusion_matrix_figure():
+        """Generate confusion matrix heatmap."""
+        cm, classes = NeptuneDataGenerator.generate_confusion_matrix()
+        
+        fig, ax = plt.subplots(figsize=(10, 8))
+        im = ax.imshow(cm, cmap="Blues")
+        
+        ax.set_xticks(range(len(classes)))
+        ax.set_yticks(range(len(classes)))
+        ax.set_xticklabels(classes, rotation=45, ha="right")
+        ax.set_yticklabels(classes)
+        ax.set_xlabel("Predicted Label")
+        ax.set_ylabel("True Label")
+        ax.set_title("Confusion Matrix")
+        
+        # Add text annotations
+        for i in range(len(classes)):
+            for j in range(len(classes)):
+                color = "white" if cm[i, j] > 50 else "black"
+                ax.text(j, i, cm[i, j], ha="center", va="center", color=color, fontsize=8)
+        
+        plt.colorbar(im)
+        plt.tight_layout()
+        return fig
+    
+    @staticmethod
+    def generate_sample_images(n_images=10, size=(64, 64)):
+        """Generate sample RGB images with patterns."""
+        images = []
+        for i in range(n_images):
+            # Create image with gradient and shapes
+            img = np.zeros((size[0], size[1], 3), dtype=np.uint8)
+            
+            # Random gradient background
+            for c in range(3):
+                gradient = np.linspace(np.random.randint(0, 100), 
+                                       np.random.randint(150, 255), size[0])
+                img[:, :, c] = np.tile(gradient, (size[1], 1)).T.astype(np.uint8)
+            
+            # Add random shapes using PIL
+            pil_img = Image.fromarray(img)
+            draw = ImageDraw.Draw(pil_img)
+            
+            # Random circles
+            for _ in range(3):
+                x, y = np.random.randint(0, size[0], 2)
+                r = np.random.randint(5, 15)
+                color = tuple(np.random.randint(0, 255, 3))
+                draw.ellipse([x-r, y-r, x+r, y+r], fill=color)
+            
+            # Random rectangles
+            for _ in range(2):
+                x1, y1 = np.random.randint(0, size[0]-10, 2)
+                x2, y2 = x1 + np.random.randint(10, 20), y1 + np.random.randint(10, 20)
+                color = tuple(np.random.randint(0, 255, 3))
+                draw.rectangle([x1, y1, x2, y2], fill=color)
+            
+            images.append(np.array(pil_img))
+        
+        return images
+    
+    @staticmethod
+    def generate_feature_visualization():
+        """Generate a feature map visualization."""
+        fig, axes = plt.subplots(4, 4, figsize=(10, 10))
+        
+        for i, ax in enumerate(axes.flat):
+            # Simulated feature map
+            feature_map = np.random.randn(32, 32)
+            feature_map = np.clip(feature_map, -2, 2)
+            ax.imshow(feature_map, cmap="viridis")
+            ax.set_title(f"Filter {i+1}", fontsize=8)
+            ax.axis("off")
+        
+        plt.suptitle("Conv Layer Feature Maps", fontsize=12)
+        plt.tight_layout()
+        return fig
+    
+    @staticmethod
+    def generate_audio_wav(duration=2.0, sample_rate=44100):
+        """Generate a WAV audio file (sine wave chord)."""
+        t = np.linspace(0, duration, int(sample_rate * duration), False)
+        
+        # Create a chord (multiple frequencies)
+        frequencies = [261.63, 329.63, 392.00]  # C4, E4, G4 (C major chord)
+        audio = np.zeros_like(t)
+        for freq in frequencies:
+            audio += 0.3 * np.sin(2 * np.pi * freq * t)
+        
+        # Add envelope (fade in/out)
+        envelope = np.ones_like(t)
+        fade_samples = int(0.1 * sample_rate)
+        envelope[:fade_samples] = np.linspace(0, 1, fade_samples)
+        envelope[-fade_samples:] = np.linspace(1, 0, fade_samples)
+        audio *= envelope
+        
+        # Convert to 16-bit PCM
+        audio_int16 = (audio * 32767).astype(np.int16)
+        
+        # Create WAV file in memory
+        wav_buffer = io.BytesIO()
+        num_samples = len(audio_int16)
+        
+        # WAV header
+        wav_buffer.write(b'RIFF')
+        wav_buffer.write(struct.pack('<I', 36 + num_samples * 2))
+        wav_buffer.write(b'WAVE')
+        wav_buffer.write(b'fmt ')
+        wav_buffer.write(struct.pack('<I', 16))  # Subchunk1 size
+        wav_buffer.write(struct.pack('<H', 1))   # Audio format (PCM)
+        wav_buffer.write(struct.pack('<H', 1))   # Num channels
+        wav_buffer.write(struct.pack('<I', sample_rate))
+        wav_buffer.write(struct.pack('<I', sample_rate * 2))  # Byte rate
+        wav_buffer.write(struct.pack('<H', 2))   # Block align
+        wav_buffer.write(struct.pack('<H', 16))  # Bits per sample
+        wav_buffer.write(b'data')
+        wav_buffer.write(struct.pack('<I', num_samples * 2))
+        wav_buffer.write(audio_int16.tobytes())
+        
+        wav_buffer.seek(0)
+        return wav_buffer.getvalue()
+    
+    @staticmethod
+    def generate_video_gif(n_frames=30, size=(128, 128)):
+        """Generate an animated GIF showing training progress."""
+        frames = []
+        
+        for i in range(n_frames):
+            # Create frame
+            img = Image.new('RGB', size, color=(240, 240, 240))
+            draw = ImageDraw.Draw(img)
+            
+            # Draw progress bar
+            progress = i / n_frames
+            bar_width = int(size[0] * 0.8)
+            bar_height = 20
+            bar_x = int(size[0] * 0.1)
+            bar_y = size[1] // 2 - bar_height // 2
+            
+            # Background
+            draw.rectangle([bar_x, bar_y, bar_x + bar_width, bar_y + bar_height], 
+                          outline=(100, 100, 100), fill=(200, 200, 200))
+            # Progress
+            draw.rectangle([bar_x, bar_y, bar_x + int(bar_width * progress), bar_y + bar_height],
+                          fill=(76, 175, 80))
+            
+            # Text
+            draw.text((size[0]//2 - 30, bar_y - 25), f"Epoch {i+1}/{n_frames}", fill=(0, 0, 0))
+            draw.text((size[0]//2 - 20, bar_y + 30), f"{progress*100:.0f}%", fill=(0, 0, 0))
+            
+            # Add moving element
+            circle_x = int(size[0] * 0.1 + size[0] * 0.8 * progress)
+            draw.ellipse([circle_x - 5, bar_y - 10, circle_x + 5, bar_y], fill=(33, 150, 243))
+            
+            frames.append(img)
+        
+        # Save as GIF
+        gif_buffer = io.BytesIO()
+        frames[0].save(gif_buffer, format='GIF', save_all=True, append_images=frames[1:],
+                       duration=100, loop=0)
+        gif_buffer.seek(0)
+        return gif_buffer.getvalue()
+    
+    @staticmethod
+    def generate_video_mp4(n_frames=60, size=(256, 256)):
+        """Generate MP4 video if OpenCV is available."""
+        if not HAS_CV2:
+            return None
+        
+        # Create temporary file
+        with tempfile.NamedTemporaryFile(suffix='.mp4', delete=False) as f:
+            temp_path = f.name
+        
+        fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+        out = cv2.VideoWriter(temp_path, fourcc, 30, size)
+        
+        for i in range(n_frames):
+            # Create frame with animated content
+            frame = np.ones((size[1], size[0], 3), dtype=np.uint8) * 240
+            
+            # Animated circle
+            angle = 2 * np.pi * i / n_frames
+            cx = int(size[0] // 2 + 50 * np.cos(angle))
+            cy = int(size[1] // 2 + 50 * np.sin(angle))
+            cv2.circle(frame, (cx, cy), 20, (76, 175, 80), -1)
+            
+            # Progress bar
+            progress = i / n_frames
+            bar_width = int(size[0] * 0.6 * progress)
+            cv2.rectangle(frame, (50, size[1] - 40), (50 + bar_width, size[1] - 20), (33, 150, 243), -1)
+            cv2.rectangle(frame, (50, size[1] - 40), (50 + int(size[0] * 0.6), size[1] - 20), (100, 100, 100), 2)
+            
+            # Text
+            cv2.putText(frame, f"Step {i+1}/{n_frames}", (80, 40), 
+                       cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 0), 2)
+            
+            out.write(frame)
+        
+        out.release()
+        
+        with open(temp_path, 'rb') as f:
+            video_data = f.read()
+        os.unlink(temp_path)
+        
+        return video_data
+    
+    @staticmethod
+    def generate_html_report():
+        """Generate an HTML report."""
+        return """
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Experiment Report</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 40px; background: #f5f5f5; }
+        .container { max-width: 800px; margin: auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        h1 { color: #2196F3; border-bottom: 2px solid #2196F3; padding-bottom: 10px; }
+        h2 { color: #333; margin-top: 30px; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background: #2196F3; color: white; }
+        tr:nth-child(even) { background: #f9f9f9; }
+        tr:hover { background: #f1f1f1; }
+        .metric { display: inline-block; background: #e3f2fd; padding: 15px 25px; margin: 10px; border-radius: 8px; text-align: center; }
+        .metric-value { font-size: 24px; font-weight: bold; color: #1976D2; }
+        .metric-label { font-size: 12px; color: #666; margin-top: 5px; }
+        .success { color: #4CAF50; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Experiment Report</h1>
+        <p><strong>Run ID:</strong> exp_20240115_143022</p>
+        <p><strong>Status:</strong> <span class="success">✓ Completed</span></p>
+        
+        <h2>📊 Key Metrics</h2>
+        <div>
+            <div class="metric">
+                <div class="metric-value">95.6%</div>
+                <div class="metric-label">Accuracy</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">0.042</div>
+                <div class="metric-label">Loss</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">94.8%</div>
+                <div class="metric-label">F1 Score</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">2.3h</div>
+                <div class="metric-label">Training Time</div>
+            </div>
+        </div>
+        
+        <h2>⚙️ Configuration</h2>
+        <table>
+            <tr><th>Parameter</th><th>Value</th></tr>
+            <tr><td>Model</td><td>ResNet50</td></tr>
+            <tr><td>Learning Rate</td><td>0.001</td></tr>
+            <tr><td>Batch Size</td><td>32</td></tr>
+            <tr><td>Epochs</td><td>100</td></tr>
+            <tr><td>Optimizer</td><td>AdamW</td></tr>
+            <tr><td>Weight Decay</td><td>0.01</td></tr>
+        </table>
+        
+        <h2>📈 Per-Class Performance</h2>
+        <table>
+            <tr><th>Class</th><th>Precision</th><th>Recall</th><th>F1</th></tr>
+            <tr><td>Airplane</td><td>0.96</td><td>0.94</td><td>0.95</td></tr>
+            <tr><td>Automobile</td><td>0.93</td><td>0.95</td><td>0.94</td></tr>
+            <tr><td>Bird</td><td>0.91</td><td>0.89</td><td>0.90</td></tr>
+            <tr><td>Cat</td><td>0.88</td><td>0.86</td><td>0.87</td></tr>
+            <tr><td>Deer</td><td>0.94</td><td>0.93</td><td>0.935</td></tr>
+        </table>
+        
+        <h2>📝 Notes</h2>
+        <p>This experiment tested the ResNet50 architecture on CIFAR-10 with data augmentation. 
+        Key findings:</p>
+        <ul>
+            <li>Learning rate warmup significantly improved convergence</li>
+            <li>Mixed precision training reduced memory usage by 40%</li>
+            <li>Best validation accuracy achieved at epoch 87</li>
+        </ul>
+    </div>
+</body>
+</html>
+"""
+    
+    @staticmethod
+    def generate_model_weights():
+        """Generate simulated model weights."""
+        weights = {}
+        
+        # Simulated layer weights
+        layer_configs = [
+            ("conv1.weight", (64, 3, 7, 7)),
+            ("conv1.bias", (64,)),
+            ("bn1.weight", (64,)),
+            ("bn1.bias", (64,)),
+            ("layer1.0.conv1.weight", (64, 64, 3, 3)),
+            ("layer1.0.conv2.weight", (64, 64, 3, 3)),
+            ("layer2.0.conv1.weight", (128, 64, 3, 3)),
+            ("layer2.0.conv2.weight", (128, 128, 3, 3)),
+            ("fc.weight", (10, 2048)),
+            ("fc.bias", (10,)),
+        ]
+        
+        for name, shape in layer_configs:
+            weights[name] = np.random.randn(*shape).astype(np.float32) * 0.01
+        
+        return weights
+    
+    @staticmethod
+    def generate_text_logs():
+        """Generate training log messages."""
+        logs = []
+        
+        logs.append("=" * 60)
+        logs.append("TRAINING LOG - ResNet50 on CIFAR-10")
+        logs.append("=" * 60)
+        logs.append(f"Started: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+        logs.append("")
+        logs.append("[INFO] Loading dataset...")
+        logs.append("[INFO] Train samples: 50,000 | Val samples: 10,000")
+        logs.append("[INFO] Model parameters: 25,557,032")
+        logs.append("")
+        
+        for epoch in range(1, 101, 10):
+            loss = 2.5 * np.exp(-epoch / 25) + 0.1
+            acc = 0.95 / (1 + np.exp(-0.1 * (epoch - 30)))
+            logs.append(f"[EPOCH {epoch:3d}/100] loss: {loss:.4f} | acc: {acc:.4f} | lr: {0.001 * (0.95 ** (epoch // 10)):.6f}")
+        
+        logs.append("")
+        logs.append("[INFO] Training completed!")
+        logs.append("[INFO] Best epoch: 87 | Best val_acc: 0.9234")
+        logs.append("[INFO] Model saved to: checkpoints/best_model.pt")
+        
+        return logs
+
+
+
+
+class NeptuneUploader:
+    """Handles all Neptune uploads."""
+    
+    def __init__(self, project=None, api_token=None):
+        self.run = neptune.init_run(
+            project=project,
+            api_token=api_token,
+            tags=["comprehensive-test", "all-data-types", "self-contained"],
+            name=f"comprehensive-{datetime.now().strftime('%Y%m%d-%H%M%S')}",
+            description="Comprehensive Neptune upload test with all data generated internally",
+            capture_hardware_metrics=True,
+        )
+        self.generator = NeptuneDataGenerator()
+        print(f"✅ Neptune run initialized: {self.run.get_url()}")
+    
+    def upload_scalars_and_metrics(self):
+        """Upload scalar values and time-series metrics."""
+        print("\n📊 Uploading scalars and metrics...")
+        
+        # Single values
+        self.run["config/learning_rate"] = 0.001
+        self.run["config/batch_size"] = 32
+        self.run["config/epochs"] = 100
+        self.run["config/optimizer"] = "AdamW"
+        self.run["config/model"] = "ResNet50"
+        self.run["config/dataset"] = "CIFAR-10"
+        
+        # Final metrics
+        self.run["evaluation/accuracy"] = 0.956
+        self.run["evaluation/loss"] = 0.042
+        self.run["evaluation/f1_score"] = 0.948
+        self.run["evaluation/precision"] = 0.952
+        self.run["evaluation/recall"] = 0.944
+        
+        # Time-series metrics
+        metrics = self.generator.generate_training_metrics(100)
+        for step in metrics["steps"]:
+            step = int(step)  # Convert numpy.int64 to Python int
+            self.run["train/loss"].append(metrics["train_loss"][step], step=step)
+            self.run["train/accuracy"].append(metrics["train_acc"][step], step=step)
+            self.run["validation/loss"].append(metrics["val_loss"][step], step=step)
+            self.run["validation/accuracy"].append(metrics["val_acc"][step], step=step)
+            self.run["train/learning_rate"].append(metrics["learning_rate"][step], step=step)
+            self.run["train/gradient_norm"].append(metrics["gradient_norm"][step], step=step)
+        
+        print("  ✓ Scalars and metrics uploaded")
+    
+    def upload_parameters(self):
+        """Upload configuration parameters."""
+        print("\n⚙️ Uploading parameters...")
+        
+        config = self.generator.generate_config()
+        self.run["parameters"] = config
+        
+        # Also upload as JSON
+        json_bytes = json.dumps(config, indent=2).encode()
+        self.run["config/config_file"].upload(File.from_content(json_bytes, extension="json"))
+        
+        print("  ✓ Parameters uploaded")
+    
+    def upload_tables(self):
+        """Upload tabular data."""
+        print("\n📋 Uploading tables...")
+        
+        # Results DataFrame
+        results_df = self.generator.generate_results_dataframe()
+        self.run["tables/experiment_results"].upload(File.as_html(results_df))
+        
+        # Also as CSV
+        csv_bytes = results_df.to_csv(index=False).encode()
+        self.run["tables/experiment_results_csv"].upload(File.from_content(csv_bytes, extension="csv"))
+        
+        # Predictions DataFrame
+        predictions_df = self.generator.generate_predictions_dataframe()
+        self.run["tables/predictions"].upload(File.as_html(predictions_df))
+        
+        # Confusion matrix as table
+        cm, classes = self.generator.generate_confusion_matrix()
+        cm_df = pd.DataFrame(cm, index=classes, columns=[f"pred_{c}" for c in classes])
+        self.run["tables/confusion_matrix"].upload(File.as_html(cm_df))
+        
+        # Per-class metrics
+        metrics_df = pd.DataFrame({
+            "class": classes,
+            "precision": np.random.uniform(0.88, 0.97, len(classes)).round(3),
+            "recall": np.random.uniform(0.86, 0.96, len(classes)).round(3),
+            "f1_score": np.random.uniform(0.87, 0.96, len(classes)).round(3),
+            "support": np.random.randint(900, 1100, len(classes)),
+        })
+        self.run["tables/per_class_metrics"].upload(File.as_html(metrics_df))
+        
+        print("  ✓ Tables uploaded")
+    
+    def upload_images(self):
+        """Upload various image types."""
+        print("\n🖼️ Uploading images...")
+        
+        # Matplotlib figures
+        fig = self.generator.generate_matplotlib_figure()
+        self.run["visualizations/training_curves"].upload(fig)
+        self.run["visualizations/training_curves_interactive"].upload(File.as_html(fig))
+        plt.close(fig)
+        
+        # Confusion matrix figure
+        cm_fig = self.generator.generate_confusion_matrix_figure()
+        self.run["visualizations/confusion_matrix"].upload(cm_fig)
+        plt.close(cm_fig)
+        
+        # Feature visualization
+        feat_fig = self.generator.generate_feature_visualization()
+        self.run["visualizations/feature_maps"].upload(feat_fig)
+        plt.close(feat_fig)
+        
+        # Sample images from numpy
+        sample_images = self.generator.generate_sample_images(10)
+        for i, img in enumerate(sample_images):
+            self.run["images/samples"].append(
+                File.as_image(img),
+                name=f"sample_{i:02d}",
+                description=f"Generated sample image {i}"
+            )
+        
+        # Single images with different names
+        self.run["images/train_sample"].upload(File.as_image(sample_images[0]))
+        self.run["images/val_sample"].upload(File.as_image(sample_images[1]))
+        
+        # Grayscale image
+        gray_img = np.random.randint(0, 255, (64, 64), dtype=np.uint8)
+        self.run["images/grayscale_sample"].upload(File.as_image(gray_img))
+        
+        # PIL image
+        pil_img = Image.fromarray(sample_images[2])
+        draw = ImageDraw.Draw(pil_img)
+        draw.text((5, 5), "PIL", fill=(255, 255, 255))
+        self.run["images/pil_example"].upload(pil_img)
+        
+        print("  ✓ Images uploaded")
+    
+    def upload_audio(self):
+        """Upload audio files."""
+        print("\n🔊 Uploading audio...")
+        
+        # Generate and upload WAV
+        wav_data = self.generator.generate_audio_wav(duration=2.0)
+        self.run["audio/chord_sample"].upload(File.from_content(wav_data, extension="wav"))
+        
+        # Generate different tone
+        wav_data2 = self.generator.generate_audio_wav(duration=1.0)
+        self.run["audio/short_tone"].upload(File.from_content(wav_data2, extension="wav"))
+        
+        print("  ✓ Audio uploaded")
+    
+    def upload_video(self):
+        """Upload video files."""
+        print("\n🎬 Uploading video...")
+        
+        # GIF (always works)
+        gif_data = self.generator.generate_video_gif(n_frames=30)
+        self.run["video/training_progress_gif"].upload(File.from_content(gif_data, extension="gif"))
+        
+        # MP4 if OpenCV available
+        if HAS_CV2:
+            mp4_data = self.generator.generate_video_mp4(n_frames=60)
+            if mp4_data:
+                self.run["video/training_progress_mp4"].upload(File.from_content(mp4_data, extension="mp4"))
+                print("  ✓ Video (GIF + MP4) uploaded")
+            else:
+                print("  ✓ Video (GIF only) uploaded")
+        else:
+            print("  ✓ Video (GIF only) uploaded - install opencv-python for MP4")
+    
+    def upload_text(self):
+        """Upload text data and logs."""
+        print("\n📝 Uploading text...")
+        
+        # String values
+        self.run["info/description"] = "Comprehensive Neptune upload test"
+        self.run["info/author"] = "ML Team"
+        self.run["info/version"] = "1.0.0"
+        self.run["info/framework"] = "PyTorch 2.0"
+        
+        # Text series (logs)
+        logs = self.generator.generate_text_logs()
+        for log in logs:
+            self.run["logs/training"].append(log)
+        
+        # Upload as text file
+        log_text = "\n".join(logs)
+        self.run["files/training_log"].upload(File.from_content(log_text.encode(), extension="txt"))
+        
+        # Markdown file
+        markdown = """# Experiment Summary
+
+
+## Model: ResNet50
+## Dataset: CIFAR-10
+
+
+### Results
+- **Accuracy**: 95.6%
+- **F1 Score**: 94.8%
+- **Training Time**: 2.3 hours
+
+
+### Key Findings
+1. Learning rate warmup improved convergence
+2. Mixed precision reduced memory by 40%
+3. Data augmentation was critical for generalization
+
+
+### Next Steps
+- [ ] Try larger batch sizes
+- [ ] Experiment with different optimizers
+- [ ] Add more augmentation techniques
+"""
+        self.run["files/summary"].upload(File.from_content(markdown.encode(), extension="md"))
+        
+        print("  ✓ Text uploaded")
+    
+    def upload_html(self):
+        """Upload HTML content."""
+        print("\n🌐 Uploading HTML...")
+        
+        html = self.generator.generate_html_report()
+        self.run["reports/experiment_report"].upload(File.from_content(html.encode(), extension="html"))
+        
+        # Simple HTML snippet
+        simple_html = """
+        <div style="padding:20px; background:#e8f5e9; border-radius:8px;">
+            <h2 style="color:#2e7d32;">✓ Training Complete</h2>
+            <p>Final accuracy: <strong>95.6%</strong></p>
+        </div>
+        """
+        self.run["reports/status_badge"].upload(File.from_content(simple_html.encode(), extension="html"))
+        
+        print("  ✓ HTML uploaded")
+    
+    def upload_artifacts(self):
+        """Upload artifact files."""
+        print("\n📦 Uploading artifacts...")
+        
+        # Binary artifact (simulated model file)
+        model_binary = b"PYTORCH_MODEL_V2" + os.urandom(1000)
+        self.run["artifacts/model_binary"].upload(File.from_content(model_binary, extension="pt"))
+        
+        # YAML config
+        yaml_content = """
+model:
+  architecture: ResNet50
+  num_classes: 10
+  pretrained: true
+
+
+training:
+  epochs: 100
+  batch_size: 32
+  learning_rate: 0.001
+  
+data:
+  dataset: CIFAR-10
+  augmentation:
+    - RandomCrop
+    - HorizontalFlip
+"""
+        self.run["artifacts/config"].upload(File.from_content(yaml_content.encode(), extension="yaml"))
+        
+        # Requirements file
+        requirements = """torch>=2.0.0
+torchvision>=0.15.0
+numpy>=1.24.0
+pandas>=2.0.0
+matplotlib>=3.7.0
+neptune>=1.0.0
+pillow>=9.5.0
+"""
+        self.run["artifacts/requirements"].upload(File.from_content(requirements.encode(), extension="txt"))
+        
+        print("  ✓ Artifacts uploaded")
+    
+    def upload_model_checkpoint(self):
+        """Upload model weights/checkpoint."""
+        print("\n🏋️ Uploading model checkpoint...")
+        
+        weights = self.generator.generate_model_weights()
+        
+        # Save as npz
+        npz_buffer = io.BytesIO()
+        np.savez_compressed(npz_buffer, **weights)
+        npz_buffer.seek(0)
+        self.run["model/checkpoint"].upload(File.from_content(npz_buffer.getvalue(), extension="npz"))
+        
+        # Model metadata
+        self.run["model/architecture"] = "ResNet50"
+        self.run["model/num_parameters"] = sum(w.size for w in weights.values())
+        self.run["model/precision"] = "float32"
+        self.run["model/best_epoch"] = 87
+        self.run["model/checkpoint_path"] = "checkpoints/best_model.pt"
+        
+        print("  ✓ Model checkpoint uploaded")
+    
+    def upload_source_code(self):
+        """Upload source code information."""
+        print("\n💻 Uploading source code info...")
+        
+        # Upload this script itself
+        if os.path.exists(__file__):
+            self.run["source/main_script"].upload(__file__)
+        
+        # Git info (simulated)
+        self.run["git/commit"] = "a1b2c3d4e5f6789012345678901234567890abcd"
+        self.run["git/branch"] = "main"
+        self.run["git/remote"] = "https://github.com/user/ml-experiments"
+        self.run["git/dirty"] = False
+        self.run["git/message"] = "Add comprehensive Neptune logging"
+        
+        print("  ✓ Source code info uploaded")
+    
+    def upload_custom_metadata(self):
+        """Upload custom metadata and tags."""
+        print("\n🏷️ Uploading custom metadata...")
+        
+        # Add more tags
+        self.run["sys/tags"].add(["production-ready", "v2.0", "pytorch", "resnet"])
+        
+        # Custom fields
+        self.run["custom/experiment_group"] = "architecture_comparison"
+        self.run["custom/priority"] = "high"
+        self.run["custom/status"] = "completed"
+        self.run["custom/reviewers"] = ["alice", "bob", "carol"]
+        self.run["custom/related_experiments"] = ["exp_001", "exp_002", "exp_003"]
+        
+        # Timestamps
+        self.run["custom/started_at"] = datetime.now().isoformat()
+        self.run["custom/hardware_info"] = {
+            "gpu": "NVIDIA A100 80GB",
+            "cpu": "AMD EPYC 7763",
+            "ram_gb": 512,
+            "storage": "NVMe SSD",
+        }
+        
+        print("  ✓ Custom metadata uploaded")
+    
+    def run_all(self):
+        """Execute all uploads."""
+        print("\n" + "=" * 60)
+        print("🚀 NEPTUNE COMPREHENSIVE UPLOAD - ALL DATA GENERATED")
+        print("=" * 60)
+        
+        try:
+            self.upload_scalars_and_metrics()
+            self.upload_parameters()
+            self.upload_tables()
+            self.upload_images()
+            self.upload_audio()
+            self.upload_video()
+            self.upload_text()
+            self.upload_html()
+            self.upload_artifacts()
+            self.upload_model_checkpoint()
+            self.upload_source_code()
+            self.upload_custom_metadata()
+            
+            print("\n" + "=" * 60)
+            print("✅ ALL UPLOADS COMPLETED!")
+            print("=" * 60)
+            print(f"\n🔗 View run: {self.run.get_url()}")
+            
+        finally:
+            self.run.stop()
+            print("\n📤 Run stopped and synced")
+
+
+
+
+def main():
+    """Main entry point."""
+    api_token = os.environ.get("NEPTUNE_API_TOKEN")
+    project = "byyoung3/testing2"
+    
+    if not api_token:
+        print("⚠️  NEPTUNE_API_TOKEN not set - using anonymous token")
+        api_token = neptune.ANONYMOUS_API_TOKEN
+    
+    if not project:
+        print("⚠️  NEPTUNE_PROJECT not set - using 'common/quickstarts'")
+        project = "common/quickstarts"
+    
+    uploader = NeptuneUploader(project=project, api_token=api_token)
+    uploader.run_all()
+
+
+
+
+if __name__ == "__main__":
+    main()
+
+
+
+
