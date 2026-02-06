@@ -1,0 +1,650 @@
+#
+# Copyright (c) 2025, Neptune Labs Sp. z o.o.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import logging
+import os
+from datetime import datetime
+from pathlib import Path
+from typing import Optional
+
+import click
+
+from neptune_exporter.export_manager import ExportManager
+from neptune_exporter.exporters.error_reporter import ErrorReporter
+from neptune_exporter.exporters.exporter import NeptuneExporter
+from neptune_exporter.exporters.neptune2 import Neptune2Exporter
+from neptune_exporter.exporters.neptune3 import Neptune3Exporter
+from neptune_exporter.loader_manager import LoaderManager
+from neptune_exporter.loaders.loader import DataLoader
+from neptune_exporter.loaders.mlflow_loader import MLflowLoader
+from neptune_exporter.loaders.wandb_loader import WandBLoader
+from neptune_exporter.storage.parquet_reader import ParquetReader
+from neptune_exporter.storage.parquet_writer import ParquetWriter
+from neptune_exporter.summary_manager import SummaryManager
+from neptune_exporter.types import ProjectId, SourceRunId
+from neptune_exporter.validation import ReportFormatter
+
+
+@click.group()
+def cli():
+    """Neptune Exporter - Export and migrate Neptune experiment data."""
+    pass
+
+
+@cli.command()
+@click.option(
+    "--project-ids",
+    "-p",
+    multiple=True,
+    help="Neptune project IDs to export. Can be specified multiple times. If not provided, reads from NEPTUNE_PROJECT environment variable.",
+)
+@click.option(
+    "--runs",
+    "-r",
+    help="Filter runs by pattern (e.g., 'RUN-*' or specific run ID).",
+)
+@click.option(
+    "--attributes",
+    "-a",
+    multiple=True,
+    help="Filter attributes by name. Can be specified multiple times. "
+    "If a single string is provided, it's treated as a regex pattern. "
+    "If multiple strings are provided, they're treated as exact attribute names to match.",
+)
+@click.option(
+    "--classes",
+    "-c",
+    type=click.Choice(
+        ["parameters", "metrics", "series", "files"], case_sensitive=False
+    ),
+    multiple=True,
+    help="Types of data to include in export. Can be specified multiple times.",
+)
+@click.option(
+    "--exclude",
+    type=click.Choice(
+        ["parameters", "metrics", "series", "files"], case_sensitive=False
+    ),
+    multiple=True,
+    help="Types of data to exclude from export. Can be specified multiple times.",
+)
+@click.option(
+    "--include-archived-runs",
+    is_flag=True,
+    help="Include archived or trashed runs in export.",
+)
+@click.option(
+    "--exporter",
+    type=click.Choice(["neptune2", "neptune3"], case_sensitive=False),
+    help="Neptune exporter to use.",
+)
+@click.option(
+    "--data-path",
+    "-d",
+    type=click.Path(path_type=Path),
+    default="./exports/data",
+    help="Path for exported parquet data. Default: ./exports/data",
+)
+@click.option(
+    "--files-path",
+    "-f",
+    type=click.Path(path_type=Path),
+    default="./exports/files",
+    help="Path for downloaded files. Default: ./exports/files",
+)
+@click.option(
+    "--api-token",
+    help="Neptune API token. If not provided, will use environment variable NEPTUNE_API_TOKEN.",
+)
+@click.option(
+    "--verbose",
+    "-v",
+    is_flag=True,
+    help="Enable verbose logging including Neptune internal logs.",
+)
+@click.option(
+    "--log-file",
+    type=click.Path(path_type=Path),
+    default="./neptune_exporter.log",
+    help="Path for logging file. A timestamp suffix (YYYYMMDD_HHMMSS) will be automatically added to the filename. Default: ./neptune_exporter.log",
+)
+@click.option(
+    "--error-report-file",
+    type=click.Path(path_type=Path),
+    default="./neptune_exporter_errors.jsonl",
+    help="Path for error report file. Default: ./neptune_exporter_errors.jsonl",
+)
+@click.option(
+    "--no-progress",
+    is_flag=True,
+    help="Disable progress bar.",
+)
+def export(
+    project_ids: tuple[str, ...],
+    runs: str | None,
+    attributes: tuple[str, ...],
+    classes: tuple[str, ...],
+    exclude: tuple[str, ...],
+    include_archived_runs: bool,
+    exporter: str,
+    data_path: Path,
+    files_path: Path,
+    api_token: str | None,
+    verbose: bool,
+    log_file: Path,
+    error_report_file: Path,
+    no_progress: bool,
+) -> None:
+    """Export Neptune experiment data to parquet files.
+
+    This tool exports data from Neptune projects including parameters, metrics,
+    series data, and files to parquet format for further analysis.
+
+    The log file specified with --log-file will have a timestamp suffix
+    automatically added (e.g., neptune_exporter_20250115_143022.log) to ensure
+    unique log files for each export run.
+
+    Examples:
+
+    \b
+    # Export all data from a project
+    neptune-exporter export --exporter neptune3 -p "my-org/my-project"
+
+    \b
+    # Export only parameters and metrics from specific runs
+    neptune-exporter export --exporter neptune3 -p "my-org/my-project" -r "RUN-.*" -c parameters -c metrics
+
+    \b
+    # Export everything except files
+    neptune-exporter export --exporter neptune3 -p "my-org/my-project" --exclude files
+
+    \b
+    # Export specific attributes only (exact match)
+    neptune-exporter export --exporter neptune3 -p "my-org/my-project" -a "learning_rate" -a "batch_size"
+
+    \b
+    # Export attributes matching a pattern (regex)
+    neptune-exporter export --exporter neptune3 -p "my-org/my-project" -a "config/.*"
+
+    \b
+    # Use Neptune 2.x exporter
+    neptune-exporter export -p "my-org/my-project" --exporter neptune2
+
+    \b
+    # Use environment variable for project ID
+    NEPTUNE_PROJECT="my-org/my-project" neptune-exporter export --exporter neptune3
+    """
+    # Convert tuples to lists and handle None values
+    project_ids_list = list(project_ids)
+
+    # If no project IDs provided, try to read from environment variable
+    if not project_ids_list:
+        env_project = os.getenv("NEPTUNE_PROJECT")
+        if env_project:
+            project_ids_list = [env_project]
+        else:
+            raise click.BadParameter(
+                "No project IDs provided. Either use --project-ids/-p option or set NEPTUNE_PROJECT environment variable."
+            )
+
+    # Handle attributes: single string = regex, multiple strings = exact matches
+    if not attributes:
+        attributes_list: list[str] | str | None = None
+    elif len(attributes) == 1:
+        # Single string - treat as regex pattern
+        attributes_list = attributes[0]
+    else:
+        # Multiple strings - treat as exact attribute names
+        attributes_list = list(attributes)
+
+    # Determine export classes based on include/exclude logic
+    all_classes = {"parameters", "metrics", "series", "files"}
+    classes_set = set(classes) if classes else set()
+    exclude_set = set(exclude) if exclude else set()
+
+    # Validate that both classes and exclude are not specified
+    if classes_set and exclude_set:
+        raise click.BadParameter(
+            "Cannot specify both --classes and --exclude. Use --classes to include specific types or --exclude to exclude specific types."
+        )
+
+    # Determine export classes based on include/exclude logic
+    if classes_set:
+        export_classes_list = list(classes_set)
+    elif exclude_set:
+        export_classes_list = list(all_classes - exclude_set)
+    else:
+        # Default to all classes if neither is specified
+        export_classes_list = list(all_classes)
+
+    # Validate project IDs are not empty
+    for project_id in project_ids_list:
+        if not project_id.strip():
+            raise click.BadParameter(
+                "Project ID cannot be empty. Please provide a valid project ID."
+            )
+
+    # Validate export classes
+    valid_export_classes = {"parameters", "metrics", "series", "files"}
+    export_classes_set = set(export_classes_list)
+    if not export_classes_set.issubset(valid_export_classes):
+        invalid = export_classes_set - valid_export_classes
+        raise click.BadParameter(f"Invalid export classes: {', '.join(invalid)}")
+
+    # Configure logging
+    configure_logging(
+        stderr_level=logging.INFO if verbose else logging.ERROR,
+        log_file=log_file if log_file else None,
+    )
+
+    logger = logging.getLogger(__name__)
+    logger.info(f"Exporting from {exporter} exporter using arguments:")
+    logger.info(f"  Project IDs: {', '.join(project_ids_list)}")
+    logger.info(f"  Runs: {runs}")
+    logger.info(
+        f"  Attributes: {', '.join(attributes_list) if isinstance(attributes_list, list) else attributes_list}"
+    )
+    logger.info(f"  Export classes: {', '.join(export_classes_list)}")
+    logger.info(f"  Exclude: {', '.join(exclude_set)}")
+    logger.info(f"  Include archived runs: {include_archived_runs}")
+
+    # Create error reporter instance
+    error_reporter = ErrorReporter(path=error_report_file)
+
+    # Create exporter instance
+    if exporter == "neptune2":
+        exporter_instance: NeptuneExporter = Neptune2Exporter(
+            error_reporter=error_reporter,
+            api_token=api_token,
+            include_trashed_runs=include_archived_runs,
+        )
+    elif exporter == "neptune3":
+        exporter_instance = Neptune3Exporter(
+            error_reporter=error_reporter,
+            api_token=api_token,
+            include_archived_runs=include_archived_runs,
+        )
+    else:
+        raise click.BadParameter(f"Unknown exporter: {exporter}")
+
+    # Create storage and reader instances
+    writer = ParquetWriter(base_path=data_path)
+    reader = ParquetReader(base_path=data_path)
+
+    # Create export manager
+    export_manager = ExportManager(
+        exporter=exporter_instance,
+        reader=reader,
+        writer=writer,
+        error_reporter=error_reporter,
+        files_destination=files_path,
+        progress_bar=not no_progress,
+    )
+
+    logger.info(f"Starting export of {len(project_ids_list)} project(s)...")
+    logger.info(f"Export classes: {', '.join(export_classes_list)}")
+    logger.info(f"Data path: {data_path.absolute()}")
+    logger.info(f"Files path: {files_path.absolute()}")
+
+    try:
+        runs_exported = export_manager.run(
+            project_ids=[ProjectId(project_id) for project_id in project_ids_list],
+            runs=runs,
+            attributes=attributes_list,
+            export_classes=export_classes_set,  # type: ignore
+        )
+
+        if runs_exported == 0:
+            logger.info("No runs found matching the specified criteria.")
+            if runs:
+                logger.info(f"   Filter: {runs}")
+            logger.info(
+                "   Try adjusting your run filter or check if the project contains any runs."
+            )
+        else:
+            logger.info("Export completed successfully!")
+    except Exception:
+        logger.error("Export failed", exc_info=True)
+        raise click.Abort()
+
+    finally:
+        exporter_instance.close()
+        writer.close_all()
+
+
+@cli.command()
+@click.option(
+    "--data-path",
+    "-d",
+    type=click.Path(path_type=Path),
+    default="./exports/data",
+    help="Path for exported parquet data. Default: ./exports/data",
+)
+@click.option(
+    "--files-path",
+    "-f",
+    type=click.Path(path_type=Path),
+    default="./exports/files",
+    help="Path for downloaded files. Default: ./exports/files",
+)
+@click.option(
+    "--project-ids",
+    "-p",
+    multiple=True,
+    help="Project IDs to load. If not specified, loads all available projects.",
+)
+@click.option(
+    "--runs",
+    "-r",
+    multiple=True,
+    help="Run IDs to filter by. Can be specified multiple times.",
+)
+@click.option(
+    "--step-multiplier",
+    type=int,
+    help="Step multiplier for converting decimal steps to integers. Default: 1.",
+    default=1,
+)
+@click.option(
+    "--loader",
+    type=click.Choice(["mlflow", "wandb"], case_sensitive=False),
+    help="Target platform loader to use.",
+)
+@click.option(
+    "--mlflow-tracking-uri",
+    help="MLflow tracking URI. Only used with --loader mlflow.",
+)
+@click.option(
+    "--wandb-entity",
+    help="W&B entity (organization/username). Only used with --loader wandb.",
+)
+@click.option(
+    "--wandb-api-key",
+    help="W&B API key for authentication. Only used with --loader wandb.",
+)
+@click.option(
+    "--name-prefix",
+    help="Optional prefix for experiment/project and run names.",
+)
+@click.option(
+    "--verbose",
+    "-v",
+    is_flag=True,
+    help="Enable verbose logging to the console.",
+)
+@click.option(
+    "--log-file",
+    type=click.Path(path_type=Path),
+    default="./neptune_exporter.log",
+    help="Path for logging file. A timestamp suffix (YYYYMMDD_HHMMSS) will be automatically added to the filename. Default: ./neptune_exporter.log",
+)
+@click.option(
+    "--no-progress",
+    is_flag=True,
+    help="Disable progress bar.",
+)
+@click.option(
+    "--rich",
+    is_flag=True,
+    help="Enable rich console output with tables and formatted display.",
+)
+def load(
+    data_path: Path,
+    files_path: Path,
+    project_ids: tuple[str, ...],
+    runs: tuple[str, ...],
+    step_multiplier: int,
+    loader: str,
+    mlflow_tracking_uri: str | None,
+    wandb_entity: str | None,
+    wandb_api_key: str | None,
+    name_prefix: str | None,
+    verbose: bool,
+    log_file: Path,
+    no_progress: bool,
+    rich: bool,
+) -> None:
+    """Load exported Neptune data from parquet files to target platforms (MLflow or W&B).
+
+    This tool loads previously exported Neptune data from parquet files
+    and uploads it to MLflow or Weights & Biases for further analysis and tracking.
+
+    The log file specified with --log-file will have a timestamp suffix
+    automatically added (e.g., neptune_exporter_20250115_143022.log) to ensure
+    unique log files for each load run.
+
+    Examples:
+
+    \b
+    # Load all data from exported parquet files to MLflow
+    neptune-exporter load --loader mlflow
+
+    \b
+    # Load to Weights & Biases
+    neptune-exporter load --loader wandb --wandb-entity my-org
+
+    \b
+    # Load specific projects
+    neptune-exporter load -p "my-org/my-project1" -p "my-org/my-project2"
+
+    \b
+    # Load specific runs
+    neptune-exporter load -r "RUN-123" -r "RUN-456"
+
+    \b
+    # Load to specific MLflow tracking URI
+    neptune-exporter load --mlflow-tracking-uri "http://localhost:5000"
+
+    \b
+    # Load to W&B with API key
+    neptune-exporter load --loader wandb --wandb-entity my-org --wandb-api-key xxx
+    """
+    # Convert tuples to lists and handle None values
+    project_ids_list = list(project_ids) if project_ids else None
+    runs_list = list(runs) if runs else None
+
+    # Validate data path exists
+    if not data_path.exists():
+        raise click.BadParameter(f"Data path does not exist: {data_path}")
+
+    # Create parquet reader
+    parquet_reader = ParquetReader(base_path=data_path)
+
+    # Configure logging
+    configure_logging(
+        stderr_level=logging.INFO if verbose else logging.ERROR,
+        log_file=log_file if log_file else None,
+    )
+
+    logger = logging.getLogger(__name__)
+
+    logger.info(
+        f"Starting {loader} loading from {data_path.absolute()} using arguments:"
+    )
+    logger.info(
+        f"  Project IDs: {', '.join(project_ids_list) if project_ids_list else 'all'}"
+    )
+    logger.info(f"  Runs: {', '.join(runs_list) if runs_list else 'all'}")
+    logger.info(f"  Step multiplier: {step_multiplier}")
+    logger.info(f"  Files directory: {files_path.absolute()}")
+    if mlflow_tracking_uri:
+        logger.info(f"  MLflow tracking URI: {mlflow_tracking_uri}")
+    if wandb_entity:
+        logger.info(f"  W&B entity: {wandb_entity}")
+    if name_prefix:
+        logger.info(f"  Name prefix: {name_prefix}")
+
+    # Create appropriate loader based on --loader flag
+    data_loader: DataLoader
+    if loader == "mlflow":
+        if not mlflow_tracking_uri:
+            mlflow_tracking_uri = os.getenv("MLFLOW_TRACKING_URI")
+            if not mlflow_tracking_uri:
+                raise click.BadParameter(
+                    "MLflow tracking URI is required when using --loader mlflow. You can set it as an environment variable MLFLOW_TRACKING_URI or provide it with --mlflow-tracking-uri."
+                )
+        data_loader = MLflowLoader(
+            tracking_uri=mlflow_tracking_uri,
+            name_prefix=name_prefix,
+            show_client_logs=verbose,
+        )
+        loader_name = "MLflow"
+    elif loader == "wandb":
+        if not wandb_entity:
+            wandb_entity = os.getenv("WANDB_ENTITY")
+            if not wandb_entity:
+                raise click.BadParameter(
+                    "W&B entity is required when using --loader wandb. You can set it as an environment variable WANDB_ENTITY or provide it with --wandb-entity."
+                )
+        if not wandb_api_key:
+            wandb_api_key = os.getenv("WANDB_API_KEY")
+            if not wandb_api_key:
+                raise click.BadParameter(
+                    "W&B API key is required when using --loader wandb. You can set it as an environment variable WANDB_API_KEY or provide it with --wandb-api-key."
+                )
+        data_loader = WandBLoader(
+            entity=wandb_entity,
+            api_key=wandb_api_key,
+            name_prefix=name_prefix,
+            show_client_logs=verbose,
+            rich=rich,
+        )
+        loader_name = "W&B"
+    else:
+        raise click.BadParameter(f"Unknown loader: {loader}")
+
+    # Create loader manager
+    loader_manager = LoaderManager(
+        parquet_reader=parquet_reader,
+        data_loader=data_loader,
+        files_directory=files_path,
+        step_multiplier=step_multiplier,
+        progress_bar=not no_progress,
+    )
+
+    try:
+        loader_manager.load(
+            project_ids=[ProjectId(project_id) for project_id in project_ids_list]
+            if project_ids_list
+            else None,
+            runs=[SourceRunId(run_id) for run_id in runs_list] if runs_list else None,
+        )
+        logger.info(f"{loader_name} loading completed successfully!")
+    except Exception:
+        logger.error(f"{loader_name} loading failed", exc_info=True)
+        raise click.Abort()
+
+
+@cli.command()
+@click.option(
+    "--data-path",
+    "-d",
+    type=click.Path(path_type=Path),
+    default="./exports/data",
+    help="Path for exported parquet data. Default: ./exports/data",
+)
+@click.option(
+    "--verbose",
+    "-v",
+    is_flag=True,
+    help="Enable verbose logging to the console.",
+)
+@click.option(
+    "--log-file",
+    type=click.Path(path_type=Path),
+    default="./neptune_exporter.log",
+    help="Path for logging file. A timestamp suffix (YYYYMMDD_HHMMSS) will be automatically added to the filename. Default: ./neptune_exporter.log",
+)
+def summary(data_path: Path, verbose: bool, log_file: Path) -> None:
+    """Show summary of exported Neptune data.
+
+    This command shows a summary of available data in the exported parquet files,
+    including project counts, run counts, and attribute types.
+
+    The log file specified with --log-file will have a timestamp suffix
+    automatically added (e.g., neptune_exporter_20250115_143022.log) to ensure
+    unique log files for each summary run.
+    """
+    # Validate data path exists
+    if not data_path.exists():
+        raise click.BadParameter(f"Data path does not exist: {data_path}")
+
+    # Configure logging
+    configure_logging(
+        stderr_level=logging.INFO if verbose else logging.ERROR,
+        log_file=log_file if log_file else None,
+    )
+
+    logger = logging.getLogger(__name__)
+
+    # Create parquet reader and summary manager
+    parquet_reader = ParquetReader(base_path=data_path)
+    summary_manager = SummaryManager(parquet_reader=parquet_reader)
+
+    try:
+        # Show general data summary
+        summary_data = summary_manager.get_data_summary()
+        ReportFormatter.print_data_summary(summary_data, data_path)
+
+    except Exception:
+        logger.error("Failed to generate summary", exc_info=True)
+        raise click.Abort()
+
+
+def main():
+    """Main entry point for the CLI."""
+    cli()
+
+
+def configure_logging(stderr_level: Optional[int], log_file: Optional[Path]) -> None:
+    """Configure logging with optional file handler.
+
+    If a log_file path is provided, a timestamp suffix is automatically added
+    to the filename (before the extension) to ensure unique log files for each run.
+    For example, './neptune_exporter.log' becomes './neptune_exporter_20250115_143022.log'.
+
+    Args:
+        stderr_level: Logging level for stderr stream handler (None to disable).
+        log_file: Path for log file. Timestamp suffix will be added automatically.
+    """
+    logger = logging.getLogger("neptune_exporter")
+    logger.setLevel(logging.INFO)
+    FORMAT = "%(asctime)s %(name)s:%(levelname)s: %(message)s"
+
+    if stderr_level:
+        stream_handler = logging.StreamHandler()
+        stream_handler.setFormatter(logging.Formatter(FORMAT))
+        stream_handler.setLevel(stderr_level)
+        logger.addHandler(stream_handler)
+
+    if log_file:
+        # Add timestamp suffix to log file name
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        log_file_path = Path(log_file)
+        if log_file_path.suffix:
+            # Has extension: insert timestamp before extension
+            log_file_with_timestamp = log_file_path.with_stem(
+                f"{log_file_path.stem}_{timestamp}"
+            )
+        else:
+            # No extension: append timestamp
+            log_file_with_timestamp = (
+                log_file_path.parent / f"{log_file_path.name}_{timestamp}"
+            )
+
+        file_handler = logging.FileHandler(log_file_with_timestamp, mode="w")
+        file_handler.setFormatter(logging.Formatter(FORMAT))
+        file_handler.setLevel(logging.INFO)
+        logger.addHandler(file_handler)
