@@ -33,6 +33,7 @@ class RunMetadata:
     project_id: ProjectId
     run_id: SourceRunId
     custom_run_id: Optional[str]
+    neptune_id: Optional[str]
     experiment_name: Optional[str]
     parent_source_run_id: Optional[SourceRunId]
     fork_step: Optional[float]
@@ -256,6 +257,7 @@ class ParquetReader:
             "project_id": None,
             "run_id": None,
             "custom_run_id": None,
+            "neptune_id": None,
             "experiment_name": None,
             "parent_source_run_id": None,
             "fork_step": None,
@@ -268,6 +270,7 @@ class ParquetReader:
             run_file_prefix,
             attribute_paths=[
                 "sys/custom_run_id",
+                "sys/id",
                 "sys/name",
                 "sys/forking/parent",
                 "sys/forking/step",
@@ -292,6 +295,11 @@ class ParquetReader:
                 )
                 if custom_run_id:
                     metadata["custom_run_id"] = custom_run_id
+
+            if metadata["neptune_id"] is None:
+                neptune_id = self._get_attribute_value(part_table, "sys/id")
+                if neptune_id:
+                    metadata["neptune_id"] = neptune_id
 
             if metadata["experiment_name"] is None:
                 experiment_name = self._get_attribute_value(part_table, "sys/name")
@@ -335,6 +343,7 @@ class ParquetReader:
                     project_id=metadata["project_id"],
                     run_id=SourceRunId(metadata["run_id"]),
                     custom_run_id=metadata["custom_run_id"],
+                    neptune_id=metadata["neptune_id"],
                     experiment_name=metadata["experiment_name"],
                     parent_source_run_id=SourceRunId(metadata["parent_source_run_id"]),
                     fork_step=metadata["fork_step"],

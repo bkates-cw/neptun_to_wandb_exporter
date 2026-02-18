@@ -642,7 +642,7 @@ class WandBLoader(DataLoader):
                     }
                 )
                 .overwrite_output()
-                .run(quiet=True, capture_stdout=True, capture_stderr=True)
+                .run(quiet=True)
             )
             print(f"[DEBUG _reencode_video_to_h264] Successfully re-encoded to: {output_path}")
             return Path(output_path)

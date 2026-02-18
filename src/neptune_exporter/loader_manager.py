@@ -267,7 +267,11 @@ class LoaderManager:
             run_id_to_target_run_id: Dictionary mapping source run IDs to target run IDs
         """
         project_id = metadata.project_id
-        custom_run_id = metadata.custom_run_id or metadata.run_id
+        short_id = metadata.neptune_id or metadata.run_id
+        if metadata.experiment_name:
+            custom_run_id = f"{metadata.experiment_name}_{short_id}"
+        else:
+            custom_run_id = short_id
         experiment_name = metadata.experiment_name
         parent_source_run_id = (
             metadata.parent_source_run_id
