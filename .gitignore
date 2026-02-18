@@ -15,3 +15,7 @@ wheels/
 
 .env
 .neptune/
+
+neptune_exporter_*.log
+.DS_Store
+neptune_exporter_errors.jsonl

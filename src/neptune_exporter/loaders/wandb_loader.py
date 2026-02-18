@@ -485,7 +485,10 @@ from typing import Generator, Optional, Any
 import pandas as pd
 import pyarrow as pa
 import wandb
-import magic
+try:
+    import magic
+except ImportError:
+    magic = None  # Will fail at runtime if WandBLoader is actually used
 import ffmpeg
 
 from neptune_exporter.types import ProjectId, TargetRunId, TargetExperimentId
