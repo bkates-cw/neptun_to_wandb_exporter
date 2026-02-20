@@ -477,6 +477,7 @@
 
 import os
 import re
+import shutil
 import logging
 import tempfile
 from decimal import Decimal
@@ -613,12 +614,31 @@ class WandBLoader(DataLoader):
         print(f"[DEBUG _get_file_type] No match - returning 'file'")
         return "file"
 
+    @staticmethod
+    def _find_ffmpeg() -> str:
+        """Locate the ffmpeg binary, checking common install paths."""
+        candidates = [
+            shutil.which('ffmpeg'),
+            '/opt/homebrew/bin/ffmpeg',
+            '/usr/local/bin/ffmpeg',
+            '/usr/bin/ffmpeg',
+        ]
+        for path in candidates:
+            if path and os.path.isfile(path) and os.access(path, os.X_OK):
+                return path
+        raise FileNotFoundError(
+            "ffmpeg binary not found. Install it with: brew install ffmpeg"
+        )
+
     def _reencode_video_to_h264(self, input_path: Path) -> Path:
         """Re-encode video to H.264 MP4 for browser compatibility.
 
         Returns path to the re-encoded video (a temp file).
         """
         print(f"[DEBUG _reencode_video_to_h264] Re-encoding video: {input_path}")
+
+        ffmpeg_cmd = self._find_ffmpeg()
+        print(f"[DEBUG _reencode_video_to_h264] Using ffmpeg at: {ffmpeg_cmd}")
 
         # Create temp file for output
         temp_file = tempfile.NamedTemporaryFile(suffix='.mp4', delete=False)
@@ -642,7 +662,7 @@ class WandBLoader(DataLoader):
                     }
                 )
                 .overwrite_output()
-                .run(quiet=True)
+                .run(quiet=True, cmd=ffmpeg_cmd)
             )
             print(f"[DEBUG _reencode_video_to_h264] Successfully re-encoded to: {output_path}")
             return Path(output_path)
@@ -878,7 +898,8 @@ class WandBLoader(DataLoader):
             project_path = f"{self.entity}/{sanitized_project}"
 
             # Search for runs with matching name and group
-            filters = {"display_name": run_name}
+            # Only match finished runs so failed/crashed runs are retried automatically
+            filters = {"display_name": run_name, "state": "finished"}
             if experiment_id:
                 filters["group"] = experiment_id
 
@@ -922,6 +943,7 @@ class WandBLoader(DataLoader):
                 "project": sanitized_project,
                 "group": experiment_id,
                 "name": run_name,
+                "settings": wandb.Settings(save_code=False),
             }
 
             # Handle forking if parent exists
@@ -939,8 +961,8 @@ class WandBLoader(DataLoader):
                 else:
                     step_int = 0
 
-                # W&B fork format: entity/project/run_id?_step=step
-                fork_from = f"{self.entity}/{sanitized_project}/{parent_run_id}?_step={step_int}"
+                # W&B fork format: run_id?_step=step (entity/project passed separately)
+                fork_from = f"{parent_run_id}?_step={step_int}"
                 init_kwargs["fork_from"] = fork_from
                 self._logger.info(
                     f"Creating forked run '{run_name}' from parent {parent_run_id} at step {step_int}"
@@ -1091,10 +1113,31 @@ class WandBLoader(DataLoader):
         if self._active_run is None:
             raise RuntimeError("No active run")
 
-        # Handle regular files
-        file_data = run_data[
-            run_data["attribute_type"].isin(["file", "file_set", "artifact"])
-        ]
+        # Handle source_code/ files — upload as a proper W&B code artifact
+        # so they appear in the Code tab rather than as generic artifacts.
+        all_file_data = run_data[run_data["attribute_type"].isin(["file", "file_set", "artifact"])]
+        source_code_mask = all_file_data["attribute_path"].str.startswith("source_code/")
+        source_code_data = all_file_data[source_code_mask]
+
+        if not source_code_data.empty:
+            # Find the source_code directory from the first file's stored path.
+            # file_value["path"] is relative to files_base_path, e.g.:
+            #   "{run_subdir}/source_code/entry_point.py"
+            for _, row in source_code_data.iterrows():
+                if pd.notna(row["file_value"]) and isinstance(row["file_value"], dict):
+                    rel_parts = Path(row["file_value"]["path"]).parts
+                    try:
+                        sc_idx = rel_parts.index("source_code")
+                        source_code_dir = files_base_path / Path(*rel_parts[: sc_idx + 1])
+                        if source_code_dir.exists():
+                            self._active_run.log_code(str(source_code_dir), name="source-code")
+                            self._logger.info(f"Uploaded source code from {source_code_dir} for run {run_id}")
+                    except (ValueError, Exception):
+                        self._logger.warning(f"Could not upload source code for run {run_id}", exc_info=True)
+                    break  # Only need to find the directory once
+
+        # Handle regular files (excluding source_code/ which was handled above)
+        file_data = all_file_data[~source_code_mask]
         print(f"\n[DEBUG upload_artifacts] Processing {len(file_data)} regular files")
         print(f"[DEBUG upload_artifacts] self.rich = {self.rich}")
 
