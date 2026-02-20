@@ -614,6 +614,27 @@ class WandBLoader(DataLoader):
         print(f"[DEBUG _get_file_type] No match - returning 'file'")
         return "file"
 
+    def _is_h264_compatible(self, video_path: Path) -> bool:
+        """Return True if the video is already H.264/yuv420p in an MP4 container.
+
+        If True, re-encoding can be skipped entirely.
+        """
+        if video_path.suffix.lower() != '.mp4':
+            return False
+        try:
+            probe = ffmpeg.probe(str(video_path))
+            video_stream = next(
+                (s for s in probe['streams'] if s['codec_type'] == 'video'), None
+            )
+            if video_stream is None:
+                return False
+            return (
+                video_stream.get('codec_name') == 'h264'
+                and video_stream.get('pix_fmt') == 'yuv420p'
+            )
+        except Exception:
+            return False  # Fall back to re-encoding if probe fails
+
     @staticmethod
     def _find_ffmpeg() -> str:
         """Locate the ffmpeg binary, checking common install paths."""
@@ -752,11 +773,15 @@ class WandBLoader(DataLoader):
                 print(f"[DEBUG _upload_rich_file] Creating wandb.Audio for {file_path}")
                 media = wandb.Audio(str(file_path))
             elif file_type == "video":
-                # Re-encode video to H.264 for browser compatibility
-                print(f"[DEBUG _upload_rich_file] Re-encoding video to H.264 for browser compatibility...")
-                reencoded_video = self._reencode_video_to_h264(file_path)
-                print(f"[DEBUG _upload_rich_file] Creating wandb.Video for {reencoded_video}")
-                media = wandb.Video(str(reencoded_video))
+                if self._is_h264_compatible(file_path):
+                    print(f"[DEBUG _upload_rich_file] Video already H.264/yuv420p, skipping re-encode")
+                    media = wandb.Video(str(file_path))
+                else:
+                    # Re-encode video to H.264 for browser compatibility
+                    print(f"[DEBUG _upload_rich_file] Re-encoding video to H.264 for browser compatibility...")
+                    reencoded_video = self._reencode_video_to_h264(file_path)
+                    print(f"[DEBUG _upload_rich_file] Creating wandb.Video for {reencoded_video}")
+                    media = wandb.Video(str(reencoded_video))
             elif file_type == "table":
                 print(f"[DEBUG _upload_rich_file] Creating wandb.Table for {file_path}")
                 df = pd.read_csv(file_path) if file_path.suffix == ".csv" else pd.read_csv(file_path, sep="\t")
@@ -1251,11 +1276,15 @@ class WandBLoader(DataLoader):
                                 print(f"[DEBUG] Added image at step {step_int} to table")
                             elif file_type == "video":
                                 print(f"[DEBUG] Creating wandb.Video from: {file_path}")
-                                # Re-encode video for browser compatibility
-                                reencoded = self._reencode_video_to_h264(file_path)
-                                table.add_data(step_int, wandb.Video(str(reencoded), caption=f"Step {step_int}"))
-                                # Track temp file for cleanup AFTER table is logged
-                                temp_files_to_cleanup.append(reencoded)
+                                if self._is_h264_compatible(file_path):
+                                    print(f"[DEBUG] Video already H.264/yuv420p, skipping re-encode")
+                                    table.add_data(step_int, wandb.Video(str(file_path), caption=f"Step {step_int}"))
+                                else:
+                                    # Re-encode video for browser compatibility
+                                    reencoded = self._reencode_video_to_h264(file_path)
+                                    table.add_data(step_int, wandb.Video(str(reencoded), caption=f"Step {step_int}"))
+                                    # Track temp file for cleanup AFTER table is logged
+                                    temp_files_to_cleanup.append(reencoded)
                                 print(f"[DEBUG] Added video at step {step_int} to table")
                             elif file_type == "audio":
                                 print(f"[DEBUG] Creating wandb.Audio from: {file_path}")
