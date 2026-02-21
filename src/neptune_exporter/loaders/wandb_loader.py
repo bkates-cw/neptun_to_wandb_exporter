@@ -1276,16 +1276,23 @@ class WandBLoader(DataLoader):
                                 print(f"[DEBUG] Added image at step {step_int} to table")
                             elif file_type == "video":
                                 print(f"[DEBUG] Creating wandb.Video from: {file_path}")
-                                if self._is_h264_compatible(file_path):
-                                    print(f"[DEBUG] Video already H.264/yuv420p, skipping re-encode")
-                                    table.add_data(step_int, wandb.Video(str(file_path), caption=f"Step {step_int}"))
-                                else:
-                                    # Re-encode video for browser compatibility
-                                    reencoded = self._reencode_video_to_h264(file_path)
-                                    table.add_data(step_int, wandb.Video(str(reencoded), caption=f"Step {step_int}"))
-                                    # Track temp file for cleanup AFTER table is logged
-                                    temp_files_to_cleanup.append(reencoded)
-                                print(f"[DEBUG] Added video at step {step_int} to table")
+                                try:
+                                    if self._is_h264_compatible(file_path):
+                                        print(f"[DEBUG] Video already H.264/yuv420p, skipping re-encode")
+                                        table.add_data(step_int, wandb.Video(str(file_path), caption=f"Step {step_int}"))
+                                    else:
+                                        # Re-encode video for browser compatibility
+                                        reencoded = self._reencode_video_to_h264(file_path)
+                                        table.add_data(step_int, wandb.Video(str(reencoded), caption=f"Step {step_int}"))
+                                        # Track temp file for cleanup AFTER table is logged
+                                        temp_files_to_cleanup.append(reencoded)
+                                    print(f"[DEBUG] Added video at step {step_int} to table")
+                                except Exception as video_err:
+                                    self._logger.warning(
+                                        f"Skipping corrupt/unreadable video at step {step_int} "
+                                        f"({file_path.name}): {video_err}"
+                                    )
+                                    continue
                             elif file_type == "audio":
                                 print(f"[DEBUG] Creating wandb.Audio from: {file_path}")
                                 # Copy to temp file with proper extension if needed
