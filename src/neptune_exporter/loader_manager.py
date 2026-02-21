@@ -15,6 +15,7 @@
 
 import datetime
 import heapq
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from typing import Optional
 from tqdm import tqdm
@@ -195,25 +196,29 @@ class LoaderManager:
         run_metadata: list[RunMetadata] = []
         source_run_id_to_file_prefix: dict[SourceRunId, RunFilePrefix] = {}
 
-        for source_run_file_prefix in tqdm(
-            all_run_file_prefixes,
-            desc="Reading run metadata",
-            unit="run",
-            leave=False,
-            disable=not self._progress_bar,
-        ):
-            metadata = self._parquet_reader.read_run_metadata(
-                project_directory, source_run_file_prefix
+        def _read_one(prefix: RunFilePrefix):
+            return prefix, self._parquet_reader.read_run_metadata(
+                project_directory, prefix
             )
 
-            if metadata is None:
-                self._logger.warning(
-                    f"Could not read metadata for run {source_run_file_prefix}, skipping"
-                )
-                continue
-
-            source_run_id_to_file_prefix[metadata.run_id] = source_run_file_prefix
-            run_metadata.append(metadata)
+        with ThreadPoolExecutor(max_workers=16) as pool:
+            futures = {pool.submit(_read_one, p): p for p in all_run_file_prefixes}
+            for future in tqdm(
+                as_completed(futures),
+                total=len(futures),
+                desc="Reading run metadata",
+                unit="run",
+                leave=False,
+                disable=not self._progress_bar,
+            ):
+                prefix, metadata = future.result()
+                if metadata is None:
+                    self._logger.warning(
+                        f"Could not read metadata for run {prefix}, skipping"
+                    )
+                    continue
+                source_run_id_to_file_prefix[metadata.run_id] = prefix
+                run_metadata.append(metadata)
 
         if not run_metadata:
             self._logger.warning(f"No valid run metadata found in {project_directory}")

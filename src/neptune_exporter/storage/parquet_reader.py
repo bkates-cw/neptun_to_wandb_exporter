@@ -264,19 +264,41 @@ class ParquetReader:
             "creation_time": None,
         }
 
-        # Read all parts to find metadata (usually in part_0, but read all for robustness)
-        for part_table in self.read_run_data(
-            project_directory,
-            run_file_prefix,
-            attribute_paths=[
-                "sys/custom_run_id",
-                "sys/id",
-                "sys/name",
-                "sys/forking/parent",
-                "sys/forking/step",
-                "sys/creation_time",
-            ],
-        ):
+        # Only the columns required for metadata — skips large columns like
+        # file_value, histogram_value, step, timestamp, etc.
+        _METADATA_COLUMNS = [
+            "project_id",
+            "run_id",
+            "attribute_path",
+            "attribute_type",
+            "string_value",
+            "float_value",
+            "datetime_value",
+        ]
+        _METADATA_PATHS = {
+            "sys/custom_run_id",
+            "sys/id",
+            "sys/name",
+            "sys/forking/parent",
+            "sys/forking/step",
+            "sys/creation_time",
+        }
+
+        for part_file in self._get_run_files(project_directory, run_file_prefix):
+            try:
+                part_table = pq.read_table(part_file, columns=_METADATA_COLUMNS)
+                mask = pc.is_in(
+                    part_table["attribute_path"], pa.array(list(_METADATA_PATHS))
+                )
+                part_table = part_table.filter(mask)
+            except Exception:
+                self._logger.error(
+                    f"Error reading metadata from {part_file}", exc_info=True
+                )
+                continue
+            if len(part_table) == 0:
+                continue
+
             # Extract metadata fields
             if metadata["project_id"] is None:
                 project_ids = pc.unique(part_table["project_id"]).to_pylist()
