@@ -903,6 +903,12 @@ class WandBLoader(DataLoader):
         """
         return TargetExperimentId(experiment_name)
 
+    def warm_cache(self, project_id: ProjectId) -> None:
+        """Pre-warm the finished-runs cache for a project before processing starts."""
+        sanitized_project = self._get_project_name(project_id)
+        project_path = f"{self.entity}/{sanitized_project}"
+        self._prefetch_finished_runs(project_path)
+
     def _prefetch_finished_runs(self, project_path: str) -> None:
         """Fetch all finished runs for a project in one API call and cache them.
 

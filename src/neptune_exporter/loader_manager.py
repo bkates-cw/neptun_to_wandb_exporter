@@ -227,6 +227,13 @@ class LoaderManager:
         # Topologically sort runs (parents before children)
         sorted_run_metadata = self._topological_sort_runs(run_metadata)
 
+        # Pre-warm the loader cache (e.g. fetch all existing W&B runs) before
+        # the processing loop so it doesn't silently block at 0%.
+        project_id = run_metadata[0].project_id
+        self._logger.info(f"Warming cache for project {project_id}...")
+        self._data_loader.warm_cache(project_id)
+        self._logger.info(f"Cache ready for project {project_id}")
+
         # Track target run IDs for parent lookups
         run_id_to_target_run_id: dict[SourceRunId, TargetRunId] = {}
 

@@ -42,6 +42,14 @@ class DataLoader(ABC):
         """
         pass
 
+    def warm_cache(self, project_id: ProjectId) -> None:
+        """Pre-warm any caches needed before processing a project's runs.
+
+        Called once per project before the run-processing loop starts.
+        Default is a no-op; loaders that use caching should override this.
+        """
+        pass
+
     @abstractmethod
     def find_run(
         self,
