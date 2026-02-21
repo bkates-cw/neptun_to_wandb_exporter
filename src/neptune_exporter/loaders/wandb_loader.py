@@ -530,6 +530,10 @@ class WandBLoader(DataLoader):
         self.rich = rich
         self._logger = logging.getLogger(__name__)
         self._active_run: Optional[wandb.Run] = None
+        # Cache of finished runs per project: project_path -> {run_name -> run_id}
+        # Populated lazily on the first find_run call for each project.
+        self._finished_runs_cache: dict[str, dict[str, str]] = {}
+        self._prefetched_projects: set[str] = set()
 
         # Authenticate with W&B
         if api_key:
@@ -899,6 +903,36 @@ class WandBLoader(DataLoader):
         """
         return TargetExperimentId(experiment_name)
 
+    def _prefetch_finished_runs(self, project_path: str) -> None:
+        """Fetch all finished runs for a project in one API call and cache them.
+
+        Keyed by display_name so subsequent find_run calls are instant lookups.
+        """
+        if project_path in self._prefetched_projects:
+            return
+        try:
+            api = wandb.Api()
+            runs = api.runs(
+                project_path,
+                filters={"state": "finished"},
+                per_page=1000,
+            )
+            cache: dict[str, str] = {}
+            for run in runs:
+                cache[run.display_name] = run.id
+            self._finished_runs_cache[project_path] = cache
+            self._prefetched_projects.add(project_path)
+            self._logger.info(
+                f"Prefetched {len(cache)} finished runs for {project_path}"
+            )
+        except Exception:
+            self._logger.error(
+                f"Error prefetching runs for {project_path}", exc_info=True
+            )
+            # Mark as prefetched anyway to avoid retrying on every call
+            self._finished_runs_cache[project_path] = {}
+            self._prefetched_projects.add(project_path)
+
     def find_run(
         self,
         project_id: ProjectId,
@@ -906,6 +940,9 @@ class WandBLoader(DataLoader):
         experiment_id: Optional[TargetExperimentId],
     ) -> Optional[TargetRunId]:
         """Find a run by name in a W&B project.
+
+        Uses a per-project cache populated on the first call to avoid making
+        one API request per run (which is very slow for large projects).
 
         Args:
             run_name: Name of the run to find
@@ -916,31 +953,12 @@ class WandBLoader(DataLoader):
             W&B run ID if found, None otherwise
         """
         sanitized_project = self._get_project_name(project_id)
+        project_path = f"{self.entity}/{sanitized_project}"
 
-        try:
-            # Use wandb.Api() to search for runs
-            api = wandb.Api()
-            project_path = f"{self.entity}/{sanitized_project}"
+        self._prefetch_finished_runs(project_path)
 
-            # Search for runs with matching name and group
-            # Only match finished runs so failed/crashed runs are retried automatically
-            filters = {"display_name": run_name, "state": "finished"}
-            if experiment_id:
-                filters["group"] = experiment_id
-
-            runs = api.runs(project_path, filters=filters, per_page=1)
-
-            # Get the first matching run
-            for run in runs:
-                return TargetRunId(run.id)
-
-            return None
-        except Exception:
-            self._logger.error(
-                f"Error finding project {project_id}, run '{run_name}'",
-                exc_info=True,
-            )
-            return None
+        run_id = self._finished_runs_cache.get(project_path, {}).get(run_name)
+        return TargetRunId(run_id) if run_id else None
 
     def create_run(
         self,
